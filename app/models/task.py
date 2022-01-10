@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy.sql import func
 
 
 class Task(db.Model):
@@ -12,6 +13,8 @@ class Task(db.Model):
     completed_date = db.Column(db.DateTime)
     list_id = db.Column(db.Integer, db.ForeignKey("lists.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    updated_at = db.Column(db.DateTime, onupdate=func.now())
     list = db.relationship("List", back_populates="tasks")
     user = db.relationship("User", back_populates="tasks")
 
@@ -25,4 +28,6 @@ class Task(db.Model):
             'completed_date': self.completed_date,
             'list_id': self.list_id,
             'user_id': self.user_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
         }

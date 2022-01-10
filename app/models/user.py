@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy.sql import func
 
 
 class User(db.Model, UserMixin):
@@ -12,6 +13,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100))
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    updated_at = db.Column(db.DateTime, onupdate=func.now())
     tasks = db.relationship("Task", back_populates="user", cascade="all, delete")
     lists = db.relationship("List", back_populates="user", cascade="all, delete")
 
@@ -33,4 +36,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'first_name': self.first_name,
             'last_name': self.last_name,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
         }
