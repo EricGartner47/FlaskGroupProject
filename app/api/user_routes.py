@@ -23,6 +23,10 @@ def user(id):
 @user_routes.route('/<int:id>/update')
 @login_required
 """
+
+This one is one function for all updates, because
+    on the app, it's a form that takes all the information at once.
+
 function which updates user information
     - first_name
     - last_name
