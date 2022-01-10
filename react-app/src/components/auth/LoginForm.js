@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link, NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
 
@@ -32,24 +32,32 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='div-root'>
-      <div className='left-div'>
+    <div id='div-root'>
+      <div id='left-div'>
         <article>
-          <a href='/'>image</a>
+          <Link to='/'>image</Link>
+          <p>Insert inspirational quote here</p>
+          <div id="log-in-author">
+            <img src="/" alt="todo"></img>
+            <p>Quotes curated by Bill A. Chimp, renowned productivity expert</p>
+          </div>
         </article>
-        </div>
-      <div>
-        <form onSubmit={onLogin} className='login-form'>
+      </div>
+      <div id='right-div'>
+        <NavLink id="login-signup" to='/sign-up' exact={true} activeClassName='active'>
+          Sign up for free
+        </NavLink>
+        <form onSubmit={onLogin} id='login-form'>
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div>
-            <h3>Have you been here before? Welcome Back!</h3>
-            <div >
+          <h3>Been here before? Welcome Back!</h3>
+          <div id="login-fields">
+            <div>
               <input
-                className='email'
+                className='login-field'
                 name='email'
                 type='text'
                 placeholder='Email'
@@ -57,17 +65,17 @@ const LoginForm = () => {
                 onChange={updateEmail}
               />
             </div>
-          </div>
-          <div>
-            <input
-              className='password'
-              name='password'
-              type='password'
-              placeholder='Password'
-              value={password}
-              onChange={updatePassword}
-            />
-            <button type='submit' className='login-button'>Login</button>
+            <div>
+              <input
+                className='login-field'
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+                />
+            </div>
+            <button type='submit' id='login-button'>Log in</button>
           </div>
         </form>
       </div>
