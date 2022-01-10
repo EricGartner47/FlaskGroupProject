@@ -1,1 +1,10 @@
 /* TODO Add site wide styles */
+body {
+    background-color: #0060bf;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+}

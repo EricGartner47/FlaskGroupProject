@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    width: 85vw;
+}
+
+nav > ul {
+    list-style-type: none;
+    color:rgb(220, 220, 220);
+    display: flex;
+}
+
+nav li {
+    margin: 10px;
+}
+
+nav a:link, a:visited {
+    text-decoration: none;
+    color:rgb(220, 220, 220);
+}
+
+#signup {
+    border: 2px rgb(210, 210, 210) solid;
+    border-radius: 5px;
+    padding: 4px 11px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: white;
+    animation: smooth .25s ease-in-out;
+    cursor: pointer;
+}
+
+#signup:hover {
+    border: 2px white solid;
+}
