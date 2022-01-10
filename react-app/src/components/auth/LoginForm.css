@@ -1,43 +1,86 @@
-.div-root {
+#div-root {
     background-color: #fff;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.login-form {
+#login-form {
     /* clear:both; */
-    padding: 126px 10px 0
+    padding: 200px 10px 0;
+    width: 75%;
 }
 
-.left-div {
+#login-fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+}
+
+#left-div {
     background-color: #0060bf;
 }
 
-.email {
+#right-div {
+    display: flex;
+    justify-content: center;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    height: 615px;
+    width: 80%;
+    margin-left: 12%;
+    justify-content: space-between;
+}
+
+#log-in-author {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.login-field {
     width: 100%;
     padding: 10px 12px;
     font-size: 23px;
     line-height: 1.3333;
     border-radius: 3px;
     background-color: #e8f0fe;
+    box-sizing: border-box;
+    border: 1px rgb(172, 172, 172) solid;
 }
 
-.password {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 23px;
-    line-height: 1.3333;
-    border-radius: 3px;
-    background-color: #e8f0fe;
-}
-
-.login-button {
+#login-button {
     display: block;
     width: 100%;
     padding: 10px 12px;
     color: #fff;
     background-color:#009dff;
     margin-bottom: 0px;
+    line-height: 1.75;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+#login-signup {
+    position: fixed;
+    right: 40px;
+    top: 40px;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 11px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 96, 191, 0.1)
+}
+
+h3 {
+    font-weight:500;
 }
