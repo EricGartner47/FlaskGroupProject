@@ -59,3 +59,31 @@ def create_list(id):
         db.session.add(list)
         db.session.commit()
 # not finished 
+#update
+@user_routes.route('/<int:id>/update')
+@login_required
+"""
+
+This one is one function for all updates, because
+    on the app, it's a form that takes all the information at once.
+
+function which updates user information
+    - first_name
+    - last_name
+    - username?
+    - email?
+    - password
+"""
+def update_user_information():
+    # update user information with account settings form information upon submission
+    # return <something>
+
+
+#deactivate
+@user_routes.route('/<int:id>/deactivate')
+@login_required
+def deactivate_user_account():
+    # authenticate user
+    # remove accunt from database
+    # returns JSON message saying "Account deleted"
+
