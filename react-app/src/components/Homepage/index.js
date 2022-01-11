@@ -12,9 +12,24 @@ const Homepage = () => {
         <Redirect to="/app" />
         )
     }
-    
+
     else return (
-        <h1>My Home Page</h1>
+        <>
+            <h1>My Home Page</h1>
+            <ul > Created by:
+                <li key="links"> Joe Yang
+                    <a key="GitHub" className="gitHub-link" href="https://github.com/josephjyang">Github</a>
+                    <a key="Linked In" className="linkedIn-link"href="https://www.linkedin.com/in/josephjyang/">Linked In</a>
+                </li>
+                <li key="links"> Ricky Thang
+                    <a key="GitHub" className="gitHub-link" href="https://github.com/rickythewriter">Github</a>
+                </li>
+                <li key="links"> Eric Gartner
+                    <a key="GitHub" className="gitHub-link" href="https://github.com/EricGartner47">Github</a>
+                    <a key="Linked In" className="linkedIn-link"href="https://www.linkedin.com/in/eric-gartner-731907a0/">Linked In</a>
+                </li>
+            </ul>
+        </>
     );
 }
 
