@@ -7,10 +7,10 @@ import DemoLoginButton from '../DemoLoginButton';
 import Search from '../Search';
 import './ListSummary.css'
 
-const ListSummary = () => {
+const ListSummary = ({lists}) => {
     const user = useSelector(state => state.session.user);
     // const lists = useSelector(state => state.lists)
-    // const userLists = Object.values(lists)
+    const userLists = Object.values(lists)
     const dispatch = useDispatch();
     useEffect(() => {
         if (user) {
@@ -23,8 +23,13 @@ const ListSummary = () => {
     return (
         <div id="list-summary">
             <ul>
-                <li>List 1</li>
-                <li>List 2</li>
+                {userLists.map(list => {
+                    return (
+                        <li key={list.id}>
+                            {}
+                        </li>
+                    )
+                })}
             </ul>
         </div>
     );

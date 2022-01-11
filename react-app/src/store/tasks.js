@@ -12,7 +12,6 @@ const getTasks = (user, tasks) => {
 export const loadTasks = user => async dispatch => {
     const res = await fetch(`/api/users/${user.id}/tasks`);
     const data = await res.json();
-    console.log("data", data)
     dispatch(getTasks(user, data));
     return res;
 }
