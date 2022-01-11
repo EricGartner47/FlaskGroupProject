@@ -35,7 +35,12 @@ const LoginForm = () => {
     <div id='div-root'>
       <div id='left-div'>
         <article>
-          <Link to='/'>image</Link>
+          <div id="ymtl-container">
+            <Link to='/' className="ymtl-logo">
+              <img src="/images/Notepad_icon.png" alt="" id="notepad"></img>
+              <span>you made<br></br>the list</span>
+            </Link>
+          </div>
           <p>Insert inspirational quote here</p>
           <div id="log-in-author">
             <img src="/" alt="todo"></img>

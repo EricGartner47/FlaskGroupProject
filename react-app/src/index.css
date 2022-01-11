@@ -13,3 +13,17 @@ body {
     width: 100%;
     margin: 0;
 }
+
+.ymtl-logo {
+    font-family: "Shadows Into Light";
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    line-height: 1.2em;
+}
+
+.ymtl-logo span {
+    color: white
+}

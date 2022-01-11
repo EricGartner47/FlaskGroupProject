@@ -56,9 +56,12 @@ const SignUpForm = () => {
     <div id='div-root'>
       <div id='left-div'>
         <article id='signup-left-div'>
-          <Link to="/">
-            <img src="/images/Notepad_icon.png" alt="" id="notepad"></img>
-          </Link>
+          <div id="ymtl-container">
+            <Link to="/" className="ymtl-logo">
+              <img src="/images/Notepad_icon.png" alt="" id="notepad"></img>
+              <span>you made<br></br>the list</span>
+            </Link>
+          </div>
           <div id='image-divs'>
             <div id="image1">
             </div>
@@ -66,8 +69,8 @@ const SignUpForm = () => {
             </div>
             <div id='image3'>
             </div>
+            <h2 id='quote-div'>Join millions of people getting more organized and productive</h2>
           </div>
-          <h2 id='quote-div'>Join millions of people getting more organized and productive</h2>
         </article>
       </div>
       <div id='right-div'>

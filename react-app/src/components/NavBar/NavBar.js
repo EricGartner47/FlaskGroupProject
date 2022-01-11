@@ -2,17 +2,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import DemoLoginButton from '../DemoLoginButton';
 import './NavBar.css'
 
 const NavBar = () => {
   return (
     <nav>
-      <div id="logo">
-        <NavLink to='/' exact={true} activeClassName='active'>
-          Home
+      <div id="ymtl-container-home">
+        <NavLink to='/' exact={true} activeClassName='active' className="ymtl-logo">
+            <img src="/images/Notepad_icon.png" alt="" id="notepad"></img>
+            <span>you made<br></br>the list</span>
         </NavLink>
       </div>
       <ul>
+        <li>
+          <DemoLoginButton />
+        </li>
         <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Log in
