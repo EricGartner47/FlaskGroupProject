@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User, Task, db
+from app.models import User, Task, db, List
 from app.forms import NewTask
 
 user_routes = Blueprint('users', __name__)
@@ -36,3 +36,10 @@ def create_task(id):
         form.populate_obj(task)
         db.session.add(task)
         db.session.commit()
+
+@user_routes.route('/<int:id>/lists')
+@login_required
+def get_all_lists(id):
+    user = User.query.get(id)
+    results = List.query.filter(List.user_id == user.id).all()
+    return {'lists': [list.to_dict() for list in results]}
