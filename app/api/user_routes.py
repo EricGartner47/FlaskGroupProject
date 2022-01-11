@@ -56,4 +56,4 @@ def create_list(id):
         form.populate_obj(list)
         db.session.add(list)
         db.session.commit()
-# not finished 
+# not finished
