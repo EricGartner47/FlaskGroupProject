@@ -6,9 +6,7 @@ import { loadTasks } from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskPanel.css'
 
-const Dashboard = () => {
-    const { search } = window.location
-    const query = new URLSearchParams(search).get('s')
+const TaskPanel = ({ query }) => {
     const user = useSelector(state => state.session.user);
     const tasks = useSelector(state => state.tasks)
     const userTasks = Object.values(tasks)
@@ -49,9 +47,10 @@ const filterTasks = (tasks, query) => {
 
     return tasks.filter((task)=> {
         const taskName = task.name.toLowerCase();
-        return taskName.includes(query)
+        const taskNotes = task.notes.toLowerCase();
+        return taskName.includes(query.toLowerCase()) || taskNotes.includes(query.toLowerCase())
     })
 
 }
 
-export default Dashboard;
+export default TaskPanel;

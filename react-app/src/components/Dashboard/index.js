@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loadTasks } from '../../store/tasks';
@@ -9,12 +9,17 @@ import './Dashboard.css'
 
 const Dashboard = () => {
     const user = useSelector(state => state.session.user);
-   
+    const { search } = window.location;
+    const query = new URLSearchParams(search).get('s');
+    const [searchQuery, setSearchQuery] = useState(query || '');
+
     if (user) {
         return (
             <div id="dashboard">
-                <UserBar />
-                <TaskPanel />
+                <UserBar 
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}/>
+                <TaskPanel query={searchQuery}/>
             </div>
         )
     }
