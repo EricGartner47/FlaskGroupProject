@@ -4,3 +4,10 @@
     display: grid;
     grid-template-rows: 5% 95%
 }
+
+#dashboard-content{
+    width: 100vw;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 15% 1fr 1fr
+}

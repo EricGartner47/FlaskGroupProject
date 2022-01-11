@@ -22,7 +22,7 @@ const TaskPanel = ({ query }) => {
 
     if (user) {
         return (
-            <div>
+            <div id="task-panel">
                 <h1>{user.first_name}'s tasks</h1>
                 {filteredTasks.map(task => {
                     return (

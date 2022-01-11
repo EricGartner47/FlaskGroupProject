@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom';
 import { loadTasks } from '../../store/tasks';
 import UserBar from '../UserBar';
 import TaskPanel from '../TaskPanel'
+import ListBar from '../ListBar';
+import ListSummary from '../ListSummary';
 import './Dashboard.css'
 
 const Dashboard = () => {
@@ -19,7 +21,11 @@ const Dashboard = () => {
                 <UserBar 
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}/>
-                <TaskPanel query={searchQuery}/>
+                <div id="dashboard-content">
+                    <ListBar />
+                    <TaskPanel query={searchQuery}/>
+                    <ListSummary />
+                </div>
             </div>
         )
     }
