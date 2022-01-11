@@ -64,33 +64,33 @@ def delete_task():
 	# return success message
 
 
-"""
+# """
 
-For updating task information,
-	I have set up multiple routes,
-	instead of one function with many parameters.
+# For updating task information,
+# 	I have set up multiple routes,
+# 	instead of one function with many parameters.
 
-Justifications:
-	- Each function has a single responsibility
-	- The remember the milk UI changes one attribute at a time
-	- Easier to add features
+# Justifications:
+# 	- Each function has a single responsibility
+# 	- The remember the milk UI changes one attribute at a time
+# 	- Easier to add features
 
-Example, pseudocode - a singular update function
+# Example, pseudocode - a singular update function
 
-	# PUT - update task information
-	# route: - `/api/users/:id/tasks/:id/update`
-	@task_routes.route('/<int:id>/')
-	@login_required
-	function updates task information
-		- name
-		- notes
-		- due_date
-		- completed
-		- completed_date
-		- list_id (change to different list)
-		- note: user_id not applicable
+# 	# PUT - update task information
+# 	# route: - `/api/users/:id/tasks/:id/update`
+# 	@task_routes.route('/<int:id>/')
+# 	@login_required
+# 	function updates task information
+# 		- name
+# 		- notes
+# 		- due_date
+# 		- completed
+# 		- completed_date
+# 		- list_id (change to different list)
+# 		- note: user_id not applicable
 
-"""
+# """
 
 
 # PUT - update task name
