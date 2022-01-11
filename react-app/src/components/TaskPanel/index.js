@@ -7,9 +7,12 @@ import UserBar from '../UserBar';
 import './TaskPanel.css'
 
 const Dashboard = () => {
+    const { search } = window.location
+    const query = new URLSearchParams(search).get('s')
     const user = useSelector(state => state.session.user);
     const tasks = useSelector(state => state.tasks)
     const userTasks = Object.values(tasks)
+    const filteredTasks = filterTasks(userTasks, query)
     const dispatch = useDispatch();
     useEffect(() => {
         if (user) {
@@ -18,11 +21,12 @@ const Dashboard = () => {
         else return;
     }, [dispatch, user]);
 
+
     if (user) {
         return (
             <div>
                 <h1>{user.first_name}'s tasks</h1>
-                {userTasks.map(task => {
+                {filteredTasks.map(task => {
                     return (
                         <li key={task.id}>
                             {task.name} - {task.notes}
@@ -35,7 +39,19 @@ const Dashboard = () => {
 
     else return (
         <Redirect to="/login" />
-    );
+        );
+}
+
+const filterTasks = (tasks, query) => {
+    if (!query) {
+        return tasks;
+    }
+
+    return tasks.filter((task)=> {
+        const taskName = task.name.toLowerCase();
+        return taskName.includes(query)
+    })
+
 }
 
 export default Dashboard;
