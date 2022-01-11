@@ -2,3 +2,9 @@
     background-color: gray;
     width: 100%;
 }
+
+#all-lists{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}

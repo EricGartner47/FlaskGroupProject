@@ -58,6 +58,15 @@ def create_list(id):
         form.populate_obj(list)
         db.session.add(list)
         db.session.commit()
+
+
+@user_routes.route('/<int:id>/tasks/<list_id>')
+# @login_required
+def get_tasks_in_lists(id, list_id):
+    user = User.query.get(id)
+    results = Task.query.filter(Task.list_id == list_id).all()
+    return {'tasks': [task.to_dict() for task in results]}
+
 # not finished 
 #update
 # @user_routes.route('/<int:id>/update')

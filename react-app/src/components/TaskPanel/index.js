@@ -6,19 +6,19 @@ import { loadTasks } from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskPanel.css'
 
-const TaskPanel = ({ query }) => {
-    const user = useSelector(state => state.session.user);
-    const tasks = useSelector(state => state.tasks)
-    const userTasks = Object.values(tasks)
-    const filteredTasks = filterTasks(userTasks, query)
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (user) {
-            dispatch(loadTasks(user));
-        }
-        else return;
-    }, [dispatch, user]);
+const filterTasks = (tasks, query) => {
+    if (!query) return tasks;
 
+    return tasks.filter((task) => {
+        const taskName = task.name.toLowerCase();
+        const taskNotes = task.notes.toLowerCase();
+        return taskName.includes(query.toLowerCase()) || taskNotes.includes(query.toLowerCase())
+    })
+}
+
+const TaskPanel = ({ tasks, query }) => {
+    const user = useSelector(state => state.session.user);
+    const filteredTasks = filterTasks(tasks, query)
 
     if (user) {
         return (
@@ -40,17 +40,6 @@ const TaskPanel = ({ query }) => {
         );
 }
 
-const filterTasks = (tasks, query) => {
-    if (!query) {
-        return tasks;
-    }
 
-    return tasks.filter((task)=> {
-        const taskName = task.name.toLowerCase();
-        const taskNotes = task.notes.toLowerCase();
-        return taskName.includes(query.toLowerCase()) || taskNotes.includes(query.toLowerCase())
-    })
-
-}
 
 export default TaskPanel;

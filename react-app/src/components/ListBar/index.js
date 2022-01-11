@@ -5,25 +5,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadLists } from '../../store/lists';
 import './ListBar.css'
 
-const ListBar = () => {
+const ListBar = ({ lists, setList }) => {
     const user = useSelector(state => state.session.user);
-    const lists = useSelector(state => state.lists)
-    const userLists = Object.values(lists)
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (user) {
-            dispatch(loadLists(user));
-        }
-        else return;
-    }, [dispatch, user]);
-
 
     return (
         <nav id="listbar">
-            <ul>
-            {userLists.map(list => {
+            <ul id="all-lists">
+                <li onClick={() => {
+                    setList()
+                }}>All</li>
+                {lists.map(list => {
                     return (
-                        <li key={list.id}>
+                        <li key={list.id} onClick={() => {
+                            setList(list)
+                        }
+                        }>
                             {list.name}
                         </li>
                     )

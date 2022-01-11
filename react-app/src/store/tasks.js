@@ -16,6 +16,13 @@ export const loadTasks = user => async dispatch => {
     return res;
 }
 
+export const loadListTasks = (user, list) => async dispatch => {
+    const res = await fetch(`/api/users/${user.id}/tasks/${list.id}`);
+    const data = await res.json();
+    dispatch(getTasks(user, data));
+    return res;
+}
+
 const initialState = { }
 
 export const tasksReducer = (state = initialState, action) => {
@@ -27,7 +34,7 @@ export const tasksReducer = (state = initialState, action) => {
             allTasks.forEach(task => {
                 tasks[task.id] = task;
             })
-            return { ...state, ...tasks }
+            return tasks
         default:
             return state;
     }
