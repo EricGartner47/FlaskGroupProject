@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User, Task
+from app.models import User, Task, db
+from app.forms import NewTask
 
 user_routes = Blueprint('users', __name__)
 
@@ -29,9 +30,9 @@ def get_all_tasks(id):
 @login_required
 def create_task(id):
     user = User.query.get(id)
-    form = Task()
-    # if form.validate_on_submit():
-    #     = ()
-    #     form.populate_obj()
-    #     db.session.add()
-    #     db.session.commit()
+    form = NewTask()
+    if form.validate_on_submit():
+        task = Task()
+        form.populate_obj(task)
+        db.session.add(task)
+        db.session.commit()
