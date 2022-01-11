@@ -99,7 +99,6 @@ def create_task(id):
         db.session.commit()
 # not finished
 
-
 # PUT - update task name
 # route: - `/api/users/:id/tasks/:id/rename`
 @task_routes.route('/<int:id>/rename', methods=['PUT'])
