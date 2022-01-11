@@ -16,7 +16,7 @@ const Homepage = () => {
     else return (
         <>
             <h1>My Home Page</h1>
-            <ul > Created by:
+            <ul> Created by:
                 <li key="links"> Joe Yang
                     <a key="GitHub" className="gitHub-link" href="https://github.com/josephjyang">Github</a>
                     <a key="Linked In" className="linkedIn-link"href="https://www.linkedin.com/in/josephjyang/">Linked In</a>
