@@ -5,7 +5,7 @@ const Search = () => {
     return (
         <form action="/app" method="get">
             <label htmlFor="header-search">
-                <span className="visually-hidden">Search Tasks</span>
+                <span className="visually-hidden"></span>
             </label>
             <input
                 type="text"
