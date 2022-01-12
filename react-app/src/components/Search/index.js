@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
+import './Search.css'
 
 const Search = ({ searchQuery, setSearchQuery }) => {
     const history = useHistory();
@@ -10,7 +10,7 @@ const Search = ({ searchQuery, setSearchQuery }) => {
     };
 
     return (
-        <form action="/app" method="get" onSubmit={onSubmit}>
+        <form action="/app" method="get" onSubmit={onSubmit} id="search-form">
             <label htmlFor="header-search">
                 <span className="visually-hidden"></span>
             </label>
@@ -20,8 +20,11 @@ const Search = ({ searchQuery, setSearchQuery }) => {
                 type="text"
                 id="header-search"
                 name="s"
-            />
-            <button type="submit"><i class="fas fa-search" id='search_icon'></i></button>
+            >
+            </input>
+            <button type="submit" class="search-button">
+                <i class="fas fa-search" id='search_icon'></i>
+            </button>
         </form>
     );
 };

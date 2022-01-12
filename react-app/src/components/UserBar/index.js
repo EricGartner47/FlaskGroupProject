@@ -16,7 +16,7 @@ const UserBar = ({ searchQuery, setSearchQuery }) => {
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}/>
             </div>
-            <div>
+            <div id="userbar-logout">
                 <LogoutButton />
             </div>
         </nav>
