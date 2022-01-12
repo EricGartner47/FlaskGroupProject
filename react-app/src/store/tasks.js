@@ -1,4 +1,5 @@
 const LOAD_TASKS = "tasks/LOAD_TASKS";
+const ADD_TASK = "task/ADD_TASK"
 
 const getTasks = (user, tasks) => {
     return {
@@ -7,6 +8,14 @@ const getTasks = (user, tasks) => {
         tasks
     };
 };
+
+const addTask = (user, tasks) => {
+    return {
+        type: ADD_TASK,
+        user,
+        tasks
+    }
+}
 
 
 export const loadTasks = user => async dispatch => {
@@ -23,6 +32,19 @@ export const loadListTasks = (user, list) => async dispatch => {
     return res;
 }
 
+export const createTask = (newTask, user) =>  async dispatch => {
+    const res = await fetch(`/api/users${user.id}/tasks`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newTask)
+    });
+    const data = await res.json();
+    if(res.ok) {
+        dispatch(addTask(data, user))
+        return data
+    }
+}
+
 const initialState = { }
 
 export const tasksReducer = (state = initialState, action) => {
@@ -35,6 +57,9 @@ export const tasksReducer = (state = initialState, action) => {
                 tasks[task.id] = task;
             })
             return tasks
+        case ADD_TASK:
+            newState[action.tasks.id] = action.tasks
+            return newState;
         default:
             return state;
     }
