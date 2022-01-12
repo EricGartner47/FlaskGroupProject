@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { loadTasks } from '../../store/tasks';
 import { loadLists } from '../../store/lists';
 import UserBar from '../UserBar';
@@ -9,6 +9,7 @@ import ListBar from '../ListBar';
 import ListSummary from '../ListSummary';
 import './Dashboard.css'
 import { usePage } from '../../context/AppContext';
+import TaskFormUpdate from '../TaskFormUpdate';
 
 
 const Dashboard = () => {
@@ -41,7 +42,14 @@ const Dashboard = () => {
                 <div id="dashboard-content">
                     <ListBar lists={userLists} setList={setList}/>
                     <TaskPanel tasks={userTasks} query={searchQuery}/>
-                    <ListSummary lists={userLists} list={list}/>
+                    <Switch>
+                        <Route path='/app' exact={true}>
+                            <ListSummary lists={userLists} list={list}/>
+                        </Route>
+                        <Route path='app/tasks/:taskId' exact={true}>
+                            <TaskFormUpdate tasks={tasks}/>
+                        </Route>
+                    </Switch>
                 </div>
             </div>
         )

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { loadTasks, createTask } from '../../store/tasks';
+import { loadTasks, updateTask} from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskFormUpdate.css'
 
@@ -18,17 +18,16 @@ const TaskFormUpdate = ({ task }) => {
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
 
-    const updateTask = (e) => {
-        setTaskName(e.target.value);
-    }
-
     const handleSubmit = async e => {
         e.preventDefault();
         const payload = {
             name: taskName,
-            user_id: user.id
+            notes,
+            due_date: dueDate,
+            completed,
+            list_id: list
         }
-        await dispatch(createTask(payload, user)).catch(async(res)=> {
+        await dispatch(updateTask(payload)).catch(async(res)=> {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
         })

@@ -1,5 +1,6 @@
 const LOAD_TASKS = "tasks/LOAD_TASKS";
 const ADD_TASK = "task/ADD_TASK"
+const UPDATE_TASK = "task/UPDATE_TASK"
 
 const getTasks = (user, tasks) => {
     return {
@@ -9,13 +10,12 @@ const getTasks = (user, tasks) => {
     };
 };
 
-const addTask = (user, tasks) => {
+const addTask = (tasks) => {
     return {
         type: ADD_TASK,
-        user,
         tasks
-    }
-}
+    };
+};
 
 
 export const loadTasks = user => async dispatch => {
@@ -40,9 +40,23 @@ export const createTask = (newTask, user) =>  async dispatch => {
     });
     const data = await res.json();
     if(res.ok) {
-        dispatch(addTask(data, user))
+        dispatch(addTask(data))
         return data
     }
+}
+
+export const updateTask = (task) => async dispatch => {
+    const res = await fetch(`/api/tasks/${task.id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(task)
+    });
+    const data = await res.json();
+    if(res.ok) {
+        dispatch(addTask(data))
+        return data
+    }
+
 }
 
 const initialState = { }

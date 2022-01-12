@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { loadTasks, createTask } from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskPanel.css'
@@ -60,9 +60,11 @@ const TaskPanel = ({ tasks, query }) => {
                 <h1>{user.first_name}'s tasks</h1>
                 {filteredTasks.map(task => {
                     return (
-                        <li key={task.id}>
-                            {task.name} - {task.notes}
-                        </li>
+                        <NavLink to={`app/tasks/${task.id}`}>
+                            <li key={task.id}>
+                                {task.name} - {task.notes}
+                            </li>
+                        </NavLink>
                     )
                 })}
             </div>
