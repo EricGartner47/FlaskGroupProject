@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify #, session, request
+from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
 from app.models import User, db, Task
+from app.forms import TaskForm
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
 # from flask_login import current_user, login_user, logout_user, login_required
@@ -70,37 +71,30 @@ def delete_task(id):
 	# return success message
 
 
-# """
-
-# For updating task information,
-# 	I have set up multiple routes,
-# 	instead of one function with many parameters.
-
-# Justifications:
-# 	- Each function has a single responsibility
-# 	- The remember the milk UI changes one attribute at a time
-# 	- Easier to add features
-
-# Example, pseudocode - a singular update function
-
-	# PUT - update task information
-	# route: - `/api/users/:id/tasks/:id/update`
-@task_routes.route('/<int:id>/')
-@login_required
+# PUT - update task information
+# route: - `/api/tasks/:id/`
+@task_routes.route('/<int:id>', methods=["PUT"])
+# @login_required
+# '''
+# function updates task information
+# 	- name
+# 	- notes
+# 	- due_date
+# 	- completed
+# 	- completed_date
+# 	- list_id (change to different list)
+# 	- note: user_id not applicable
+# '''
 def update_task(id):
 	task = Task.query.get(id)
-	
-	if
-# 	function updates task information
-# 		- name
-# 		- notes
-# 		- due_date
-# 		- completed
-# 		- completed_date
-# 		- list_id (change to different list)
-# 		- note: user_id not applicable
-
-# """
+	form = TaskForm()
+	form['csrf_token'].data = request.cookies['csrf_token']
+	if form.validate_on_submit():
+		form.populate_obj(task)
+		db.session.add(task)
+		db.session.commit()
+		return task.to_dict()
+	return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # PUT - update task name
