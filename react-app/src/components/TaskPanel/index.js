@@ -11,8 +11,8 @@ const filterTasks = (tasks, query) => {
 
     return tasks.filter((task) => {
         const taskName = task.name.toLowerCase();
-        const taskNotes = task.notes.toLowerCase();
-        return taskName.includes(query.toLowerCase()) || taskNotes.includes(query.toLowerCase())
+        const taskNotes = task.notes?.toLowerCase();
+        return taskName.includes(query.toLowerCase()) || taskNotes?.includes(query.toLowerCase())
     })
 }
 

@@ -44,7 +44,6 @@ def create_task(id):
     user = User.query.get(id)
     form = NewTask()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('here', form.data)
     if form.validate_on_submit():
         task = Task()
         form.populate_obj(task)
@@ -66,11 +65,15 @@ def get_all_lists(id):
 def create_list(id):
     user = User.query.get(id)
     form = NewList()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
     if form.validate_on_submit():
         list = List()
         form.populate_obj(list)
         db.session.add(list)
         db.session.commit()
+        return list.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @user_routes.route('/<int:id>/tasks/<list_id>')

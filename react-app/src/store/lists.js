@@ -1,4 +1,5 @@
 const LOAD_LISTS = 'list/LOAD_LISTS'
+const NEW_LIST = 'list/NEW_LIST'
 
 const getList = (user, lists) => {
     return {
@@ -8,10 +9,31 @@ const getList = (user, lists) => {
     }
 }
 
+const addList = list => {
+    return {
+        type: NEW_LIST,
+        list
+    }
+}
+
 export const loadLists = user => async dispatch => {
     const res = await fetch(`api/users/${user.id}/lists`)
     const data = await res.json();
     dispatch(getList(user, data));
+    return res;
+}
+
+export const createList = payload => async dispatch => {
+    console.log(payload)
+    const res = await fetch(`api/users/${payload.user_id}/lists`, {
+        method:'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    const data = await res.json();
+    dispatch(addList(data));
     return res;
 }
 
@@ -27,6 +49,9 @@ export const listReducer = (state = initialState, action) => {
                 lists[list.id] = list
             })
             return { ...state, ...lists}
+        case NEW_LIST:
+            newState[action.list.id] = action.list
+            return newState;
         default:
             return state;
     }

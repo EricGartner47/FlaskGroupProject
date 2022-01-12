@@ -47,6 +47,9 @@
 #lists-header {
     border-top: 1px #bfd9f1 solid;
     padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #all-lists li:nth-child(5) {
