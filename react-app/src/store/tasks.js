@@ -33,7 +33,7 @@ export const loadListTasks = (user, list) => async dispatch => {
 }
 
 export const createTask = (newTask, user) =>  async dispatch => {
-    const res = await fetch(`/api/users${user.id}/tasks`, {
+    const res = await fetch(`/api/users/${user.id}/tasks`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newTask)

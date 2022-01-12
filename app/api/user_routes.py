@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Task
 from app.forms.list_form import NewList
@@ -41,9 +41,10 @@ def get_all_tasks(id):
 @user_routes.route('/<int:id>/tasks', methods=['POST'])
 @login_required
 def create_task(id):
-    print('here')
     user = User.query.get(id)
     form = NewTask()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('here', form.data)
     if form.validate_on_submit():
         task = Task()
         form.populate_obj(task)

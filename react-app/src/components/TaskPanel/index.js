@@ -18,7 +18,7 @@ const filterTasks = (tasks, query) => {
 
 const TaskPanel = ({ tasks, query }) => {
     const user = useSelector(state => state.session.user);
-    const [name, setTaskName] = useState('')
+    const [taskName, setTaskName] = useState('')
     const [errors, setErrors] = useState([])
     const filteredTasks = filterTasks(tasks, query)
     const dispatch = useDispatch()
@@ -27,15 +27,18 @@ const TaskPanel = ({ tasks, query }) => {
         setTaskName(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
         const payload = {
-            name
+            name: taskName,
+            user_id: user.id
         }
-        return dispatch(createTask(payload, user)).catch(async(res)=> {
-            // const data = await res.json()
-            // if (data && data.errors) setErrors(data.errors)
+        await dispatch(createTask(payload, user)).catch(async(res)=> {
+            const data = await res.json()
+            if (data && data.errors) setErrors(data.errors)
         })
+
+        dispatch(loadTasks(user));
     }
 
     if (user) {
@@ -49,7 +52,7 @@ const TaskPanel = ({ tasks, query }) => {
                         name='name'
                         type='text'
                         placeholder='Add a Task...'
-                        value={name}
+                        value={taskName}
                         onChange={updateTask}
                     />
                     <button type='submit'>Add Task</button>
