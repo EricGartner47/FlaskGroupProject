@@ -46,8 +46,8 @@ const Dashboard = () => {
                         <Route path='/app' exact={true}>
                             <ListSummary lists={userLists} list={list}/>
                         </Route>
-                        <Route path='app/tasks/:taskId' exact={true}>
-                            <TaskFormUpdate tasks={tasks}/>
+                        <Route path='/app/tasks/:taskId'>
+                            <TaskFormUpdate />
                         </Route>
                     </Switch>
                 </div>

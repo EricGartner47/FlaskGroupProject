@@ -1,18 +1,22 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { loadTasks, updateTask} from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskFormUpdate.css'
 
-const TaskFormUpdate = ({ task }) => {
+const TaskFormUpdate = () => {
+    const params = useParams();
+    const { taskId } = params
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
+    const tasks = useSelector(state => state.tasks);
+    const task = tasks[taskId]
     const userLists = Object.values(lists)
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
-    const [dueDate, setDueDate] = useState(task.due_date);
+    const [dueDate, setDueDate] = useState(task.due_date || "");
     const [completed, setCompleted] = useState(task.completed);
     const [list, setList] = useState(task.list_id);
     const [errors, setErrors] = useState([])
@@ -21,12 +25,15 @@ const TaskFormUpdate = ({ task }) => {
     const handleSubmit = async e => {
         e.preventDefault();
         const payload = {
+            id: taskId,
+            user_id: user.id,
             name: taskName,
             notes,
             due_date: dueDate,
             completed,
             list_id: list
         }
+        console.log(payload);
         await dispatch(updateTask(payload)).catch(async(res)=> {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
@@ -37,9 +44,9 @@ const TaskFormUpdate = ({ task }) => {
 
     if (user) {
         return (
-            <div id="task-panel">
+            <div id="task-update-panel">
                 <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <form onSubmit={handleSubmit}>
                     <input

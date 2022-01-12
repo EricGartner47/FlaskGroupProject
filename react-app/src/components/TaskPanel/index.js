@@ -60,7 +60,7 @@ const TaskPanel = ({ tasks, query }) => {
                 <h1>{user.first_name}'s tasks</h1>
                 {filteredTasks.map(task => {
                     return (
-                        <NavLink to={`app/tasks/${task.id}`}>
+                        <NavLink to={`/app/tasks/${task.id}`}>
                             <li key={task.id}>
                                 {task.name} - {task.notes}
                             </li>

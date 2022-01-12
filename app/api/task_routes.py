@@ -84,7 +84,7 @@ def delete_task(id):
 # PUT - update task information
 # route: - `/api/tasks/:id/`
 @task_routes.route('/<int:id>', methods=["PUT"])
-# @login_required
+@login_required
 # '''
 # function updates task information
 # 	- name
@@ -99,11 +99,15 @@ def update_task(id):
 	task = Task.query.get(id)
 	form = TaskForm()
 	form['csrf_token'].data = request.cookies['csrf_token']
+	print(form.data)
+	print(type(form.data['user_id']))
 	if form.validate_on_submit():
+		print('here we validated')
 		form.populate_obj(task)
 		db.session.add(task)
 		db.session.commit()
 		return task.to_dict()
+	print(form.errors)
 	return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
