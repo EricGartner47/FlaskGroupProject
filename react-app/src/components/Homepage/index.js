@@ -23,6 +23,7 @@ const Homepage = () => {
                 </li>
                 <li key="links"> Ricky Thang
                     <a key="GitHub" className="gitHub-link" href="https://github.com/rickythewriter">Github</a>
+                    <a key="GitHub" className="gitHub-link" href="https://www.linkedin.com/in/ricky-thang-88307a100">Linked In</a>
                 </li>
                 <li key="links"> Eric Gartner
                     <a key="GitHub" className="gitHub-link" href="https://github.com/EricGartner47">Github</a>

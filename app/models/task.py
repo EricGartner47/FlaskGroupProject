@@ -14,7 +14,7 @@ class Task(db.Model):
     list_id = db.Column(db.Integer, db.ForeignKey("lists.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
-    updated_at = db.Column(db.DateTime, onupdate=func.now())
+    updated_at = db.Column(db.DateTime, server_default=func.now())
     list = db.relationship("List", back_populates="tasks")
     user = db.relationship("User", back_populates="tasks")
 

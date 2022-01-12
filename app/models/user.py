@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, server_default=func.now())
-    updated_at = db.Column(db.DateTime, onupdate=func.now())
+    updated_at = db.Column(db.DateTime, server_default=func.now())
     tasks = db.relationship("Task", back_populates="user", cascade="all, delete")
     lists = db.relationship("List", back_populates="user", cascade="all, delete")
 
