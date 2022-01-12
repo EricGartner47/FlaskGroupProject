@@ -39,32 +39,33 @@ All of these require authorization by the user to which these tasks belong
 	# return <something>
 
 
-# # GET task information
-# # route: - `/api/tasks/:id`
-# @task_routes.route('/<int:id>')
-# @login_required
-# # """
-# # function gets task information
-# # """
-# def task(id):
-# 	task = Task.query.get(id)
-# 	return task.to_dict()
+# GET task information
+# route: - `/api/tasks/:id`
+@task_routes.route('/<int:id>')
+@login_required
+# """
+# function gets task information
+# """
+def task(id):
+	task = Task.query.get(id)
+	return task.to_dict()
 	# Query task based on id
 	# return JSON with task information
 
 
 # DELETE a task
 # route: - `/api/tasks/:id`
-# @task_routes.route('/<int:id>', methods=['DELETE'])
-# @login_required
+@task_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 # # """
 # # function removes task from database
 # # 	note: different from moving note to trash folder
 # # """
-# def delete_task(id):
-# 	task = Task.query.get(id)
-# 	db.session.delete(task)
-# 	db.session.commit()
+def delete_task(id):
+	task = Task.query.get(id)
+	db.session.delete(task)
+	db.session.commit()
+	return {'message': 'Successfully Deleted'}
 	# Delete task from database
 	# return success message
 
@@ -82,10 +83,14 @@ All of these require authorization by the user to which these tasks belong
 
 # Example, pseudocode - a singular update function
 
-# 	# PUT - update task information
-# 	# route: - `/api/users/:id/tasks/:id/update`
-# 	@task_routes.route('/<int:id>/')
-# 	@login_required
+	# PUT - update task information
+	# route: - `/api/users/:id/tasks/:id/update`
+@task_routes.route('/<int:id>/')
+@login_required
+def update_task(id):
+	task = Task.query.get(id)
+	
+	if
 # 	function updates task information
 # 		- name
 # 		- notes

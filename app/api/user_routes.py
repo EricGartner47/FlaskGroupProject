@@ -3,7 +3,7 @@ from flask_login import login_required
 from app.models import User, Task
 from app.forms.list_form import NewList
 from app.models import User, Task, db, List
-from app.forms import NewTask, NewList
+from app.forms import TaskForm, NewList
 
 user_routes = Blueprint('users', __name__)
 
@@ -42,7 +42,7 @@ def get_all_tasks(id):
 @login_required
 def create_task(id):
     user = User.query.get(id)
-    form = NewTask()
+    form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         task = Task()
