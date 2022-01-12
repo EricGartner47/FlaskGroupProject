@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify #, session, request
 from flask_login import login_required
-# from app.models import User, db
+from app.models import User, db, Task
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
 # from flask_login import current_user, login_user, logout_user, login_required
@@ -16,24 +16,24 @@ All of these require authorization by the user to which these tasks belong
 
 # GET tasks user has created
 # route: - `/api/users/:id/tasks`
-@task_routes.route('/')
-@login_required
-"""
-function gets tasks
-"""
-def tasks():
+# @task_routes.route('/')
+# @login_required
+# # """
+# # function gets tasks
+# # """
+# def tasks():
 	# query tasks
 	# return json object with tasks
 
 
 # POST - create a new task
 # route: - `/api/users/:id/tasks`
-@task_routes.route('/', methods=['POST'])
-@login_required
-"""
-function creates a new task
-"""
-def create_task:
+# @task_routes.route('/', methods=['POST'])
+# @login_required
+# # """
+# # function creates a new task
+# # """
+# def create_task():
 	# Take user input for task name
 	# Create new task in database
 	# return <something>
@@ -43,10 +43,12 @@ def create_task:
 # route: - `/api/tasks/:id`
 @task_routes.route('/<int:id>')
 @login_required
-"""
-function gets task information
-"""
-def task():
+# """
+# function gets task information
+# """
+def task(id):
+	task = Task.query.get(id)
+	return task.to_dict()
 	# Query task based on id
 	# return JSON with task information
 
@@ -55,11 +57,14 @@ def task():
 # route: - `/api/tasks/:id`
 @task_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-"""
-function removes task from database
-	note: different from moving note to trash folder
-"""
-def delete_task():
+# """
+# function removes task from database
+# 	note: different from moving note to trash folder
+# """
+def delete_task(id):
+	task = Task.query.get(id)
+	db.session.delete(task)
+	db.session.commit()
 	# Delete task from database
 	# return success message
 

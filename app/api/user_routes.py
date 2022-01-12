@@ -51,7 +51,7 @@ def create_task(id):
         db.session.commit()
         return task.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-# not finished
+
 
 @user_routes.route('/<int:id>/lists')
 @login_required
@@ -77,7 +77,7 @@ def create_list(id):
 
 
 @user_routes.route('/<int:id>/tasks/<list_id>')
-# @login_required
+@login_required
 def get_tasks_in_lists(id, list_id):
     user = User.query.get(id)
     results = Task.query.filter(Task.list_id == list_id).all()
