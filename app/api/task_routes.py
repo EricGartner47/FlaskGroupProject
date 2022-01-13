@@ -109,14 +109,13 @@ def update_task(id):
 		task.due_date = form.due_date.data
 		# If the task was incomplete, but is now complete, completed date is today's date
 		# task.completed represents whether the task was marked completed or not (before submitting the update form)
-		if task.completed and form.completed.data:
+		if not task.completed and form.completed.data:
 			task.completed_date = date.today()
 		task.completed = form.completed.data
 		# Now that task.completed is updated,
 		# If the task is not complete, set completed_date to none
 		if not task.completed:
 			task.completed_date = None
-		task.completed_date = form.completed_date.data
 		task.list_id = form.list_id.data
 
 		db.session.commit()
