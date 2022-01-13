@@ -1,8 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
-import { loadTasks, updateTask} from '../../store/tasks';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { deleteTask, loadTasks, updateTask} from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskFormUpdate.css'
 
@@ -11,6 +11,7 @@ const TaskFormUpdate = ({task}) => {
     const lists = useSelector(state => state.lists);
     const tasks = useSelector(state => state.tasks);
     const userLists = Object.values(lists)
+    const history = useHistory()
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
     const [dueDate, setDueDate] = useState(task.due_date || "");
@@ -26,6 +27,11 @@ const TaskFormUpdate = ({task}) => {
         setCompleted(task.completed);
         setList(task.list_id);
     },[task])
+
+    const removeTaskButton = () => {
+        dispatch(deleteTask(task))
+        history.push('/app')
+    }
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -72,7 +78,7 @@ const TaskFormUpdate = ({task}) => {
                 notes,
                 completed,
             }
-        } 
+        }
         console.log(payload);
         await dispatch(updateTask(payload)).catch(async(res)=> {
             const data = await res.json()
@@ -128,6 +134,7 @@ const TaskFormUpdate = ({task}) => {
                     </select>
                     <button type='submit'>Update Task</button>
                 </form>
+                    <button onClick={removeTaskButton}>Delete Task</button>
             </div>
         )
     }
