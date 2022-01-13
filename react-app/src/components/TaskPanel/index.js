@@ -57,6 +57,7 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                             type='text'
                             placeholder='Add a Task...'
                             value={taskName}
+                            autocomplete="off"
                             onChange={updateTask}
                             onClick={setButtonSwitch}
                         />
