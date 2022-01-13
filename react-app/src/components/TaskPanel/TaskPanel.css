@@ -33,6 +33,10 @@ h1 {
     margin-bottom: 5px;
 }
 
+#task-bar input:hover {
+    border-color: #0060bf;
+}
+
 #task-bar button {
     margin: 17px 0 10px;
     align-self: flex-end;
