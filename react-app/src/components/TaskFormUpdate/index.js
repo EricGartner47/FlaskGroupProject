@@ -30,7 +30,7 @@ const TaskFormUpdate = ({task}) => {
     const handleSubmit = async e => {
         e.preventDefault();
         let payload;
-        if (dueDate !== '1969-12-32' && list) {
+        if (dueDate.slice(-6) !== '-12-32' && list) {
             console.log("There's a due date and a list")
             payload = {
                 id: task.id,
@@ -51,8 +51,9 @@ const TaskFormUpdate = ({task}) => {
                 completed,
                 list_id: list
             }
-        } else if (dueDate !== '1969-12-32') {
+        } else if (dueDate.slice(-6) !== '-12-32') {
             console.log(`The dueDate is ${dueDate}`)
+            console.log(`The last six characters of dueDate are ${dueDate[-6]}`)
             console.log("There's a due date")
             payload = {
                 id: task.id,
