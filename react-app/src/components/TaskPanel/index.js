@@ -45,7 +45,7 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
         return (
             <div id="task-list-panel">
 
-                <h1>{user.first_name}'s tasks</h1>
+                <h1>{user.first_name}'s Tasks</h1>
 
                 <div id="task-bar">
                     <form onSubmit={handleSubmit}>
