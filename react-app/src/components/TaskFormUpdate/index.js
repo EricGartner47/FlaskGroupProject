@@ -66,7 +66,7 @@ const TaskFormUpdate = () => {
                     />
                     <input
                         id="task-due-date"
-                        type='datetime'
+                        type='date'
                         value={dueDate}
                         onChange={e => setDueDate(e.target.value)}
                     />

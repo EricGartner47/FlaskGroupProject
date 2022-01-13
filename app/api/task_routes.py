@@ -103,8 +103,16 @@ def update_task(id):
 	print(type(form.data['user_id']))
 	if form.validate_on_submit():
 		print('here we validated')
-		form.populate_obj(task)
-		db.session.add(task)
+		task.name = form.name.data
+		task.notes = form.notes.data
+		task.due_date = form.due_date.data
+		if task.completed == False and form.completed.data == True:
+			task.completed_date = form.completed_date.data
+		if not task.completed:
+			task.completed_date = form.completed_date.data
+		task.completed_date = form.completed_date.data
+		task.list_id = form.list_id.data
+
 		db.session.commit()
 		return task.to_dict()
 	print(form.errors)
