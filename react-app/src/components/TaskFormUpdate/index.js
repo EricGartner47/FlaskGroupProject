@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { deleteTask, loadTasks, updateTask } from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskFormUpdate.css'

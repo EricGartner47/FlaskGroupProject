@@ -75,12 +75,12 @@ def update_list(id):
 	# Updates list name in database
 	# Return success message
 
-@list_routes.routes('/<int:id>', methods=['DELETE'])
+@list_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_list(id):
-	list = list.query.get(id)
+	list = List.query.get(id)
 	db.session.delete(list)
-	db.sesson.commit()
+	db.session.commit()
 	return {'message': 'Successfully Deleted List'}
 
 
