@@ -28,9 +28,9 @@ const TaskFormUpdate = ({task}) => {
         setList(task.list_id);
     },[task])
 
-    const removeTaskButton = () => {
-        dispatch(deleteTask(task))
-        history.push('/app')
+    const removeTaskButton = async () => {
+        await dispatch(deleteTask(task))
+        dispatch(loadTasks(user))
     }
 
     const handleSubmit = async e => {
