@@ -7,8 +7,6 @@ import UserBar from '../UserBar';
 import './TaskFormUpdate.css'
 
 const TaskFormUpdate = ({task}) => {
-    const params = useParams();
-    const { taskId } = params
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
     const tasks = useSelector(state => state.tasks);
