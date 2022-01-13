@@ -25,6 +25,12 @@ h1 {
 
 #task-bar input {
     border: thin solid #999;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+#task-bar button {
+    margin: 17px 0 10px;
 }
 
 .task-card {
