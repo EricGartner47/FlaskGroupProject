@@ -7,11 +7,29 @@ import { Modal } from '../../context/Modal';
 import ListFormNew from '../ListFormNew';
 import './ListBar.css'
 import ListFormUpdate from '../ListFormUpdate';
+import ListFormRemove from '../ListFormRemove';
 
 const ListBar = ({ lists, setList, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const [showNewForm, setShowNewForm] = useState(false);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
+    const [showRemoveForm, setShowRemoveForm] = useState(false);
+    const [showButtons, setShowButtons] = useState('')
+
+
+    const openActions = (id) => {
+        if(showButtons) return;
+        return setShowButtons(id)
+    }
+
+    useEffect(()=> {
+        if(!showButtons) return;
+        const closeActions = () => {
+            setShowButtons(false)
+        }
+        document.addEventListener("click", closeActions)
+        return ()=> document.removeEventListener('click', closeActions)
+    }, [showButtons])
 
     return (
         <nav id="listbar">
@@ -74,11 +92,17 @@ const ListBar = ({ lists, setList, setSelectedTask }) => {
                             }>
                                 {list.name}
                             </li>
-                            <i class="fas fa-caret-down" onClick={()=> setShowUpdateForm(list.id)}></i>
-                            {showUpdateForm === list.id && (
-                                <Modal onClose={()=> setShowUpdateForm(false)}>
-                                    <ListFormUpdate hideForm={()=> setShowUpdateForm(false)} list={list}/>
-                                </Modal>
+                            <i class="fas fa-caret-down" onClick={()=> openActions(list.id)}></i>
+                            {showButtons === list.id && (
+                                <div>
+                                    <button onClick={()=> setShowUpdateForm(true)}>Update List</button>
+                                    <button onClick={()=> setShowRemoveForm(true)}>Delete List</button>
+                                    <Modal onClose={()=> setShowUpdateForm(false)}>
+                                        <ListFormUpdate hideForm={()=> setShowUpdateForm(false)} list={list}/>
+                                        <ListFormRemove hideForm={()=> setShowRemoveForm(false)} list={list}/>
+                                    </Modal>
+                                </div>
+
                             )}
                         </div>
                     )
