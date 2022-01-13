@@ -90,7 +90,6 @@ def delete_task(id):
 def update_task(id):
 	task = Task.query.get(id)
 	
-	if
 # 	function updates task information
 # 		- name
 # 		- notes
