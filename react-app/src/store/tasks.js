@@ -67,7 +67,6 @@ export const updateTask = (task) => async dispatch => {
 }
 
 export const deleteTask = (task) => async dispatch => {
-    console.log(task)
     const res = await fetch(`/api/tasks/${task.id}`, {
         method: 'DELETE'
     });
@@ -88,7 +87,9 @@ export const tasksReducer = (state = initialState, action) => {
             const allTasks = action.tasks.tasks
             allTasks.forEach(task => {
                 let dueDate = new Date(task.due_date)
-                task.due_date = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}-${dueDate.getDate() + 1}`
+                if (task.due_date){
+                    task.due_date = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}-${dueDate.getDate() + 1}`
+                }
                 tasks[task.id] = task;
             })
             return tasks
