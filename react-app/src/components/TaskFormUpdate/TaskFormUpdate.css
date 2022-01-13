@@ -1,0 +1,65 @@
+#task-update-panel form {
+	/*display: flex;*/
+	/*align-items: left;*/
+	/*flex-direction: column;*/
+	/*height: 100%;*/
+	/*width: 90%;*/
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	width: 529px;
+}
+
+#input-task-name {
+	position: relative;
+	margin-bottom: 11px;
+	text-align: left;
+	font-size: 0.8125rem;
+	line-height:  1.231;
+}
+
+.input-row {
+	display: flex;
+	justify-content: left;
+	align-items: stretch;
+	padding: 2% 0;
+}
+
+.input-row label {
+	width: 15%;
+}
+
+#task-update-panel input {
+	border: none;
+}
+
+#task-update-panel textarea {
+	border: none;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#task-update-panel select {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#task-update-panel button {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#task-update-panel #task-name {
+	font-size: 32px;
+}
+
+#input-notes {
+	padding: 17px 0 2px 17px;
+}
+
+#task-notes {
+	padding: 10px 17px 10px 65px;
+}
+
+#label-task-name {
+	display: none;
+}
+
+
+
+
