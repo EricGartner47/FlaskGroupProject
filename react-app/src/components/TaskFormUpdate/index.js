@@ -34,7 +34,7 @@ const TaskFormUpdate = ({task}) => {
         let payload;
         if (!dueDate) {
             payload = {
-                id: taskId,
+                id: task.id,
                 user_id: user.id,
                 name: taskName,
                 notes,
@@ -43,7 +43,7 @@ const TaskFormUpdate = ({task}) => {
             }
         } else {
             payload = {
-                id: taskId,
+                id: task.id,
                 user_id: user.id,
                 name: taskName,
                 notes,
