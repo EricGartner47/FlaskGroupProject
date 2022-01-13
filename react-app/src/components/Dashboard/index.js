@@ -20,6 +20,7 @@ const Dashboard = () => {
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
+    const [selectedTask, setSelectedTask] = useState()
 
     const userLists = Object.values(lists)
     const userTasks = Object.values(tasks)
@@ -41,13 +42,13 @@ const Dashboard = () => {
                     setList={setList} />
                 <div id="dashboard-content">
                     <ListBar lists={userLists} setList={setList}/>
-                    <TaskPanel tasks={userTasks} query={searchQuery}/>
+                    <TaskPanel tasks={userTasks} query={searchQuery} setSelectedTask={setSelectedTask}/>
                     <Switch>
                         <Route path='/app' exact={true}>
                             <ListSummary lists={userLists} list={list}/>
                         </Route>
                         <Route path='/app/tasks/:taskId'>
-                            <TaskFormUpdate />
+                            <TaskFormUpdate task={selectedTask}/>
                         </Route>
                     </Switch>
                 </div>

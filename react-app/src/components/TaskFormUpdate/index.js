@@ -6,13 +6,12 @@ import { loadTasks, updateTask} from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskFormUpdate.css'
 
-const TaskFormUpdate = () => {
+const TaskFormUpdate = ({task}) => {
     const params = useParams();
     const { taskId } = params
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
     const tasks = useSelector(state => state.tasks);
-    const task = tasks[taskId]
     const userLists = Object.values(lists)
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
@@ -21,6 +20,14 @@ const TaskFormUpdate = () => {
     const [list, setList] = useState(task.list_id);
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setTaskName(task.name);
+        setNotes(task.notes);
+        setDueDate(task.due_date);
+        setCompleted(task.completed);
+        setList(task.list_id);
+    })
 
     const handleSubmit = async e => {
         e.preventDefault();

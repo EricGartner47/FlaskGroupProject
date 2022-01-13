@@ -16,7 +16,7 @@ const filterTasks = (tasks, query) => {
     })
 }
 
-const TaskPanel = ({ tasks, query }) => {
+const TaskPanel = ({ tasks, query, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const [taskName, setTaskName] = useState('')
     const [errors, setErrors] = useState([])
@@ -61,7 +61,12 @@ const TaskPanel = ({ tasks, query }) => {
                 {filteredTasks.map(task => {
                     return (
                         <NavLink to={`/app/tasks/${task.id}`}>
-                            <li key={task.id}>
+                            <li 
+                                key={task.id}
+                                onClick={() => { 
+                                    console.log(`selected task is ${task.name}`)
+                                    setSelectedTask(task) }}
+                            >
                                 {task.name} - {task.notes}
                             </li>
                         </NavLink>
