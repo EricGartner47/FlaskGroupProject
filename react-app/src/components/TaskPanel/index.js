@@ -43,33 +43,45 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
 
     if (user) {
         return (
-            <div id="task-panel">
+            <div id="task-list-panel">
+
+                <h1>{user.first_name}'s tasks</h1>
+
+                <div id="task-bar">
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            name='name'
+                            type='text'
+                            placeholder='Add a Task...'
+                            value={taskName}
+                            onChange={updateTask}
+                        />
+                        <button type='submit'>Add Task</button>
+                    </form>
+                </div>
+
+
                 <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        name='name'
-                        type='text'
-                        placeholder='Add a Task...'
-                        value={taskName}
-                        onChange={updateTask}
-                    />
-                    <button type='submit'>Add Task</button>
-                </form>
-                <h1>{user.first_name}'s tasks</h1>
-                {filteredTasks.map(task => {
-                    return (
-                        <li 
-                            key={task.id}
-                            onClick={() => { 
-                                console.log(`selected task is ${task.name}`)
-                                setSelectedTask(task) }}
-                        >
-                            {task.name} - {task.notes}
-                        </li>
-                    )
-                })}
+
+                <div id="task-cards-container">
+                    {filteredTasks.map(task => {
+                        return (
+                            <div class="task-card">
+                                <li 
+                                    key={task.id}
+                                    onClick={() => { 
+                                        console.log(`selected task is ${task.name}`)
+                                        setSelectedTask(task) }}
+                                >
+                                    {task.name} - {task.notes}
+                                </li>
+                            </div>
+                        )
+                    })}
+                </div>
+
             </div>
         )
     }
