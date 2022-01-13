@@ -20,12 +20,15 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const [taskName, setTaskName] = useState('')
     const [errors, setErrors] = useState([])
+    const [buttonSwitch, setButtonSwitch] = useState(false)
     const filteredTasks = filterTasks(tasks, query)
     const dispatch = useDispatch()
 
     const updateTask = (e) => {
         setTaskName(e.target.value);
     }
+
+    const showButton = <button type='submit'>Add Task</button>;
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -55,8 +58,9 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                             placeholder='Add a Task...'
                             value={taskName}
                             onChange={updateTask}
+                            onClick={setButtonSwitch}
                         />
-                        <button type='submit'>Add Task</button>
+                        {buttonSwitch && showButton}
                     </form>
                 </div>
 

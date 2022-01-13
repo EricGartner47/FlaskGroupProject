@@ -23,14 +23,19 @@ h1 {
     margin: 2px 17px;
 }
 
+#task-bar form {
+    display: flex;
+    flex-direction: column;
+}
+
 #task-bar input {
     border: thin solid #999;
     margin-bottom: 5px;
-    width: 100%;
 }
 
 #task-bar button {
     margin: 17px 0 10px;
+    align-self: flex-end;
 }
 
 .task-card {
