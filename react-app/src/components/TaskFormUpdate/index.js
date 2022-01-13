@@ -32,18 +32,10 @@ const TaskFormUpdate = ({task}) => {
     const handleSubmit = async e => {
         e.preventDefault();
         let payload;
-        if (!dueDate) {
+        if (dueDate !== '1969-12-32' && list) {
+            console.log("There's a due date and a list")
             payload = {
-                id: taskId,
-                user_id: user.id,
-                name: taskName,
-                notes,
-                completed,
-                list_id: list
-            }
-        } else {
-            payload = {
-                id: taskId,
+                id: task.id,
                 user_id: user.id,
                 name: taskName,
                 notes,
@@ -51,7 +43,37 @@ const TaskFormUpdate = ({task}) => {
                 completed,
                 list_id: list
             }
-        }
+        } else if (list) {
+            console.log("There's a list")
+            payload = {
+                id: task.id,
+                user_id: user.id,
+                name: taskName,
+                notes,
+                completed,
+                list_id: list
+            }
+        } else if (dueDate !== '1969-12-32') {
+            console.log(`The dueDate is ${dueDate}`)
+            console.log("There's a due date")
+            payload = {
+                id: task.id,
+                user_id: user.id,
+                name: taskName,
+                notes,
+                due_date: dueDate,
+                completed,
+            }
+        } else {
+            console.log("There's no due date nor list")
+            payload = {
+                id: task.id,
+                user_id: user.id,
+                name: taskName,
+                notes,
+                completed,
+            }
+        } 
         console.log(payload);
         await dispatch(updateTask(payload)).catch(async(res)=> {
             const data = await res.json()
