@@ -88,76 +88,81 @@ const TaskFormUpdate = ({task}) => {
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-                <form onSubmit={handleSubmit}>
+                <div id="task-update-form">
 
-                    <div class="input-row big" id="input-task-name">
-                        <label for="task-name" id="label-task-name">Name Your Task</label>
-                        <input
-                            id="task-name"
-                            name="task-name"
-                            type='text'
-                            placeholder='Add a Task...'
-                            value={taskName}
-                            onChange={e => setTaskName(e.target.value)}
-                        />
-                    </div>
+                    <form onSubmit={handleSubmit}>
 
-                    <div class="input-row small">
-                        <label for="task-due-date">due</label>
-                        <input
-                            id="task-due-date"
-                            name="task-due-date"
-                            type='date'
-                            value={dueDate}
-                            onChange={e => setDueDate(e.target.value)}
-                        />
-                    </div>
+                        <div id="task-name-container">
+                            <label for="task-name" id="label-task-name">Name Your Task</label>
+                            <input
+                                id="input-task-name"
+                                name="task-name"
+                                type='text'
+                                placeholder='Add a Task...'
+                                value={taskName}
+                                onChange={e => setTaskName(e.target.value)}
+                            />
+                        </div>
 
-                    <div class="input-row small">
-                        <label for="list-select">list</label>
-                        <select
-                            id="list-select"
-                            name="list-select"
-                            value={list || "select"}
-                            onChange={e => { setList(e.target.value) }}
-                        >
-                            <option value={"select"}>Select a notebook</option>
-                            {userLists.map(list => {
-                                return <option key={list.id} value={list.id}>{list.name}</option>
-                            })}
-                        </select>
-                    </div>
+                        <div class="fields">
 
-                    <div class="input-row small">
-                        <label for="task-completed">complete</label>
-                        <input
-                            id="task-completed"
-                            name="task-completed"
-                            type='checkbox'
-                            value={completed}
-                            onChange={e => setCompleted(!completed)}
-                        />
-                    </div>
+                            <div class="field-container">
+                                <label for="task-due-date">due</label>
+                                <input
+                                    id="task-due-date"
+                                    name="task-due-date"
+                                    type='date'
+                                    value={dueDate}
+                                    onChange={e => setDueDate(e.target.value)}
+                                />
+                            </div>
 
-                    <div class="notes" id="input-notes">
-                        <label for="task-notes" id="label-notes">Notes</label>
-                        <br/>
-                        <textarea
-                            id="task-notes"
-                            name="task-notes"
-                            value={notes}
-                            onChange={e => setNotes(e.target.value)}
-                            rows={3}
-                            cols={5}
-                            placeholder="Add a note..."
-                        />
-                    </div>
-                    
-                    
-                    
-                    
-                    <button type='submit'>Update Task</button>
-                </form>
+                            <div class="field-container">
+                                <label for="list-select">list</label>
+                                <select
+                                    id="list-select"
+                                    name="list-select"
+                                    value={list || "select"}
+                                    onChange={e => { setList(e.target.value) }}
+                                >
+                                    <option value={"select"}>Select a notebook</option>
+                                    {userLists.map(list => {
+                                        return <option key={list.id} value={list.id}>{list.name}</option>
+                                    })}
+                                </select>
+                            </div>
+
+                            <div class="field-container">
+                                <label for="task-completed">complete</label>
+                                <input
+                                    id="task-completed"
+                                    name="task-completed"
+                                    type='checkbox'
+                                    value={completed}
+                                    onChange={e => setCompleted(!completed)}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div id="notes-container">
+                            <label for="task-notes" id="label-notes">Notes</label>
+                            <br/>
+                            <textarea
+                                id="task-notes"
+                                name="task-notes"
+                                value={notes}
+                                onChange={e => setNotes(e.target.value)}
+                                rows={3}
+                                cols={5}
+                                placeholder="Add a note..."
+                            />
+                        </div>
+                        
+                        <button type='submit' id="button-update-task">Update Task</button>
+
+                    </form>
+                </div>
             </div>
         )
     }
