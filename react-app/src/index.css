@@ -27,3 +27,30 @@ body {
 .ymtl-logo span {
     color: white
 }
+
+div {
+    display: block;
+}
+
+html, body {
+    text-align: left;
+}
+
+html {
+    color: black;
+    font-size: 16px;
+}
+
+body {
+    font-size: 0.8125rem;
+    line-height:  1.231;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+input, textarea {
+    cursor: text;
+    word-wrap: break-word;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    outline:  none;
+}
