@@ -1,10 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Task
-from app.forms.list_form import NewList
 from app.models import User, Task, db, List
-from app.forms import TaskForm, NewList
-from datetime import datetime
+from app.forms import TaskForm, ListForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -38,9 +35,7 @@ def get_all_tasks(id):
     user = User.query.get(id)
     results = Task.query.filter(Task.user_id == user.id).all()
     obj = {'tasks': [task.to_dict() for task in results]}
-    print("hello^^^^")
     print(obj['tasks'][0]['due_date'])
-    # print(datetime.date(2021, 12, 13))
     return {'tasks': [task.to_dict() for task in results]}
 
 @user_routes.route('/<int:id>/tasks', methods=['POST'])
@@ -69,9 +64,8 @@ def get_all_lists(id):
 @login_required
 def create_list(id):
     user = User.query.get(id)
-    form = NewList()
+    form = ListForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
     if form.validate_on_submit():
         list = List()
         form.populate_obj(list)

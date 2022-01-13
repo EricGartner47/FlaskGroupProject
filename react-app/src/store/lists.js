@@ -24,7 +24,6 @@ export const loadLists = user => async dispatch => {
 }
 
 export const createList = payload => async dispatch => {
-    console.log(payload)
     const res = await fetch(`/api/users/${payload.user_id}/lists`, {
         method:'POST',
         headers: {
@@ -35,6 +34,19 @@ export const createList = payload => async dispatch => {
     const data = await res.json();
     dispatch(addList(data));
     return res;
+}
+
+export const updateList = payload => async dispatch => {
+    const res = await fetch(`/api/lists/${payload.id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    const data = await res.json();
+    dispatch(addList(data))
+    return res
 }
 
 const initialState = {}

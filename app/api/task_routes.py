@@ -77,7 +77,7 @@ def delete_task(id):
 	task = Task.query.get(id)
 	db.session.delete(task)
 	db.session.commit()
-	return {'message': 'Successfully Deleted'}
+	return {'message': 'Successfully Deleted Task'}
 	# Delete task from database
 	# return success message
 
@@ -100,10 +100,7 @@ def update_task(id):
 	task = Task.query.get(id)
 	form = TaskForm()
 	form['csrf_token'].data = request.cookies['csrf_token']
-	print(form.data)
-	print("due date type =", type(form.data['due_date']))
 	if form.validate_on_submit():
-		print('here we validated')
 		task.name = form.name.data
 		task.notes = form.notes.data
 		task.due_date = form.due_date.data
