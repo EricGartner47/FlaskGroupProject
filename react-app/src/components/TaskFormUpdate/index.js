@@ -27,7 +27,7 @@ const TaskFormUpdate = ({task}) => {
         setDueDate(task.due_date);
         setCompleted(task.completed);
         setList(task.list_id);
-    })
+    },[task])
 
     const handleSubmit = async e => {
         e.preventDefault();
