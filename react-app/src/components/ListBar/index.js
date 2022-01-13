@@ -7,7 +7,7 @@ import { Modal } from '../../context/Modal';
 import ListFormNew from '../ListFormNew';
 import './ListBar.css'
 
-const ListBar = ({ lists, setList }) => {
+const ListBar = ({ lists, setList, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const [showForm, setShowForm] = useState(false);
 
@@ -19,10 +19,38 @@ const ListBar = ({ lists, setList }) => {
             </div>
             <ul id="all-lists">
                 <li className="list-header">Inbox</li>
-                <li onClick={() => { setList() }}>All Tasks</li>
-                <li onClick={() => { setList() }}>Today</li>
-                <li onClick={() => { setList() }}>Tomorrow</li>
-                <li onClick={() => { setList() }}>This Week</li>
+                <li 
+                    onClick={() => { 
+                        setList() 
+                        setSelectedTask()
+                    }
+                }>
+                    All Tasks
+                </li>
+                <li 
+                    onClick={() => { 
+                        setList() 
+                        setSelectedTask()
+                    }
+                }>
+                    Today
+                </li>
+                <li 
+                    onClick={() => { 
+                        setList() 
+                        setSelectedTask()
+                    }
+                }>
+                    Tomorrow
+                </li>
+                <li 
+                    onClick={() => { 
+                        setList() 
+                        setSelectedTask()
+                    }
+                }>
+                    This Week
+                </li>
                 <li className="list-header" id="lists-header">
                     <div>
                         Lists
@@ -38,6 +66,7 @@ const ListBar = ({ lists, setList }) => {
                     return (
                         <li key={list.id} onClick={() => {
                             setList(list)
+                            setSelectedTask()
                         }
                         }>
                             {list.name}

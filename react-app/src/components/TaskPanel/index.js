@@ -60,16 +60,14 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                 <h1>{user.first_name}'s tasks</h1>
                 {filteredTasks.map(task => {
                     return (
-                        <NavLink to={`/app/tasks/${task.id}`}>
-                            <li 
-                                key={task.id}
-                                onClick={() => { 
-                                    console.log(`selected task is ${task.name}`)
-                                    setSelectedTask(task) }}
-                            >
-                                {task.name} - {task.notes}
-                            </li>
-                        </NavLink>
+                        <li 
+                            key={task.id}
+                            onClick={() => { 
+                                console.log(`selected task is ${task.name}`)
+                                setSelectedTask(task) }}
+                        >
+                            {task.name} - {task.notes}
+                        </li>
                     )
                 })}
             </div>
