@@ -8,7 +8,7 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     notes = db.Column(db.Text)
-    due_date = db.Column(db.Date)
+    due_date = db.Column(db.Date, nullable=True)
     completed = db.Column(db.Boolean, default=False)
     completed_date = db.Column(db.Date)
     list_id = db.Column(db.Integer, db.ForeignKey("lists.id"))

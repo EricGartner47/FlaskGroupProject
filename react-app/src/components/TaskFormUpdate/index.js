@@ -24,14 +24,26 @@ const TaskFormUpdate = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const payload = {
-            id: taskId,
-            user_id: user.id,
-            name: taskName,
-            notes,
-            due_date: dueDate,
-            completed,
-            list_id: list
+        let payload;
+        if (!dueDate) {
+            payload = {
+                id: taskId,
+                user_id: user.id,
+                name: taskName,
+                notes,
+                completed,
+                list_id: list
+            }
+        } else {
+            payload = {
+                id: taskId,
+                user_id: user.id,
+                name: taskName,
+                notes,
+                due_date: dueDate,
+                completed,
+                list_id: list
+            }
         }
         console.log(payload);
         await dispatch(updateTask(payload)).catch(async(res)=> {

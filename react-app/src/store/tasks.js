@@ -21,6 +21,7 @@ const addTask = (tasks) => {
 export const loadTasks = user => async dispatch => {
     const res = await fetch(`/api/users/${user.id}/tasks`);
     const data = await res.json();
+    console.log(data)
     dispatch(getTasks(user, data));
     return res;
 }
@@ -68,6 +69,8 @@ export const tasksReducer = (state = initialState, action) => {
             const tasks = {}
             const allTasks = action.tasks.tasks
             allTasks.forEach(task => {
+                let dueDate = new Date(task.due_date)
+                task.due_date = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}-${dueDate.getDate() + 1}`
                 tasks[task.id] = task;
             })
             return tasks

@@ -101,7 +101,7 @@ def update_task(id):
 	form = TaskForm()
 	form['csrf_token'].data = request.cookies['csrf_token']
 	print(form.data)
-	print(type(form.data['user_id']))
+	print("due date type =", type(form.data['due_date']))
 	if form.validate_on_submit():
 		print('here we validated')
 		task.name = form.name.data
