@@ -13,11 +13,11 @@
 }
 
 h1 {
-    margin: 0 17px;
+    margin: 30px 17px 16px;
 }
 
 #task-bar {
-    margin: 0 17px;
+    margin: 2px 17px;
 }
 
 #task-bar input {
