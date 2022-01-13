@@ -1,16 +1,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
-import { loadTasks, updateTask} from '../../store/tasks';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { deleteTask, loadTasks, updateTask } from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskFormUpdate.css'
 
-const TaskFormUpdate = ({task}) => {
+const TaskFormUpdate = ({ task, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
     const tasks = useSelector(state => state.tasks);
     const userLists = Object.values(lists)
+    const history = useHistory()
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
     const [dueDate, setDueDate] = useState(task.due_date || "");
@@ -27,10 +28,16 @@ const TaskFormUpdate = ({task}) => {
         setList(task.list_id);
     }, [task])
 
+    const removeTaskButton = async () => {
+        await dispatch(deleteTask(task))
+        dispatch(loadTasks(user))
+        setSelectedTask()
+    }
+
     const handleSubmit = async e => {
         e.preventDefault();
         let payload;
-        if (dueDate.slice(-6) !== '-12-32' && list) {
+        if (dueDate && list) {
             console.log("There's a due date and a list")
             payload = {
                 id: task.id,
@@ -51,7 +58,7 @@ const TaskFormUpdate = ({task}) => {
                 completed,
                 list_id: list
             }
-        } else if (dueDate.slice(-6) !== '-12-32') {
+        } else if (dueDate) {
             console.log(`The dueDate is ${dueDate}`)
             console.log(`The last six characters of dueDate are ${dueDate[-6]}`)
             console.log("There's a due date")
@@ -72,17 +79,17 @@ const TaskFormUpdate = ({task}) => {
                 notes,
                 completed,
             }
-        } 
+        }
         console.log(payload);
-        await dispatch(updateTask(payload)).catch(async(res)=> {
+        await dispatch(updateTask(payload)).catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
         })
-
         dispatch(loadTasks(user));
     }
 
     if (user) {
+        console.log("hello", dueDate);
         return (
             <div id="task-update-panel">
                 <ul>
@@ -159,17 +166,19 @@ const TaskFormUpdate = ({task}) => {
                             />
                         </div>
                         
-                        <button type='submit' id="button-update-task">Update Task</button>
+                        <button type='submit' class="button-update-task">Update Task</button>
+                        <button class="button-update-task" onClick={removeTaskButton}>Delete Task</button>
 
                     </form>
                 </div>
+
             </div>
         )
     }
 
     else return (
         <Redirect to="/login" />
-        );
+    );
 }
 
 

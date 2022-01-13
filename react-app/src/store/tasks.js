@@ -1,6 +1,6 @@
 const LOAD_TASKS = "tasks/LOAD_TASKS";
 const ADD_TASK = "task/ADD_TASK"
-const UPDATE_TASK = "task/UPDATE_TASK"
+const REMOVE_TASK = 'task/REMOVE_TASK'
 
 const getTasks = (user, tasks) => {
     return {
@@ -14,6 +14,13 @@ const addTask = (tasks) => {
     return {
         type: ADD_TASK,
         tasks
+    };
+};
+
+const removeTask = (task) => {
+    return {
+        type: REMOVE_TASK,
+        task
     };
 };
 
@@ -57,7 +64,17 @@ export const updateTask = (task) => async dispatch => {
         dispatch(addTask(data))
         return data
     }
+}
 
+export const deleteTask = (task) => async dispatch => {
+    const res = await fetch(`/api/tasks/${task.id}`, {
+        method: 'DELETE'
+    });
+    const data = await res.json();
+    if(res.ok) {
+        dispatch(removeTask(data))
+        return data
+    }
 }
 
 const initialState = { }
@@ -70,13 +87,26 @@ export const tasksReducer = (state = initialState, action) => {
             const allTasks = action.tasks.tasks
             allTasks.forEach(task => {
                 let dueDate = new Date(task.due_date)
-                task.due_date = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}-${dueDate.getDate() + 1}`
+                if (task.due_date) {
+                    if (dueDate.getMonth() < 9 && dueDate.getDate() < 10) {
+                        task.due_date = `${dueDate.getFullYear()}-0${dueDate.getMonth() + 1}-0${dueDate.getDate() + 1}`
+                    } else if (dueDate.getMonth() < 9) {
+                        task.due_date = `${dueDate.getFullYear()}-0${dueDate.getMonth() + 1}-${dueDate.getDate() + 1}`
+                    } else if (dueDate.getDate() < 10) {
+                        task.due_date = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}-0${dueDate.getDate() + 1}`
+                    } else {
+                        task.due_date = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}-${dueDate.getDate() + 1}`
+                    }
+                }
                 tasks[task.id] = task;
             })
             return tasks
         case ADD_TASK:
             newState[action.tasks.id] = action.tasks
             return newState;
+        case REMOVE_TASK:
+            delete newState[action.task.id]
+            return newState
         default:
             return state;
     }

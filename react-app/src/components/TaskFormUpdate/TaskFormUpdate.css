@@ -126,7 +126,7 @@
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#button-update-task {
+.button-update-task {
 	margin: 17px 0 2px 17px;
 	border: 1px solid #999;
 	border-radius: 3px;
