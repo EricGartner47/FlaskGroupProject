@@ -14,38 +14,38 @@ const ListBar = ({ lists, setList, setSelectedTask }) => {
     return (
         <nav id="listbar">
             <div className="ymtl-logo-listbar">
-                <img src="/images/Notepad_icon.png" alt="" id="notepad"></img>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Notepad_icon.svg/2048px-Notepad_icon.svg.png" alt="" id="notepad"></img>
                 <span>you made<br></br>the list</span>
             </div>
             <ul id="all-lists">
                 <li className="list-header">Inbox</li>
-                <li 
-                    onClick={() => { 
-                        setList() 
+                <li
+                    onClick={() => {
+                        setList()
                         setSelectedTask()
                     }
                 }>
                     All Tasks
                 </li>
-                <li 
-                    onClick={() => { 
-                        setList() 
+                <li
+                    onClick={() => {
+                        setList()
                         setSelectedTask()
                     }
                 }>
                     Today
                 </li>
-                <li 
-                    onClick={() => { 
-                        setList() 
+                <li
+                    onClick={() => {
+                        setList()
                         setSelectedTask()
                     }
                 }>
                     Tomorrow
                 </li>
-                <li 
-                    onClick={() => { 
-                        setList() 
+                <li
+                    onClick={() => {
+                        setList()
                         setSelectedTask()
                     }
                 }>
