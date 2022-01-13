@@ -25,6 +25,7 @@ const Dashboard = () => {
     const userLists = Object.values(lists)
     const userTasks = Object.values(tasks)
     const dispatch = useDispatch();
+
     useEffect(() => {
         if (user) {
             dispatch(loadTasks(user));
@@ -32,6 +33,9 @@ const Dashboard = () => {
         }
         else return;
     }, [dispatch, user]);
+
+    let infoWindow = <ListSummary lists={userLists} list={list}/>;
+    if (selectedTask) infoWindow = <TaskFormUpdate task={selectedTask}/>
 
     if (user) {
         return (
@@ -41,16 +45,17 @@ const Dashboard = () => {
                     setSearchQuery={setSearchQuery}
                     setList={setList} />
                 <div id="dashboard-content">
-                    <ListBar lists={userLists} setList={setList}/>
-                    <TaskPanel tasks={userTasks} query={searchQuery} setSelectedTask={setSelectedTask}/>
-                    <Switch>
-                        <Route path='/app' exact={true}>
-                            <ListSummary lists={userLists} list={list}/>
-                        </Route>
-                        <Route path='/app/tasks/:taskId'>
-                            <TaskFormUpdate task={selectedTask}/>
-                        </Route>
-                    </Switch>
+                    <ListBar 
+                        lists={userLists} 
+                        setList={setList}
+                        setSelectedTask={setSelectedTask}
+                    />
+                    <TaskPanel 
+                        tasks={userTasks} 
+                        query={searchQuery} 
+                        setSelectedTask={setSelectedTask}
+                    />
+                    {infoWindow}
                 </div>
             </div>
         )
