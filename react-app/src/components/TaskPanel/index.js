@@ -16,7 +16,7 @@ const filterTasks = (tasks, query) => {
     })
 }
 
-const TaskPanel = ({ tasks, query, setSelectedTask }) => {
+const TaskPanel = ({ tasks, query, selectedTask, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const [taskName, setTaskName] = useState('')
     const [errors, setErrors] = useState([])
@@ -64,9 +64,10 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                             key={task.id}
                             onClick={() => { 
                                 console.log(`selected task is ${task.name}`)
-                                setSelectedTask(task) }}
+                                setSelectedTask(task)
+                            }}
                         >
-                            {task.name} - {task.notes}
+                            <input type="checkbox" checked={selectedTask === task}/> {task.name} - {task.notes}
                         </li>
                     )
                 })}

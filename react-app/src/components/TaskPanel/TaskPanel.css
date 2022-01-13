@@ -1,3 +1,7 @@
 #task-panel {
     background-color: rgb(188, 245, 255);
 }
+
+#task-panel li {
+    list-style-type: none ;
+}
