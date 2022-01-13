@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=200), nullable=False),
     sa.Column('notes', sa.Text(), nullable=True),
-    sa.Column('due_date', sa.DateTime(), nullable=True),
+    sa.Column('due_date', sa.Date(), nullable=True),
     sa.Column('completed', sa.Boolean()),
     sa.Column('list_id', sa.Integer()),
     sa.Column('user_id', sa.Integer(), nullable=False),
