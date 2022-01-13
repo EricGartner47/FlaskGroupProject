@@ -26,25 +26,17 @@ const TaskFormUpdate = ({task}) => {
         setDueDate(task.due_date);
         setCompleted(task.completed);
         setList(task.list_id);
-<<<<<<< HEAD
     }, [task])
-=======
-    },[task])
 
     const removeTaskButton = async () => {
         await dispatch(deleteTask(task))
         dispatch(loadTasks(user))
     }
->>>>>>> feature-task_form-static_url_delete
 
     const handleSubmit = async e => {
         e.preventDefault();
         let payload;
-<<<<<<< HEAD
-        if (dueDate !== '1969-12-32' && list) {
-=======
         if (dueDate.slice(-6) !== '-12-32' && list) {
->>>>>>> feature-task_form-static_url_delete
             console.log("There's a due date and a list")
             payload = {
                 id: task.id,
@@ -65,14 +57,9 @@ const TaskFormUpdate = ({task}) => {
                 completed,
                 list_id: list
             }
-<<<<<<< HEAD
-        } else if (dueDate !== '1969-12-32') {
-            console.log(`The dueDate is ${dueDate}`)
-=======
         } else if (dueDate.slice(-6) !== '-12-32') {
             console.log(`The dueDate is ${dueDate}`)
             console.log(`The last six characters of dueDate are ${dueDate[-6]}`)
->>>>>>> feature-task_form-static_url_delete
             console.log("There's a due date")
             payload = {
                 id: task.id,
@@ -91,17 +78,12 @@ const TaskFormUpdate = ({task}) => {
                 notes,
                 completed,
             }
-<<<<<<< HEAD
-        } 
-=======
         }
->>>>>>> feature-task_form-static_url_delete
         console.log(payload);
         await dispatch(updateTask(payload)).catch(async(res)=> {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
         })
-
         dispatch(loadTasks(user));
     }
 
