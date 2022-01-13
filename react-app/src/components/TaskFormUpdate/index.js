@@ -1,18 +1,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
-import { loadTasks, updateTask} from '../../store/tasks';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { deleteTask, loadTasks, updateTask} from '../../store/tasks';
 import UserBar from '../UserBar';
 import './TaskFormUpdate.css'
 
 const TaskFormUpdate = ({task}) => {
-    const params = useParams();
-    const { taskId } = params
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
     const tasks = useSelector(state => state.tasks);
     const userLists = Object.values(lists)
+    const history = useHistory()
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
     const [dueDate, setDueDate] = useState(task.due_date || "");
@@ -27,12 +26,25 @@ const TaskFormUpdate = ({task}) => {
         setDueDate(task.due_date);
         setCompleted(task.completed);
         setList(task.list_id);
+<<<<<<< HEAD
     }, [task])
+=======
+    },[task])
+
+    const removeTaskButton = async () => {
+        await dispatch(deleteTask(task))
+        dispatch(loadTasks(user))
+    }
+>>>>>>> feature-task_form-static_url_delete
 
     const handleSubmit = async e => {
         e.preventDefault();
         let payload;
+<<<<<<< HEAD
         if (dueDate !== '1969-12-32' && list) {
+=======
+        if (dueDate.slice(-6) !== '-12-32' && list) {
+>>>>>>> feature-task_form-static_url_delete
             console.log("There's a due date and a list")
             payload = {
                 id: task.id,
@@ -53,8 +65,14 @@ const TaskFormUpdate = ({task}) => {
                 completed,
                 list_id: list
             }
+<<<<<<< HEAD
         } else if (dueDate !== '1969-12-32') {
             console.log(`The dueDate is ${dueDate}`)
+=======
+        } else if (dueDate.slice(-6) !== '-12-32') {
+            console.log(`The dueDate is ${dueDate}`)
+            console.log(`The last six characters of dueDate are ${dueDate[-6]}`)
+>>>>>>> feature-task_form-static_url_delete
             console.log("There's a due date")
             payload = {
                 id: task.id,
@@ -73,7 +91,11 @@ const TaskFormUpdate = ({task}) => {
                 notes,
                 completed,
             }
+<<<<<<< HEAD
         } 
+=======
+        }
+>>>>>>> feature-task_form-static_url_delete
         console.log(payload);
         await dispatch(updateTask(payload)).catch(async(res)=> {
             const data = await res.json()
@@ -129,6 +151,7 @@ const TaskFormUpdate = ({task}) => {
                     </select>
                     <button type='submit'>Update Task</button>
                 </form>
+                    <button onClick={removeTaskButton}>Delete Task</button>
             </div>
         )
     }

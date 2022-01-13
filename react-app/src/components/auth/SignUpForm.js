@@ -58,7 +58,7 @@ const SignUpForm = () => {
         <article id='signup-left-div'>
           <div id="ymtl-container">
             <Link to="/" className="ymtl-logo">
-              <img src="/images/Notepad_icon.png" alt="" id="notepad"></img>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Notepad_icon.svg/2048px-Notepad_icon.svg.png" alt="" id="notepad"></img>
               <span>you made<br></br>the list</span>
             </Link>
           </div>
