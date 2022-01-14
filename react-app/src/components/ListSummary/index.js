@@ -28,14 +28,31 @@ const ListSummary = ({ lists, list }) => {
     return (
         <div id="list-summary">
             <h2>{list? list.name : "All Tasks"}</h2>
-            <div>
-                { userTasks.length } tasks
-            </div>
-            <div>
-                { completedTasks.length } completed tasks
-            </div>
-            <div>
-                { incompleteTasks.length } incomplete tasks
+            <div id="summary-container">
+                <div class="summary-box">
+                    <div class="task-quantity" id="task-summary">
+                        { userTasks.length }
+                    </div>
+                    <div class="task-quality">
+                        tasks
+                    </div>
+                </div>
+                <div class="summary-box">
+                    <div class="task-quantity" id="incomplete-summary">
+                        { incompleteTasks.length }
+                    </div> 
+                    <div class="task-quality">
+                        incomplete
+                    </div>
+                </div>
+                <div class="summary-box">
+                    <div class="task-quantity" id="completed-summary">
+                        { completedTasks.length }
+                    </div> 
+                    <div class="task-quality">
+                        completed
+                    </div>
+                </div>
             </div>
         </div>
     );
