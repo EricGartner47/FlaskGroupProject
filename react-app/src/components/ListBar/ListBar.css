@@ -15,14 +15,31 @@
 }
 
 #all-lists li {
-    padding: 0 10px;
-    margin: 2px;
-    font-size: 14px;
+    padding: 2px 10px;
+    margin: 0px;
+    font-size: 13px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 #all-lists li:hover {
-    background-color: white;
+    background-color: rgba(0, 102, 255, 0.3);
     cursor: pointer;
+}
+
+#all-lists li.user-list {
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.list-name {
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ymtl-logo-listbar {
@@ -36,6 +53,10 @@
     margin-top: 15px;
 }
 
+.ymtl-logo-listbar:hover {
+    cursor: pointer;
+}
+
 .ymtl-logo-listbar #notepad {
     width: 70px;
 }
@@ -46,7 +67,7 @@
 
 #lists-header {
     border-top: 1px #bfd9f1 solid;
-    padding-top: 10px;
+    padding-top: 1000px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,9 +79,61 @@
 
 #all-lists li:nth-child(6) {
     padding-top: 15px;
+    margin-bottom: 8px;
 }
 
 #all-lists li:nth-child(6):hover,
 #all-lists li:nth-child(1):hover {
     background-color: transparent;
+}
+
+.list-actions-dropdown {
+    position: relative;
+    right: 0px;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    border-radius: 2px;
+    min-width: 110px;
+    height: 52px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.list-dropdown {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    width: 20px;
+    color: rgb(60, 60, 60);
+    font-size: 14px;
+    padding-left: 5px;
+    justify-content: flex-end;
+    padding-right: 10px;
+} 
+
+.list-dropdown .fas {
+    position: absolute;
+    display: none;
+}
+
+.user-list:hover .fas {
+    display: block;
+}
+
+.list-link {
+    background-color: transparent;
+    border: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.list-link:hover {
+    background-color: rgba(0, 102, 255, 0.3);
+    cursor: pointer;
 }

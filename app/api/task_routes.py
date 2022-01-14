@@ -100,6 +100,7 @@ def update_task(id):
 	task = Task.query.get(id)
 	form = TaskForm()
 	form['csrf_token'].data = request.cookies['csrf_token']
+	print("here")
 	if form.validate_on_submit():
 		task.name = form.name.data
 		task.notes = form.notes.data
@@ -113,7 +114,10 @@ def update_task(id):
 		# If the task is not complete, set completed_date to none
 		if not task.completed:
 			task.completed_date = None
-		task.list_id = form.list_id.data
+		if form.list_id.data == -1:
+			task.list_id = None
+		else:
+			task.list_id = form.list_id.data
 
 		db.session.commit()
 		return task.to_dict()

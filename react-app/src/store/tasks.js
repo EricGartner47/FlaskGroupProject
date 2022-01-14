@@ -34,7 +34,12 @@ export const loadTasks = user => async dispatch => {
 }
 
 export const loadListTasks = (user, list) => async dispatch => {
-    const res = await fetch(`/api/users/${user.id}/tasks/${list.id}`);
+    let res;
+    if (list.id) {
+        res = await fetch(`/api/users/${user.id}/tasks/${list.id}`);
+    } else {
+        res = await fetch(`/api/users/${user.id}/tasks/${list}`);
+    }
     const data = await res.json();
     dispatch(getTasks(user, data));
     return res;
@@ -54,6 +59,9 @@ export const createTask = (newTask, user) =>  async dispatch => {
 }
 
 export const updateTask = (task) => async dispatch => {
+    if (!task.list_id) {
+        task.list_id = -1;
+    }
     const res = await fetch(`/api/tasks/${task.id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},

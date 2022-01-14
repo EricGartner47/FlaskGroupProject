@@ -28,6 +28,23 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
         setTaskName(e.target.value);
     }
 
+    useEffect(() => {
+        if (!buttonSwitch) return;
+        const closeActions = () => {
+            setButtonSwitch(false)
+        }
+
+
+        document.addEventListener("click", closeActions)
+        let input = document.getElementById('new-task-input');
+        input.addEventListener('click', function (e) {
+            setButtonSwitch(true)
+            e.stopPropagation();
+        }, false);
+
+        return () => document.removeEventListener('click', closeActions)
+    }, [buttonSwitch])
+
     const showButton = <button type='submit'>Add Task</button>;
 
     const handleSubmit = async e => {
@@ -51,7 +68,7 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                 <h1>{user.first_name}'s Tasks</h1>
 
                 <div id="task-bar">
-                    <form onSubmit={handleSubmit}>
+                    <form id="new-task-input" onSubmit={handleSubmit}>
                         <input
                             name='name'
                             type='text'
@@ -59,7 +76,7 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                             value={taskName}
                             autocomplete="off"
                             onChange={updateTask}
-                            onClick={setButtonSwitch}
+                            onClick={() => setButtonSwitch(true)}
                         />
                         {buttonSwitch && showButton}
                     </form>

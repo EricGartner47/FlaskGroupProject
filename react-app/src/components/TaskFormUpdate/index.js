@@ -14,16 +14,18 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
     const history = useHistory()
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
-    const [dueDate, setDueDate] = useState(task.due_date || "");
+    const [dueDate, setDueDate] = useState(task.due_date || "hello");
     const [completed, setCompleted] = useState(task.completed);
-    const [list, setList] = useState(task.list_id);
+    let [list, setList] = useState(task.list_id);
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
+
+    console.log("hello", dueDate)
 
     useEffect(() => {
         setTaskName(task.name);
         setNotes(task.notes);
-        setDueDate(task.due_date);
+        setDueDate(task.due_date || "");
         setCompleted(task.completed);
         setList(task.list_id);
     }, [task])
@@ -37,50 +39,20 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
     const handleSubmit = async e => {
         e.preventDefault();
         let payload;
-        if (dueDate && list) {
-            console.log("There's a due date and a list")
-            payload = {
-                id: task.id,
-                user_id: user.id,
-                name: taskName,
-                notes,
-                due_date: dueDate,
-                completed,
-                list_id: list
-            }
-        } else if (list) {
-            console.log("There's a list")
-            payload = {
-                id: task.id,
-                user_id: user.id,
-                name: taskName,
-                notes,
-                completed,
-                list_id: list
-            }
-        } else if (dueDate) {
-            console.log(`The dueDate is ${dueDate}`)
-            console.log(`The last six characters of dueDate are ${dueDate[-6]}`)
-            console.log("There's a due date")
-            payload = {
-                id: task.id,
-                user_id: user.id,
-                name: taskName,
-                notes,
-                due_date: dueDate,
-                completed,
-            }
-        } else {
-            console.log("There's no due date nor list")
-            payload = {
-                id: task.id,
-                user_id: user.id,
-                name: taskName,
-                notes,
-                completed,
-            }
+
+        if (list === "select") {
+            list = null;
         }
-        console.log(payload);
+
+        payload = {
+            id: task.id,
+            user_id: user.id,
+            name: taskName,
+            notes,
+            due_date: dueDate,
+            completed,
+            list_id: list
+        }
         await dispatch(updateTask(payload)).catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
@@ -89,7 +61,6 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
     }
 
     if (user) {
-        console.log("hello", dueDate);
         return (
             <div id="task-update-panel">
                 <ul>
@@ -132,7 +103,7 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                                     value={list || "select"}
                                     onChange={e => { setList(e.target.value) }}
                                 >
-                                    <option value={"select"}>Select a notebook</option>
+                                    <option value={"select"}>Select a list</option>
                                     {userLists.map(list => {
                                         return <option key={list.id} value={list.id}>{list.name}</option>
                                     })}
