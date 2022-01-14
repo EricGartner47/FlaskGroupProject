@@ -17,6 +17,23 @@ const Homepage = () => {
         <>
             <h1 id='homepage-header'>The smart to-do app for busy people.</h1>
             <a href="/sign-up" id='homepage-signup-button'> Sign Up Free</a>
+            <div id='slideshow-container'>
+                <div>
+                    <div id="numbertext">1 / 3</div>
+                    <img src="" ></img>
+                    <div>Caption Text</div>
+                </div>
+                <div>
+                    <div id="numbertext">2 / 3</div>
+                    <img src="" ></img>
+                    <div>Caption Two</div>
+                </div>
+                <div>
+                    <div id="numbertext">3 / 3</div>
+                    <img src="" ></img>
+                    <div>Caption Three</div>
+                </div>
+            </div>
             <footer id='homepage-footer'>
                 <ul> Created by:
                     <li key="Joe-links"> Joe Yang
