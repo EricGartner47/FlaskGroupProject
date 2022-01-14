@@ -2,8 +2,10 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Task, db, List
 from app.forms import TaskForm, ListForm
+from datetime import datetime, timedelta
 
 user_routes = Blueprint('users', __name__)
+
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -14,6 +16,7 @@ def validation_errors_to_error_messages(validation_errors):
         for error in validation_errors[field]:
             errorMessages.append(f'{field} : {error}')
     return errorMessages
+
 
 @user_routes.route('/')
 @login_required
@@ -38,6 +41,7 @@ def get_all_tasks(id):
     print(obj['tasks'][0]['due_date'])
     return {'tasks': [task.to_dict() for task in results]}
 
+
 @user_routes.route('/<int:id>/tasks', methods=['POST'])
 @login_required
 def create_task(id):
@@ -60,6 +64,7 @@ def get_all_lists(id):
     results = List.query.filter(List.user_id == user.id).all()
     return {'lists': [list.to_dict() for list in results]}
 
+
 @user_routes.route('/<int:id>/lists', methods=['POST'])
 @login_required
 def create_list(id):
@@ -78,12 +83,23 @@ def create_list(id):
 @user_routes.route('/<int:id>/tasks/<list_id>')
 @login_required
 def get_tasks_in_lists(id, list_id):
-    user = User.query.get(id)
-    results = Task.query.filter(Task.list_id == list_id).all()
+    week = [(datetime.today() + timedelta(days=x)).strftime('%Y-%m-%d')
+            for x in range(0, 7)]
+    print(datetime.today().strftime('%Y-%m-%d') in week)
+    if isinstance(list_id, int):
+        results = Task.query.filter(Task.list_id == list_id).all()
+    elif list_id == "today":
+        results = Task.query.filter(Task.due_date == week[0])
+    elif list_id == "tomorrow":
+        results = Task.query.filter(Task.due_date == week[1])
+    elif list_id == "week":
+        print("hello")
+        results = Task.query.filter(Task.due_date.in_(week))
+        print("hi", results)
     return {'tasks': [task.to_dict() for task in results]}
 
 # not finished
-#update
+# update
 # @user_routes.route('/<int:id>/update')
 # @login_required
 # # """

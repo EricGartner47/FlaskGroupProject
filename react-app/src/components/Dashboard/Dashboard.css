@@ -9,5 +9,5 @@
     width: 100vw;
     background-color: white;
     display: grid;
-    grid-template-columns: 15% 1fr 1fr
+    grid-template-columns: 180px 1fr 1fr
 }

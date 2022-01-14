@@ -15,32 +15,36 @@ const ListBar = ({ setList, setSelectedTask }) => {
     const lists = Object.values(userLists)
     const [showNewForm, setShowNewForm] = useState(false);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
-    const [showRemoveForm, setShowRemoveForm] = useState(false);
     const [showButtons, setShowButtons] = useState(false)
     const dispatch = useDispatch()
     const openActions = (id) => {
-        if(showButtons) return;
+        if (showButtons) return;
         return setShowButtons(id)
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(loadLists(user))
     }, [dispatch, user])
 
-    useEffect(()=> {
-        if(!showButtons) return;
+    useEffect(() => {
+        if (!showButtons) return;
         const closeActions = () => {
             setShowButtons(false)
         }
         document.addEventListener("click", closeActions)
-        return ()=> document.removeEventListener('click', closeActions)
+        return () => document.removeEventListener('click', closeActions)
     }, [showButtons])
 
     return (
         <nav id="listbar">
-            <div className="ymtl-logo-listbar">
+            <div onClick={() => {
+                setList();
+                setSelectedTask();
+            }
+            }
+            className="ymtl-logo-listbar">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Notepad_icon.svg/2048px-Notepad_icon.svg.png" alt="" id="notepad"></img>
-                <span>you made<br></br>the list</span>
+                <span>you made<br/>the list</span>
             </div>
             <ul id="all-lists">
                 <li className="list-header">Inbox</li>
@@ -49,31 +53,31 @@ const ListBar = ({ setList, setSelectedTask }) => {
                         setList()
                         setSelectedTask()
                     }
-                }>
+                    }>
                     All Tasks
                 </li>
                 <li
                     onClick={() => {
-                        setList()
+                        setList("today")
                         setSelectedTask()
                     }
-                }>
+                    }>
                     Today
                 </li>
                 <li
                     onClick={() => {
-                        setList()
+                        setList("tomorrow")
                         setSelectedTask()
                     }
-                }>
+                    }>
                     Tomorrow
                 </li>
                 <li
                     onClick={() => {
-                        setList()
+                        setList("week")
                         setSelectedTask()
                     }
-                }>
+                    }>
                     This Week
                 </li>
                 <li className="list-header" id="lists-header">
@@ -89,41 +93,40 @@ const ListBar = ({ setList, setSelectedTask }) => {
                 </li>
                 {lists.map(list => {
                     return (
-                        <div>
-                            <li key={list.id} onClick={() => {
-                                setList(list)
-                                setSelectedTask()
-                                }
-                            }>
+                        <li className="user-list" key={list.id} onClick={() => {
+                            setList(list)
+                            setSelectedTask()
+                        }
+                        }>
+                            <div className="list-name">
                                 {list.name}
-                            </li>
-                            <div onClick={() => openActions(list.id)}>
+                            </div>
+                            <div className="list-dropdown" onClick={() => openActions(list.id)}>
                                 <i class="fas fa-caret-down"></i>
                                 {showButtons === list.id &&
                                     <div className="list-actions-dropdown">
-                                        <button id="edit-list-link" onClick={
+                                        <button className="list-link" onClick={
                                             () => setShowUpdateForm(list.id + "edit")
-                                            }>Rename List</button>
-                                        <button id="delete-list-link" onClick={
+                                        }>Rename List</button>
+                                        <button className="list-link" onClick={
                                             () => setShowUpdateForm(list.id + "delete")
-                                            }>Delete List</button>
+                                        }>Delete List</button>
                                     </div>
                                 }
                             </div>
                             {showUpdateForm === (list.id + "edit") && (
-                                <Modal onClose={()=> setShowUpdateForm(false)}>
-                                    <ListFormUpdate hideForm={()=> setShowUpdateForm(false)} list={list}/>
+                                <Modal onClose={() => setShowUpdateForm(false)}>
+                                    <ListFormUpdate hideForm={() => setShowUpdateForm(false)} list={list} />
                                 </Modal>
                             )}
-                            {showUpdateForm === (list.id + "delete") && 
-                            
-                            (
-                                <Modal onClose={()=> setShowUpdateForm(false)}>
-                                    <ListFormRemove hideForm={()=> setShowUpdateForm(false)} list={list}/>
-                                </Modal>
-                            )
+                            {showUpdateForm === (list.id + "delete") &&
+                                (
+                                    <Modal onClose={() => setShowUpdateForm(false)}>
+                                        <ListFormRemove hideForm={() => setShowUpdateForm(false)} list={list} />
+                                    </Modal>
+                                )
                             }
-                        </div>
+                        </li>
                     )
                 })}
             </ul>
