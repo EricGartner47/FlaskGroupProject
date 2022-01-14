@@ -1,0 +1,27 @@
+
+#homepage-header {
+    font-size: 44px;
+    font-weight: 700;
+    color: #fff;
+    margin: 18px 0 31px 0;
+}
+
+#homepage-signup-button {
+    font-family: MuseoSansRounded, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 23px;
+    color: #fff;
+    background-color: #d24b03;
+    border-color: transparent;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 11px 32px 12px;
+    line-height: 1.2;
+}
