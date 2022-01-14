@@ -85,17 +85,15 @@ def create_list(id):
 def get_tasks_in_lists(id, list_id):
     week = [(datetime.today() + timedelta(days=x)).strftime('%Y-%m-%d')
             for x in range(0, 7)]
-    print(datetime.today().strftime('%Y-%m-%d') in week)
-    if isinstance(list_id, int):
+    results = Task.query.filter(Task.user_id == id).all()
+    if list_id.isnumeric():
         results = Task.query.filter(Task.list_id == list_id).all()
     elif list_id == "today":
         results = Task.query.filter(Task.due_date == week[0])
     elif list_id == "tomorrow":
         results = Task.query.filter(Task.due_date == week[1])
     elif list_id == "week":
-        print("hello")
         results = Task.query.filter(Task.due_date.in_(week))
-        print("hi", results)
     return {'tasks': [task.to_dict() for task in results]}
 
 # not finished
