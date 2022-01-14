@@ -9,18 +9,23 @@ import './ListBar.css'
 import ListFormUpdate from '../ListFormUpdate';
 import ListFormRemove from '../ListFormRemove';
 
-const ListBar = ({ lists, setList, setSelectedTask }) => {
+const ListBar = ({ setList, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
+    const userLists = useSelector(state => state.lists);
+    const lists = Object.values(userLists)
     const [showNewForm, setShowNewForm] = useState(false);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [showRemoveForm, setShowRemoveForm] = useState(false);
-    const [showButtons, setShowButtons] = useState('')
-
-
+    const [showButtons, setShowButtons] = useState(false)
+    const dispatch = useDispatch()
     const openActions = (id) => {
         if(showButtons) return;
         return setShowButtons(id)
     }
+
+    useEffect(()=> {
+        dispatch(loadLists(user))
+    }, [dispatch, user])
 
     useEffect(()=> {
         if(!showButtons) return;
@@ -92,18 +97,32 @@ const ListBar = ({ lists, setList, setSelectedTask }) => {
                             }>
                                 {list.name}
                             </li>
-                            <i class="fas fa-caret-down" onClick={()=> openActions(list.id)}></i>
-                            {showButtons === list.id && (
-                                <div>
-                                    <button onClick={()=> setShowUpdateForm(true)}>Update List</button>
-                                    <button onClick={()=> setShowRemoveForm(true)}>Delete List</button>
-                                    <Modal onClose={()=> setShowUpdateForm(false)}>
-                                        <ListFormUpdate hideForm={()=> setShowUpdateForm(false)} list={list}/>
-                                        <ListFormRemove hideForm={()=> setShowRemoveForm(false)} list={list}/>
-                                    </Modal>
-                                </div>
-
+                            <div onClick={() => openActions(list.id)}>
+                                <i class="fas fa-caret-down"></i>
+                                {showButtons === list.id &&
+                                    <div className="list-actions-dropdown">
+                                        <button id="edit-list-link" onClick={
+                                            () => setShowUpdateForm(list.id + "edit")
+                                            }>Rename List</button>
+                                        <button id="delete-list-link" onClick={
+                                            () => setShowUpdateForm(list.id + "delete")
+                                            }>Delete List</button>
+                                    </div>
+                                }
+                            </div>
+                            {showUpdateForm === (list.id + "edit") && (
+                                <Modal onClose={()=> setShowUpdateForm(false)}>
+                                    <ListFormUpdate hideForm={()=> setShowUpdateForm(false)} list={list}/>
+                                </Modal>
                             )}
+                            {showUpdateForm === (list.id + "delete") && 
+                            
+                            (
+                                <Modal onClose={()=> setShowUpdateForm(false)}>
+                                    <ListFormRemove hideForm={()=> setShowUpdateForm(false)} list={list}/>
+                                </Modal>
+                            )
+                            }
                         </div>
                     )
                 })}

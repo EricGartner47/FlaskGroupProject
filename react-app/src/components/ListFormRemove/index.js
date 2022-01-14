@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { deleteList } from '../../store/lists';
+import { loadLists } from '../../store/lists';
 import './ListFormRemove.css'
 
 function ListFormRemove ({hideForm, list}) {
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.session.user);
+    const history = useHistory()
     const dispatch = useDispatch()
     const [errors, setErrors] = useState([])
 
@@ -13,19 +15,24 @@ function ListFormRemove ({hideForm, list}) {
         <Redirect to="/" />
     )
 
-    const removeList = async () => {
-        dispatch(deleteList(list))
-        if(deleteList){
-            hideForm()
-        }
+    const onSubmit = async e => {
+        e.preventDefault();
+        setErrors([]);
+        await dispatch(deleteList(list))
+        
+        hideForm()
+        history.push("/");
     }
 
     return (
-        <div>
-            <span>Remove List</span>
-            <p>Are you sure you want to remove {list.name}? </p>
-            <button onClick={removeList}></button>
-
+        <div className="notebook-delete-form">
+            <form onSubmit={onSubmit}>
+                <ul hidden={errors.length === 0}>
+                    {errors.map((error, i) => <li key={i}>{error}</li>)}
+                </ul>
+                <p>Are you sure you want to delete "{list.name}"?</p>
+                <button type="submit">Delete List</button>
+            </form>
         </div>
     )
 }

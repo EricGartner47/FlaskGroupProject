@@ -65,7 +65,8 @@ export const deleteList = payload => async dispatch=> {
     })
     if(res.ok) {
         const data = await res.json();
-        dispatch(removeList(data))
+        console.log("this is data", data)
+        dispatch(removeList(payload))
         return data
     }
 }
@@ -87,6 +88,7 @@ export const listReducer = (state = initialState, action) => {
             return newState;
         case REMOVE_LIST:
             delete newState[action.list.id]
+            console.log(newState)
             return newState;
         default:
             return state;
