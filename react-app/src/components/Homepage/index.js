@@ -21,9 +21,9 @@ const Homepage = () => {
                 <Slideshow
                     interval={3000}
                     images={[
-                            'https://image.winudf.com/v2/image1/Y29tLnJlbWVtYmVydGhlbWlsay5Nb2JpbGVSVE1faWNvbl8xNTYxMDM4NDE0XzAyMg/icon.png?w=&fakeurl=1',
-                            'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Notepad_icon.svg/2048px-Notepad_icon.svg.png',
-                            'https://static8.depositphotos.com/1000792/1065/v/950/depositphotos_10659058-stock-illustration-cute-dog.jpg'
+                            'https://www.rememberthemilk.com/img/hp_steve_2.png?1587967172',
+                            'https://www.rememberthemilk.com/img/hp_steve_3.png?1587967172',
+                            'https://www.rememberthemilk.com/img/hp_steve_1.png?1587967172'
   ]} />
             </div>
             <footer id='homepage-footer'>
