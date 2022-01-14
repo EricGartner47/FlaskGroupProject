@@ -69,8 +69,9 @@ export const updateTask = (task) => async dispatch => {
     const data = await res.json();
     if(res.ok) {
         dispatch(addTask(data))
-        return data
     }
+    console.log(data, 'received data')
+    return data
 }
 
 export const deleteTask = (task) => async dispatch => {

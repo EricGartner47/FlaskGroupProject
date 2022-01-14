@@ -50,9 +50,11 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
             completed,
             list_id: list
         }
-        await dispatch(updateTask(payload)).catch(async (res) => {
-            const data = await res.json()
-            if (data && data.errors) setErrors(data.errors)
+
+        await dispatch(updateTask(payload)).then(async (res) => {
+            if (res.errors) {
+                setErrors(res.errors)
+            }
         })
         dispatch(loadTasks(user));
     }
@@ -133,7 +135,7 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                                 placeholder="Add a note..."
                             />
                         </div>
-                        
+
                         <button type='submit' class="button-update-task">Update Task</button>
                         <button class="button-update-task" onClick={removeTaskButton}>Delete Task</button>
 

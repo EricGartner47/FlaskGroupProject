@@ -25,11 +25,12 @@ function ListFormUpdate({hideForm, list}) {
         }
 
         const updatedList = await dispatch(updateList(payload))
-            .catch(async res => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+            .then(async res => {
+                console.log(res, 'response')
+                if(res.errors){
+                    setErrors(res.errors);
+                }
             })
-
         if (updatedList) hideForm();
     }
     return(
