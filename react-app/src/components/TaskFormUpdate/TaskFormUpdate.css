@@ -33,7 +33,9 @@
 	width: 80%;
 }
 
-
+#input-task-name:hover {
+	border-color: #999;
+}
 
 #label-task-name {
 	outline: none;
@@ -43,7 +45,6 @@
 	line-height: 2.375rem;
 	padding: 1px;
 	font-size: 1.125rem;
-	cursor: text;
 	word-wrap: break-word;
 	outline: none;
 	color: black;
@@ -67,7 +68,6 @@
 .field-container {
 	white-space: nowrap;
 	display: table-row;
-	cursor: pointer;
 	outline: none;
 	overflow: hidden;
 }
@@ -130,4 +130,12 @@
 	margin: 17px 0 2px 17px;
 	border: 1px solid #999;
 	border-radius: 3px;
+}
+
+#task-due-date:hover {
+	border-color: #999;
+}
+
+#task-completed {
+	cursor: pointer;
 }
