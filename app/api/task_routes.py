@@ -1,12 +1,24 @@
-from flask import Blueprint, jsonify #, session, request
+from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
 from app.models import User, db, Task
+from app.forms import TaskForm
+from datetime import date
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
 # from flask_login import current_user, login_user, logout_user, login_required
 
 task_routes = Blueprint('tasks', __name__)
 
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 """
 
@@ -65,42 +77,48 @@ def delete_task(id):
 	task = Task.query.get(id)
 	db.session.delete(task)
 	db.session.commit()
-	return {'message': 'Successfully Deleted'}
+	return {'message': 'Successfully Deleted Task'}
 	# Delete task from database
 	# return success message
 
 
-# """
-
-# For updating task information,
-# 	I have set up multiple routes,
-# 	instead of one function with many parameters.
-
-# Justifications:
-# 	- Each function has a single responsibility
-# 	- The remember the milk UI changes one attribute at a time
-# 	- Easier to add features
-
-# Example, pseudocode - a singular update function
-
-	# PUT - update task information
-	# route: - `/api/users/:id/tasks/:id/update`
-@task_routes.route('/<int:id>/')
+# PUT - update task information
+# route: - `/api/tasks/:id/`
+@task_routes.route('/<int:id>', methods=["PUT"])
 @login_required
+# '''
+# function updates task information
+# 	- name
+# 	- notes
+# 	- due_date
+# 	- completed
+# 	- completed_date
+# 	- list_id (change to different list)
+# 	- note: user_id not applicable
+# '''
 def update_task(id):
 	task = Task.query.get(id)
-	
-	if
-# 	function updates task information
-# 		- name
-# 		- notes
-# 		- due_date
-# 		- completed
-# 		- completed_date
-# 		- list_id (change to different list)
-# 		- note: user_id not applicable
+	form = TaskForm()
+	form['csrf_token'].data = request.cookies['csrf_token']
+	if form.validate_on_submit():
+		task.name = form.name.data
+		task.notes = form.notes.data
+		task.due_date = form.due_date.data
+		# If the task was incomplete, but is now complete, completed date is today's date
+		# task.completed represents whether the task was marked completed or not (before submitting the update form)
+		if not task.completed and form.completed.data:
+			task.completed_date = date.today()
+		task.completed = form.completed.data
+		# Now that task.completed is updated,
+		# If the task is not complete, set completed_date to none
+		if not task.completed:
+			task.completed_date = None
+		task.list_id = form.list_id.data
 
-# """
+		db.session.commit()
+		return task.to_dict()
+	print(form.errors)
+	return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # PUT - update task name

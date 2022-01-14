@@ -1,5 +1,6 @@
 const LOAD_LISTS = 'list/LOAD_LISTS'
 const NEW_LIST = 'list/NEW_LIST'
+const REMOVE_LIST = 'list/REMOVE_LIST'
 
 const getList = (user, lists) => {
     return {
@@ -16,16 +17,22 @@ const addList = list => {
     }
 }
 
+const removeList = list => {
+    return {
+        type: REMOVE_LIST,
+        list
+    }
+}
+
 export const loadLists = user => async dispatch => {
-    const res = await fetch(`api/users/${user.id}/lists`)
+    const res = await fetch(`/api/users/${user.id}/lists`)
     const data = await res.json();
     dispatch(getList(user, data));
-    return res;
+    return data;
 }
 
 export const createList = payload => async dispatch => {
-    console.log(payload)
-    const res = await fetch(`api/users/${payload.user_id}/lists`, {
+    const res = await fetch(`/api/users/${payload.user_id}/lists`, {
         method:'POST',
         headers: {
             "Content-Type": "application/json"
@@ -34,7 +41,34 @@ export const createList = payload => async dispatch => {
     })
     const data = await res.json();
     dispatch(addList(data));
-    return res;
+    return data;
+}
+
+export const updateList = payload => async dispatch => {
+    const res = await fetch(`/api/lists/${payload.id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    if(res.ok){
+        const data = await res.json();
+        dispatch(addList(data))
+        return data;
+    }
+}
+
+export const deleteList = payload => async dispatch=> {
+    const res = await fetch(`api/lists/${payload.id}`, {
+        method: 'DELETE'
+    })
+    if(res.ok) {
+        const data = await res.json();
+        console.log("this is data", data)
+        dispatch(removeList(payload))
+        return data
+    }
 }
 
 const initialState = {}
@@ -51,6 +85,10 @@ export const listReducer = (state = initialState, action) => {
             return { ...state, ...lists}
         case NEW_LIST:
             newState[action.list.id] = action.list
+            return newState;
+        case REMOVE_LIST:
+            delete newState[action.list.id]
+            console.log(newState)
             return newState;
         default:
             return state;

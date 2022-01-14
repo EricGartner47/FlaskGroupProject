@@ -6,42 +6,124 @@ import { loadLists } from '../../store/lists';
 import { Modal } from '../../context/Modal';
 import ListFormNew from '../ListFormNew';
 import './ListBar.css'
+import ListFormUpdate from '../ListFormUpdate';
+import ListFormRemove from '../ListFormRemove';
 
-const ListBar = ({ lists, setList }) => {
+const ListBar = ({ setList, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
-    const [showForm, setShowForm] = useState(false);
+    const userLists = useSelector(state => state.lists);
+    const lists = Object.values(userLists)
+    const [showNewForm, setShowNewForm] = useState(false);
+    const [showUpdateForm, setShowUpdateForm] = useState(false);
+    const [showRemoveForm, setShowRemoveForm] = useState(false);
+    const [showButtons, setShowButtons] = useState(false)
+    const dispatch = useDispatch()
+    const openActions = (id) => {
+        if(showButtons) return;
+        return setShowButtons(id)
+    }
+
+    useEffect(()=> {
+        dispatch(loadLists(user))
+    }, [dispatch, user])
+
+    useEffect(()=> {
+        if(!showButtons) return;
+        const closeActions = () => {
+            setShowButtons(false)
+        }
+        document.addEventListener("click", closeActions)
+        return ()=> document.removeEventListener('click', closeActions)
+    }, [showButtons])
 
     return (
         <nav id="listbar">
             <div className="ymtl-logo-listbar">
-                <img src="/images/Notepad_icon.png" alt="" id="notepad"></img>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Notepad_icon.svg/2048px-Notepad_icon.svg.png" alt="" id="notepad"></img>
                 <span>you made<br></br>the list</span>
             </div>
             <ul id="all-lists">
                 <li className="list-header">Inbox</li>
-                <li onClick={() => { setList() }}>All Tasks</li>
-                <li onClick={() => { setList() }}>Today</li>
-                <li onClick={() => { setList() }}>Tomorrow</li>
-                <li onClick={() => { setList() }}>This Week</li>
+                <li
+                    onClick={() => {
+                        setList()
+                        setSelectedTask()
+                    }
+                }>
+                    All Tasks
+                </li>
+                <li
+                    onClick={() => {
+                        setList()
+                        setSelectedTask()
+                    }
+                }>
+                    Today
+                </li>
+                <li
+                    onClick={() => {
+                        setList()
+                        setSelectedTask()
+                    }
+                }>
+                    Tomorrow
+                </li>
+                <li
+                    onClick={() => {
+                        setList()
+                        setSelectedTask()
+                    }
+                }>
+                    This Week
+                </li>
                 <li className="list-header" id="lists-header">
                     <div>
                         Lists
                     </div>
-                    <i class="far fa-plus-square" onClick={() => setShowForm(true)}></i>
-                    {showForm && (
-                        <Modal onClose={() => setShowForm(false)}>
-                            <ListFormNew hideForm={() => setShowForm(false)} />
+                    <i class="far fa-plus-square" onClick={() => setShowNewForm(true)}></i>
+                    {showNewForm && (
+                        <Modal onClose={() => setShowNewForm(false)}>
+                            <ListFormNew hideForm={() => setShowNewForm(false)} />
                         </Modal>
                     )}
                 </li>
                 {lists.map(list => {
                     return (
-                        <li key={list.id} onClick={() => {
-                            setList(list)
-                        }
-                        }>
-                            {list.name}
-                        </li>
+                        <div>
+                            <li key={list.id} onClick={() => {
+                                setList(list)
+                                setSelectedTask()
+                                }
+                            }>
+                                {list.name}
+                            </li>
+                            <div onClick={() => openActions(list.id)}>
+                                <i class="fas fa-caret-down"></i>
+                                {showButtons === list.id &&
+                                    <div className="list-actions-dropdown">
+                                        <button id="edit-list-link" onClick={
+                                            () => setShowUpdateForm(list.id + "edit")
+                                            }>Rename List</button>
+                                        <button id="delete-list-link" onClick={
+                                            () => setShowUpdateForm(list.id + "delete")
+                                            }>Delete List</button>
+                                    </div>
+                                }
+                            </div>
+                            {showUpdateForm === (list.id + "edit") && (
+                                <Modal onClose={()=> setShowUpdateForm(false)}>
+                                    <ListFormUpdate hideForm={()=> setShowUpdateForm(false)} list={list}/>
+                                </Modal>
+                            )}
+                            {showUpdateForm === (list.id + "delete") && 
+                            
+                            (
+                                <Modal onClose={()=> setShowUpdateForm(false)}>
+                                    <ListFormRemove hideForm={()=> setShowUpdateForm(false)} list={list}/>
+                                </Modal>
+                            )
+                            }
+                        </div>
                     )
                 })}
             </ul>

@@ -1,11 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, DateTimeField, SubmitField, IntegerField
-from wtforms.validators import DataRequired
+from wtforms import StringField, BooleanField, DateField, SubmitField, IntegerField, TimeField
+from wtforms.validators import DataRequired, Optional
 
 class TaskForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     user_id = IntegerField('user_id', validators=[DataRequired()])
     notes = StringField('notes')
-    due_date = DateTimeField('due_date')
+    due_date = DateField('due_date', validators=[Optional()])
     completed = BooleanField('completed')
-    completed_date = DateTimeField('completed')
+    completed_date = DateField('completed_date')
+    list_id = IntegerField('list_id')

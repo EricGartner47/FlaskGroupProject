@@ -1,0 +1,141 @@
+#task-update-panel {
+	/*display: flex;*/
+	/*align-items: left;*/
+	/*flex-direction: column;*/
+	/*height: 100%;*/
+	/*width: 90%;*/
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	width: 529px;
+	left: 739px;
+	z-index: 2;
+	box-shadow: -2px 0 0 #d9d9d9;
+	background-color: #fff;
+	border-top-left-radius: 6px;
+	border-top-rigth-radius: 6px;
+	height: 100%;
+	color: black;
+}
+
+#label-task-name {
+	display: none;
+}
+
+#task-name-container {
+	position: relative;
+	margin-bottom: 11px;
+}
+
+#input-task-name {
+	line-height: 1.375rem;
+	padding: 7px;
+	font-size: 1.125rem;
+	border-left: 5px solid #999;
+	width: 80%;
+}
+
+#input-task-name:hover {
+	border-color: #999;
+}
+
+#label-task-name {
+	outline: none;
+	overflow: hidden;
+	min-height: 22px;
+	float: none;
+	line-height: 2.375rem;
+	padding: 1px;
+	font-size: 1.125rem;
+	word-wrap: break-word;
+	outline: none;
+	color: black;
+}
+
+#task-name-container, #label-task-name {
+	position: relative;
+	/*margin: 2px 60px 0 28px;*/
+	padding: 17px 0 2px 17px;
+	border-radius: 3px;
+}
+
+
+
+.fields {
+	margin-right: 64px;
+	display: table;
+	margin-bottom: 11px;
+}
+
+.field-container {
+	white-space: nowrap;
+	display: table-row;
+	outline: none;
+	overflow: hidden;
+}
+
+.field-container label {
+	color:  #999;
+	width: 1%;
+	min-width: 62px;
+	height: 17px;
+	border: 1px solid transparent;
+	padding: 1px 5px 0 42px;
+	display: table-cell;
+	vertical-align: top;
+}
+
+.field-container input {
+	display: table;
+	table-layout: fixed;
+	max-width: 100%;
+	margin-bottom: 1px;
+}
+
+#notes-container {
+	display: content-box;
+	width: 100%;
+}
+
+#label-notes {
+	border-bottom-color: #e5e5e5;
+	clear: left;
+	padding: 17px 0 2px 17px;
+	border-bottom-color: 1px dotted;
+	height:  22px;
+	font-weight: normal;
+	font-size: 1.0625rem;
+	border: 1px solid transparent;
+}
+
+#task-notes {
+	border-bottom-color: #e5e5e5;
+	border-bottom-color: 1px dotted;
+	padding: 10px 17px 10px 26px;
+	/*padding: 17px 0 2px 17px;*/
+	position: relative;
+	overflow: visible;
+	margin: 0;
+	border-right-color: #d0d3d6;
+	border-bottom-color: #fff;
+	border-top-color: #fff;
+	/*position: absolute;*/
+	left: 5px;
+	top: 11px;
+	border: thin solid #999;
+	width: 80%;
+	margin: 13px;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.button-update-task {
+	margin: 17px 0 2px 17px;
+	border: 1px solid #999;
+	border-radius: 3px;
+}
+
+#task-due-date:hover {
+	border-color: #999;
+}
+
+#task-completed {
+	cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { loadTasks } from '../../store/tasks';
 import { loadLists } from '../../store/lists';
 import UserBar from '../UserBar';
@@ -9,6 +9,7 @@ import ListBar from '../ListBar';
 import ListSummary from '../ListSummary';
 import './Dashboard.css'
 import { usePage } from '../../context/AppContext';
+import TaskFormUpdate from '../TaskFormUpdate';
 
 
 const Dashboard = () => {
@@ -19,10 +20,12 @@ const Dashboard = () => {
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
+    const [selectedTask, setSelectedTask] = useState()
 
     const userLists = Object.values(lists)
     const userTasks = Object.values(tasks)
     const dispatch = useDispatch();
+
     useEffect(() => {
         if (user) {
             dispatch(loadTasks(user));
@@ -30,6 +33,9 @@ const Dashboard = () => {
         }
         else return;
     }, [dispatch, user]);
+
+    let infoWindow = <ListSummary lists={userLists} list={list}/>;
+    if (selectedTask) infoWindow = <TaskFormUpdate task={selectedTask} setSelectedTask={setSelectedTask}/>
 
     if (user) {
         return (
@@ -39,9 +45,17 @@ const Dashboard = () => {
                     setSearchQuery={setSearchQuery}
                     setList={setList} />
                 <div id="dashboard-content">
-                    <ListBar lists={userLists} setList={setList}/>
-                    <TaskPanel tasks={userTasks} query={searchQuery}/>
-                    <ListSummary lists={userLists} list={list}/>
+                    <ListBar 
+                        // lists={userLists} 
+                        setList={setList}
+                        setSelectedTask={setSelectedTask}
+                    />
+                    <TaskPanel 
+                        tasks={userTasks} 
+                        query={searchQuery} 
+                        setSelectedTask={setSelectedTask}
+                    />
+                    {infoWindow}
                 </div>
             </div>
         )
