@@ -59,6 +59,9 @@ export const createTask = (newTask, user) =>  async dispatch => {
 }
 
 export const updateTask = (task) => async dispatch => {
+    if (!task.list_id) {
+        task.list_id = -1;
+    }
     const res = await fetch(`/api/tasks/${task.id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},

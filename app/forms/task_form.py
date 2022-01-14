@@ -9,4 +9,4 @@ class TaskForm(FlaskForm):
     due_date = DateField('due_date', validators=[Optional()])
     completed = BooleanField('completed')
     completed_date = DateField('completed_date')
-    list_id = IntegerField('list_id')
+    list_id = IntegerField('list_id', validators=[Optional()])
