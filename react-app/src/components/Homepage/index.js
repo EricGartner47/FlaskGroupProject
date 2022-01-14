@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './Homepage.css'
+import Slideshow from '../Slideshow';
 
 const Homepage = () => {
     const user = useSelector(state => state.session.user);
@@ -18,21 +18,13 @@ const Homepage = () => {
             <h1 id='homepage-header'>The smart to-do app for busy people.</h1>
             <a href="/sign-up" id='homepage-signup-button'> Sign Up Free</a>
             <div id='slideshow-container'>
-                <div>
-                    <div id="numbertext">1 / 3</div>
-                    <img src="" ></img>
-                    <div>Caption Text</div>
-                </div>
-                <div>
-                    <div id="numbertext">2 / 3</div>
-                    <img src="" ></img>
-                    <div>Caption Two</div>
-                </div>
-                <div>
-                    <div id="numbertext">3 / 3</div>
-                    <img src="" ></img>
-                    <div>Caption Three</div>
-                </div>
+                <Slideshow
+                    interval={3000}
+                    images={[
+                            'https://image.winudf.com/v2/image1/Y29tLnJlbWVtYmVydGhlbWlsay5Nb2JpbGVSVE1faWNvbl8xNTYxMDM4NDE0XzAyMg/icon.png?w=&fakeurl=1',
+                            'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Notepad_icon.svg/2048px-Notepad_icon.svg.png',
+                            'https://static8.depositphotos.com/1000792/1065/v/950/depositphotos_10659058-stock-illustration-cute-dog.jpg'
+  ]} />
             </div>
             <footer id='homepage-footer'>
                 <ul> Created by:
