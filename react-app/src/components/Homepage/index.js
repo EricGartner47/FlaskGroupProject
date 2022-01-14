@@ -1,8 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import CarouselContainer from '../Slideshow';
+
 import './Homepage.css'
-import Slideshow from '../Slideshow';
 
 const Homepage = () => {
     const user = useSelector(state => state.session.user);
@@ -18,13 +19,7 @@ const Homepage = () => {
             <h1 id='homepage-header'>The smart to-do app for busy people.</h1>
             <a href="/sign-up" id='homepage-signup-button'> Sign Up Free</a>
             <div id='slideshow-container'>
-                <Slideshow
-                    interval={3000}
-                    images={[
-                            'https://www.rememberthemilk.com/img/hp_steve_2.png?1587967172',
-                            'https://www.rememberthemilk.com/img/hp_steve_3.png?1587967172',
-                            'https://www.rememberthemilk.com/img/hp_steve_1.png?1587967172'
-  ]} />
+                <CarouselContainer />
             </div>
             <footer id='homepage-footer'>
                 <ul> Created by:
@@ -46,5 +41,13 @@ const Homepage = () => {
     );
 }
 
-//test
+
 export default Homepage;
+
+/* <Slideshow
+                    interval={3000}
+                    images={[
+                            'https://www.rememberthemilk.com/img/hp_steve_2.png?1587967172',
+                            'https://www.rememberthemilk.com/img/hp_steve_3.png?1587967172',
+                            'https://www.rememberthemilk.com/img/hp_steve_1.png?1587967172'
+  ]} /> */

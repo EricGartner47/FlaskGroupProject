@@ -1,4 +1,19 @@
-section.slideshow{
+.carousel-item{
+ transition: none;
+ transition-property: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* section.slideshow{
     width: 80%;
 }
 section.slideshow div.slide-holder{
@@ -50,4 +65,4 @@ section.slideshow div.slideshow-controller span:hover{
 section.slideshow div.slideshow-controller span:active{
     color: #0060bf;;
     background: white;
-}
+} */
