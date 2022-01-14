@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadLists } from '../../store/lists';
 import { Modal } from '../../context/Modal';
@@ -84,7 +83,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                     <div>
                         Lists
                     </div>
-                    <i class="far fa-plus-square" onClick={() => setShowNewForm(true)}></i>
+                    <i className="far fa-plus-square" onClick={() => setShowNewForm(true)}></i>
                     {showNewForm && (
                         <Modal onClose={() => setShowNewForm(false)}>
                             <ListFormNew hideForm={() => setShowNewForm(false)} />
@@ -102,7 +101,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                                 {list.name}
                             </div>
                             <div className="list-dropdown" onClick={() => openActions(list.id)}>
-                                <i class="fas fa-caret-down"></i>
+                                <i className="fas fa-caret-down"></i>
                                 {showButtons === list.id &&
                                     <div className="list-actions-dropdown">
                                         <button className="list-link" onClick={

@@ -28,7 +28,6 @@ const removeTask = (task) => {
 export const loadTasks = user => async dispatch => {
     const res = await fetch(`/api/users/${user.id}/tasks`);
     const data = await res.json();
-    console.log(data)
     dispatch(getTasks(user, data));
     return res;
 }

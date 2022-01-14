@@ -1,9 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { loadTasks, createTask } from '../../store/tasks';
-import UserBar from '../UserBar';
 import './TaskPanel.css'
 
 const filterTasks = (tasks, query) => {
@@ -74,7 +73,7 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                             type='text'
                             placeholder='Add a Task...'
                             value={taskName}
-                            autocomplete="off"
+                            autoComplete="off"
                             onChange={updateTask}
                             onClick={() => setButtonSwitch(true)}
                         />
@@ -90,9 +89,8 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                 <div id="task-cards-container">
                     {filteredTasks.map(task => {
                         return (
-                            <div class="task-card">
+                            <div className="task-card" key={task.id}>
                                 <li 
-                                    key={task.id}
                                     onClick={() => { 
                                         console.log(`selected task is ${task.name}`)
                                         setSelectedTask(task) }}

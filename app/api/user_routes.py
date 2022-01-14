@@ -38,7 +38,6 @@ def get_all_tasks(id):
     user = User.query.get(id)
     results = Task.query.filter(Task.user_id == user.id).all()
     obj = {'tasks': [task.to_dict() for task in results]}
-    print(obj['tasks'][0]['due_date'])
     return {'tasks': [task.to_dict() for task in results]}
 
 
