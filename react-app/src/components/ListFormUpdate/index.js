@@ -35,11 +35,9 @@ function ListFormUpdate({hideForm, list}) {
     return(
         <>
             <div className="list-form">
-                <form onSubmit={onSubmit} id="update-list-form">
-                    {errors.length > 0 && <ul className="error-list-new-list" hidden={errors.length === 0}>
-                        {errors.map((error, i) => <li key={i}>{error}</li>)}
-                    </ul>}
-                    <label>Update List Name:</label>
+                <form onSubmit={onSubmit} id="new-list-form">
+                    <h4 id="new-list-heading">Rename list</h4>
+                    <label id="new-list-label">List name</label>
                     <input
                         type="text"
                         value={name}
@@ -52,7 +50,16 @@ function ListFormUpdate({hideForm, list}) {
                         required
                         placeholder={name}
                     />
-                    <button type="submit">Update List</button>
+                    {errors.length > 0 && errors.map((error, i) => (
+                        <div key={i} className="error-list-new-list">
+                            {error}
+                        </div>
+                    ))
+                    }
+                    <div id="list-form-button-container">
+                        <button type="submit" id="add-button">Save</button>
+                        <button type="button" id="cancel-button" onClick={hideForm}>Cancel</button>
+                    </div>
                 </form>
             </div>
         </>

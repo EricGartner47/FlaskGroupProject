@@ -1,12 +1,23 @@
 .list-form {
-    width: 25vw;
-    height: 10vh;
+    width: 390px;
+    height: 211px;
     margin: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px;
+    box-sizing: border-box;
+    border-radius: 0px;
+}
+
+#new-list-heading {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#new-list-label {
+    font-size: 13px;
 }
 
 .error-list-new-list {
@@ -14,8 +25,9 @@
     flex-direction: column;
     width: 100%;
     padding-left: 0;
-    font-size: 14px;
-    color: red;
+    margin-top: 7px;
+    font-size: 13px;
+    color: rgb(210, 0, 0);
 }
 
 .error-list-new-list li {
@@ -36,18 +48,39 @@
 
 #new-list-form input {
     box-sizing: border-box;
-    height: 40px;
-    border-radius: 5px;
+    height: 28px;
+    border-radius: 3px;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    margin: 10px 0;
+    margin-top: 10px;
     padding-left: 10px;
     width: 100%;
 }
 
 .list-form button {
-    height: 25px;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    background-color: blue;
+    height: 32px;
+    width: 70px;
+    box-sizing: border-box;
+    border-radius: 4px;
     color: white;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+#add-button {
+    margin-right: 5px;
+    border: none;
+}
+
+#add-button:hover {
+    box-shadow: inset 0 -2px 0 rgb(0 0 0 / 30%);
+}
+
+#cancel-button {
+    margin-left: 5px;
+    background-color: rgb(248, 248, 248);
+    color: rgb(33, 33, 33);
+}
+
+#cancel-button:hover {
+    color: #2e8ceb;
 }

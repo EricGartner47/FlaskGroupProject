@@ -41,7 +41,10 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
 
         if (errors.length > 0) {
             return
-        } else {
+        } else if(taskName.length === 0) {
+            setErrors(["Task name is required"])
+            return
+        }else {
             payload = {
                 id: task.id,
                 user_id: user.id,

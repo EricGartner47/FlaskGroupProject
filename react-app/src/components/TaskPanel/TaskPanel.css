@@ -19,58 +19,61 @@ h1 {
 }
 
 #task-bar {
-    margin: 2px 17px;
+    border-top: 1px dotted rgb(179, 179, 179);
+    border-bottom: 1px dotted rgb(179, 179, 179);
+    width: 100%;
 }
 
 #task-bar form {
     display: flex;
     flex-direction: column;
+    margin: 10px 13px;
 }
 
 #task-bar input {
-    border: thin solid #999;
+    border: 1px solid rgb(179, 179, 179);
     margin-bottom: 5px;
+    height: 30px;
+    padding-left: 7px;
 }
 
 #task-bar input:hover {
-    border-color: #0060bf;
+    border-color: #656565;
 }
 
 #task-bar button {
-    margin: 17px 0 10px;
+    margin-top: 5px;
     align-self: flex-end;
+    background-color: #2e8ceb;
+    width: 90px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 14px;
 }
 
 .task-card {
-    /*border: 1px solid transparent;
-    border-top-style: dotted;
-    border-top-width: 1px;
-    border-right-color: transparent;
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-bottom-style: dotted;
-    border-bottom-width: 1px;
-    border-left-color: transparent;
-    border-left-style: solid;
-    border-left-width: 1px;*/
-    border-top: 1px dotted #d0d3d4;
     border-bottom: 1px dotted #d0d3d4;
     width: 100%;
     padding: 2px 0;
-    /*position: absolute;*/
     cursor: pointer;
     outline: none;
     position: relative;
+    height: 33px;
+    display: flex;
+    align-items: center;
 }
 
 .task-card li {
     list-style: none;
-    border-left: 5px solid #999;
+    border-left: 3px solid #999;
     margin: 2px 17px;
     padding: 0 7px;
     font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .task-card:hover {
-    background: #fffac0;
+    background-color: rgba(255, 253, 181, 0.5);
 }

@@ -36,26 +36,30 @@ function ListFormNew({ hideForm }) {
         <>
             <div className="list-form">
                 <form onSubmit={onSubmit} id="new-list-form">
+                    <h4 id="new-list-heading">Add a list</h4>
+                    <label id="new-list-label">Please enter a new list name:</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => {
+                            setName(e.target.value)
+                            if (e.target.value.length === 0) setErrors(["No name entered. Please choose a name."])
+                            else if (e.target.value.length > 200) setErrors(["The list's name must be 200 characters or fewer."])
+                            else setErrors([])
+                        }}
+                        required
+                        placeholder="Enter name"
+                        />
                     {errors.length > 0 && errors.map((error, i) => (
                         <div key={i} className="error-list-new-list">
                             {error}
                         </div>
                         ))
                     }
-                    <label>Enter List Name:</label>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => {
-                            setName(e.target.value)
-                            if (e.target.value.length === 0) setErrors(["Please enter a name for the list."])
-                            else if (e.target.value.length > 200) setErrors(["The list's name must be 200 characters or fewer."])
-                            else setErrors([])
-                        }}
-                        required
-                        placeholder="Enter name"
-                    />
-                    <button type="submit">Create List</button>
+                    <div id="list-form-button-container">
+                        <button type="submit" id="add-button">Add</button>
+                        <button type="button" id="cancel-button" onClick={hideForm}>Cancel</button>
+                    </div>
                 </form>
             </div>
         </>
