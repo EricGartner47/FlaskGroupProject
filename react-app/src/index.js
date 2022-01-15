@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import './index.css';
 import App from './App';
 import configureStore from './store';
 import AppProvider from './context/AppContext';
 import { ModalProvider } from './context/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 const store = configureStore();
 
