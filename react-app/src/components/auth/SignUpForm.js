@@ -5,12 +5,7 @@ import { signUp } from '../../store/session';
 import './SignUpForm.css'
 
 const SignUpForm = () => {
-  const [errors, setErrors] = useState([])
-  const [fnError, setFnError] = useState();
-  const [lnError, setLnError] = useState();
-  const [unError, setUnError] = useState();
-  const [emError, setEmError] = useState();
-  const [pError, setPError] = useState();
+  const [errors, setErrors] = useState({})
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -22,53 +17,74 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    setErrors([])
-    if (password === repeatPassword) {
+    if (Object.keys(errors).length > 0) return
+    else {
       const data = await dispatch(signUp(username, email, password, firstName, lastName));
       if (data) {
         setErrors(data)
       }
-    } else setPError("Password and Confirm Password must match")
+    }
   };
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
-    if (username.length > 40) {
-      setUnError("Username must be 40 characters or fewer")
-    } else setUnError()
+    if (e.target.value.length > 40) {
+      errors.username = "Username must be 40 characters or fewer"
+    } else if (e.target.value.length === 0) {
+      errors.username = "Username is required"
+    } else delete errors.username
   };
 
   const updateFirstName = e => {
     setFirstName(e.target.value);
-    if (firstName.length > 100) {
-      setFnError("First Name must be 100 characters or fewer")
-    } else setFnError()
+    if (e.target.value.length > 100) {
+      errors.firstName = "First Name must be 100 characters or fewer"
+    } else if (e.target.value.length === 0) {
+      errors.firstName = "First Name is required"
+    } else delete errors.firstName
   };
 
   const updateLastName = (e) => {
     setLastName(e.target.value);
-    if (lastName.length > 100) {
-      setLnError("Last Name must be 100 characters or fewer")
-    } else setLnError()
+    if (e.target.value.length > 100) {
+      errors.lastName = "Last Name must be 100 characters or fewer"
+    } else delete errors.lastName
   };
+
+  const validateEmail = mail => {
+    const validRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    if (mail.match(validRegex)) return true;
+    else return false;
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
-    if (email.length > 255) {
-      setEmError("Email must be 255 characters or fewer")
-    } else setEmError()
+    if (e.target.value.length > 255) {
+      errors.email = "Email must be 255 characters or fewer"
+    } else if (e.target.value.length === 0) {
+      errors.email = "Email is required"
+    } else if (!validateEmail(e.target.value)) {
+      errors.email = "Please enter a valid email address"
+    } else delete errors.email
 
   };
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
+    if (e.target.value.length === 0) {
+      errors.password = "Password is required"
+    } else delete errors.password
   };
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
-    // if (password !== repeatPassword) {
-    //   setPError("Password and Confirm Password must match")
-    // }
+    if (e.target.value.length === 0) {
+      errors.cpassword = "Confirm Password is required"
+    } else if (password !== e.target.value) {
+      errors.cpassword = "Password and Confirm Password must match"
+    } else delete errors.cpassword
   };
 
   if (user) {
@@ -102,9 +118,6 @@ const SignUpForm = () => {
           </NavLink>
         <form onSubmit={onSignUp} id='signup-form'>
           <div>
-            {/* {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))} */}
           </div>
           <div id='signup-fields'>
           <h3>Sign up for Free.</h3>
@@ -117,8 +130,7 @@ const SignUpForm = () => {
                 onChange={updateFirstName}
                 value={firstName}
               ></input>
-              {errors.includes("first_name : This field is required.") && <p>First Name is required.</p>}
-              {fnError && <p>{fnError}</p>}
+              {errors.firstName && <span className="signup-error">{errors.firstName}</span>}
             </div>
             <div>
               <input
@@ -129,7 +141,7 @@ const SignUpForm = () => {
                 onChange={updateLastName}
                 value={lastName}
               ></input>
-              {lnError && <p>{lnError}</p>}
+              {errors.lastName && <span className="signup-error">{errors.lastName}</span>}
             </div>
             <div>
               <input
@@ -140,8 +152,7 @@ const SignUpForm = () => {
                 onChange={updateUsername}
                 value={username}
               ></input>
-              {errors.includes("username : This field is required.") && <p>Username is required.</p>}
-              {unError && <p>{unError}</p>}
+              {errors.username && <span className="signup-error">{errors.username}</span>}
             </div>
             <div>
               <input
@@ -152,9 +163,7 @@ const SignUpForm = () => {
                 onChange={updateEmail}
                 value={email}
               ></input>
-              {errors.includes("email : This field is required.") && <p>Email is required.</p>}
-              {errors.includes("email : Invalid email address.") && <p>Please enter a valid email address.</p>}
-              {emError && <p>{emError}</p>}
+              {errors.email && <span className="signup-error">{errors.email}</span>}
             </div>
             <div>
               <input
@@ -165,8 +174,8 @@ const SignUpForm = () => {
                 onChange={updatePassword}
                 value={password}
               ></input>
-              {errors.includes("password : This field is required.") && <p>Password is required.</p>}
             </div>
+            {errors.password && <span className="signup-error">{errors.password}</span>}
             <div>
               <input
                 className='signup-field'
@@ -175,9 +184,9 @@ const SignUpForm = () => {
                 name='repeat_password'
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
-                // required={true}
+                required={true}
               ></input>
-              {pError && <p>{pError}</p>}
+              {errors.cpassword && <span className="signup-error">{errors.cpassword}</span>}
             </div>
             <button type='submit' id='login-button'>Sign Up!</button>
           </div>
