@@ -44,7 +44,7 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
         return () => document.removeEventListener('click', closeActions)
     }, [buttonSwitch])
 
-    const showButton = <button type='submit'>Add Task</button>;
+    const showButton = <button type='submit' id='add-task-button'>Add Task</button>;
 
     const handleSubmit = async e => {
         e.preventDefault();
