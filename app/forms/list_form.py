@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, ValidationError
 
 def list_length(form, field):
     # Checking if password matches
-    name = field.data
+    name = form.data['name']
     if len(name) > 200:
         raise ValidationError('List must be 200 characters or fewer.')
     if len(name) == 0:

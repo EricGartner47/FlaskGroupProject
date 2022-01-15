@@ -70,13 +70,15 @@ def create_list(id):
     user = User.query.get(id)
     form = ListForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
     if form.validate_on_submit():
-        print("validated")
         list = List()
         form.populate_obj(list)
         db.session.add(list)
         db.session.commit()
         return list.to_dict()
+    print(form.errors)
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

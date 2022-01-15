@@ -25,12 +25,8 @@ function ListFormNew({ hideForm }) {
 
         const newList = await dispatch(createList(payload))
             .then(async res => {
-                setErrors(res.errors)
+                if (res.errors) setErrors(res.errors);
             })
-            // .catch(async res => {
-            //     const data = await res.json();
-            //     if (data && data.errors) setErrors(data.errors);
-            // })
 
         if (newList) hideForm();
     }
