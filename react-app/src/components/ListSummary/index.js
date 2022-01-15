@@ -1,10 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import LogoutButton from '../auth/LogoutButton';
-import DemoLoginButton from '../DemoLoginButton';
-import Search from '../Search';
 import { loadListTasks } from '../../store/tasks';
 import { loadTasks } from '../../store/tasks';
 import './ListSummary.css'
@@ -29,27 +25,27 @@ const ListSummary = ({ lists, list }) => {
         <div id="list-summary">
             <h2>{list? list.name : "All Tasks"}</h2>
             <div id="summary-container">
-                <div class="summary-box">
-                    <div class="task-quantity" id="task-summary">
+                <div className="summary-box">
+                    <div className="task-quantity" id="task-summary">
                         { userTasks.length }
                     </div>
-                    <div class="task-quality">
+                    <div className="task-quality">
                         tasks
                     </div>
                 </div>
-                <div class="summary-box">
-                    <div class="task-quantity" id="incomplete-summary">
+                <div className="summary-box">
+                    <div className="task-quantity" id="incomplete-summary">
                         { incompleteTasks.length }
                     </div> 
-                    <div class="task-quality">
+                    <div className="task-quality">
                         incomplete
                     </div>
                 </div>
-                <div class="summary-box">
-                    <div class="task-quantity" id="completed-summary">
+                <div className="summary-box">
+                    <div className="task-quantity" id="completed-summary">
                         { completedTasks.length }
                     </div> 
-                    <div class="task-quality">
+                    <div className="task-quality">
                         completed
                     </div>
                 </div>

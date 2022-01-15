@@ -22,8 +22,8 @@ const Search = ({ searchQuery, setSearchQuery }) => {
                 name="s"
             >
             </input>
-            <button type="submit" class="search-button">
-                <i class="fas fa-search" id='search_icon'></i>
+            <button type="submit" className="search-button">
+                <i className="fas fa-search" id='search_icon'></i>
             </button>
         </form>
     );

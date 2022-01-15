@@ -1,17 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { deleteTask, loadTasks, updateTask } from '../../store/tasks';
-import UserBar from '../UserBar';
 import './TaskFormUpdate.css'
 
 const TaskFormUpdate = ({ task, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
-    const tasks = useSelector(state => state.tasks);
     const userLists = Object.values(lists)
-    const history = useHistory()
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
     const [dueDate, setDueDate] = useState(task.due_date || "hello");
@@ -42,6 +39,16 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
 
         if (list === "select") {
             list = null;
+        }
+
+        if (taskName.length > 200) {
+            setErrors(["Task name should be fewer than 200 characters"])
+            return
+        }
+
+        if (taskName.length === 0) {
+            setErrors(["Task name is required"])
+            return
         }
 
         payload = {

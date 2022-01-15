@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { deleteList } from '../../store/lists';
-import { loadLists } from '../../store/lists';
 import './ListFormRemove.css'
 
 function ListFormRemove ({hideForm, list}) {
