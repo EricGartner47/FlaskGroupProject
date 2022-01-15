@@ -129,6 +129,15 @@
 	margin: 17px 0 2px 17px;
 	border: 1px solid #999;
 	border-radius: 3px;
+	background-color: #2e8ceb;
+    color: white;
+}
+
+.button-update-task:hover {
+    border-bottom: 0.15rem solid #0060bf ;
+}
+.button-update-task:active {
+    background-color: #0060bf;
 }
 
 #task-due-date:hover {

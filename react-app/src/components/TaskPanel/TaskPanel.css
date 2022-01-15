@@ -10,7 +10,7 @@
     padding-top: 20px;
 }
 
-h1 {
+#task-list-panel h1 {
     margin: 30px 17px 16px;
     line-height: 2.375rem;
     font-size: 1.125rem;
@@ -109,4 +109,3 @@ h1 {
     font-weight: 700;
     color: black;
 }
-
