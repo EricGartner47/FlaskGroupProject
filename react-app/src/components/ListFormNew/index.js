@@ -16,37 +16,50 @@ function ListFormNew({ hideForm }) {
 
     const onSubmit = async e => {
         e.preventDefault();
-        setErrors([]);
-
-        const payload = {
-            name,
-            user_id: user.id
+        if (errors.length > 0) return;
+        else {
+            const payload = {
+                name,
+                user_id: user.id
+            }
+    
+            const newList = await dispatch(createList(payload))
+                .then(async res => {
+                    if (res.errors) setErrors(res.errors);
+                })
+    
+            if (newList) hideForm();
         }
-
-        const newList = await dispatch(createList(payload))
-            .then(async res => {
-                if (res.errors) setErrors(res.errors);
-            })
-
-        if (newList) hideForm();
     }
 
     return (
         <>
             <div className="list-form">
                 <form onSubmit={onSubmit} id="new-list-form">
-                    {errors.length > 0 && <ul className="error-list-new-list" hidden={errors.length === 0}>
-                        {errors.map((error, i) => <li key={i}>{error}</li>)}
-                    </ul>}
-                    <label>Enter List Name:</label>
+                    <h4 id="new-list-heading">Add a list</h4>
+                    <label id="new-list-label">Please enter a new list name:</label>
                     <input
                         type="text"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        // required
+                        onChange={(e) => {
+                            setName(e.target.value)
+                            if (e.target.value.length === 0) setErrors(["No name entered. Please choose a name."])
+                            else if (e.target.value.length > 200) setErrors(["The list's name must be 200 characters or fewer."])
+                            else setErrors([])
+                        }}
+                        required
                         placeholder="Enter name"
-                    />
-                    <button type="submit">Create List</button>
+                        />
+                    {errors.length > 0 && errors.map((error, i) => (
+                        <div key={i} className="error-list-new-list">
+                            {error}
+                        </div>
+                        ))
+                    }
+                    <div id="list-form-button-container">
+                        <button type="submit" id="add-button">Add</button>
+                        <button type="button" id="cancel-button" onClick={hideForm}>Cancel</button>
+                    </div>
                 </form>
             </div>
         </>

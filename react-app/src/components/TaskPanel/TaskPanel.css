@@ -1,7 +1,5 @@
 #task-list-panel {
-    /*background-color: rgb(188, 245, 255);*/
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    /*width: 529px;*/
     left: 739px;
     box-shadow: -2px 0 0 #d9d9d9;
     background-color: #fff;
@@ -9,6 +7,7 @@
     border-top-right-radius: 6px;
     height: 100%;
     color: black;
+    padding-top: 20px;
 }
 
 #task-list-panel h1 {
@@ -19,72 +18,94 @@
 }
 
 #task-bar {
-    margin: 2px 17px;
+    border-top: 1px dotted rgb(179, 179, 179);
+    width: 100%;
 }
 
 #task-bar form {
     display: flex;
     flex-direction: column;
+    margin: 10px 13px;
 }
 
 #task-bar input {
-    border: thin solid #999;
-    margin-bottom: 5px;
+    border: 1px solid rgb(179, 179, 179);
+    /* margin-bottom: 5px; */
+    height: 30px;
+    padding-left: 7px;
 }
 
 #task-bar input:hover {
-    border-color: #0060bf;
+    border-color: #656565;
 }
 
 #task-bar button {
-    margin: 17px 0 10px;
+    margin-top: 10px;
     align-self: flex-end;
+    background-color: #2e8ceb;
+    width: 90px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 14px;
 }
 
 .task-card {
-    /*border: 1px solid transparent;
-    border-top-style: dotted;
-    border-top-width: 1px;
-    border-right-color: transparent;
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-bottom-style: dotted;
-    border-bottom-width: 1px;
-    border-left-color: transparent;
-    border-left-style: solid;
-    border-left-width: 1px;*/
     border-top: 1px dotted #d0d3d4;
-    border-bottom: 1px dotted #d0d3d4;
     width: 100%;
     padding: 2px 0;
-    /*position: absolute;*/
     cursor: pointer;
     outline: none;
     position: relative;
+    height: 33px;
+    display: flex;
+    align-items: center;
 }
 
 .task-card li {
     list-style: none;
-    border-left: 5px solid #999;
+    border-left: 3px solid #999;
     margin: 2px 17px;
     padding: 0 7px;
     font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .task-card:hover {
-    background: #fffac0;
+    background-color: rgba(255, 253, 181, 0.5);
 }
 
-#add-task-button {
-    background-color: #2e8ceb;
-    color: white;
-    border-radius: 3px;
-    border: 1px solid #999;
+.task-due-date {
+    font-size: 12px;
 }
 
-#add-task-button:hover {
-    border-bottom: 0.15rem solid #0060bf ;
+.overdue {
+    color: red;
 }
-#add-task-button:active {
-    background-color: #0060bf;
+
+#task-list-tabs {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3vw;
+}
+
+.task-list-tab {
+    border-top: 1px rgb(125, 125, 125) solid;
+    border-right: 1px rgb(125, 125, 125) solid;
+    border-left: 1px rgb(125, 125, 125) solid;
+    border-radius: 2px;
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: blue;
+}
+
+.task-list-tab:hover {
+    cursor: pointer;
+}
+
+.selected.task-list-tab {
+    font-weight: 700;
+    color: black;
 }

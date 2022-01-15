@@ -16,41 +16,50 @@ function ListFormUpdate({hideForm, list}) {
 
     const onSubmit = async e => {
         e.preventDefault();
-        setErrors([]);
-        if (name.length > 200) {
-            setErrors(["Name should be fewer than 200 characters"]);
-            return
+        if (errors.length > 0) return
+        else {
+            const payload = {
+                id: list.id,
+                name,
+                user_id: user.id
+            }
+    
+            const updatedList = await dispatch(updateList(payload))
+                .then(async res => {
+                    if (res.errors) setErrors(res.errors)
+                })
+    
+            if (updatedList) hideForm();
         }
-        const payload = {
-            id: list.id,
-            name,
-            user_id: user.id
-        }
-
-        const updatedList = await dispatch(updateList(payload))
-            .then(async res => {
-                console.log(res);
-                if (res.errors) setErrors(res.errors)
-            })
-
-        if (updatedList) hideForm();
     }
     return(
         <>
             <div className="list-form">
-                <form onSubmit={onSubmit} id="update-list-form">
-                    {errors.length > 0 && <ul className="error-list-new-list" hidden={errors.length === 0}>
-                        {errors.map((error, i) => <li key={i}>{error}</li>)}
-                    </ul>}
-                    <label>Update List Name:</label>
+                <form onSubmit={onSubmit} id="new-list-form">
+                    <h4 id="new-list-heading">Rename list</h4>
+                    <label id="new-list-label">List name</label>
                     <input
                         type="text"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => {
+                            setName(e.target.value)
+                            if (e.target.value.length === 0) setErrors(["Please enter a name for the list."])
+                            else if (e.target.value.length > 200) setErrors(["The list's name must be 200 characters or fewer."])
+                            else setErrors([])
+                        }}
                         required
                         placeholder={name}
                     />
-                    <button type="submit">Update List</button>
+                    {errors.length > 0 && errors.map((error, i) => (
+                        <div key={i} className="error-list-new-list">
+                            {error}
+                        </div>
+                    ))
+                    }
+                    <div id="list-form-button-container">
+                        <button type="submit" id="add-button">Save</button>
+                        <button type="button" id="cancel-button" onClick={hideForm}>Cancel</button>
+                    </div>
                 </form>
             </div>
         </>
