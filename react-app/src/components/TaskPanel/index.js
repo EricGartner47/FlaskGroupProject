@@ -48,6 +48,12 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+
+        if (taskName.length > 200) {
+            setErrors(["Task name should be fewer than 200 characters"]);
+            return
+        }
+
         const payload = {
             name: taskName,
             user_id: user.id
@@ -67,6 +73,9 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                 <h1>{user.first_name}'s Tasks</h1>
 
                 <div id="task-bar">
+                        <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
                     <form id="new-task-input" onSubmit={handleSubmit}>
                         <input
                             name='name'
@@ -82,9 +91,6 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                 </div>
 
 
-                <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
 
                 <div id="task-cards-container">
                     {filteredTasks.map(task => {
