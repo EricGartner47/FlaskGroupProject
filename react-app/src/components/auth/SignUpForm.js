@@ -21,7 +21,7 @@ const SignUpForm = () => {
     if (!firstName) errors.firstName = "First Name is required"
     if (!email) errors.email = "Email is required"
     if (!password) errors.password = "Password is required"
-    if (!repeatPassword) errors.cpassword = "Please Confirm Password"
+    if (!repeatPassword) errors.cpassword = "Confirm Password is required"
     setErrors({...errors})
     if (Object.keys(errors).length > 0) return
     else {
@@ -126,54 +126,54 @@ const SignUpForm = () => {
           <div>
           </div>
           <div id='signup-fields'>
-          <h3>Sign up for Free.</h3>
+          <h3>Sign up for free.</h3>
             <div>
               <input
-                className='signup-field'
+                className={errors.firstName ? "error signup-field" : "signup-field"}
                 placeholder='First Name'
                 type='text'
                 name='first_name'
                 onChange={updateFirstName}
                 value={firstName}
               ></input>
-              {errors.firstName && <span className="signup-error">{errors.firstName}</span>}
+              {errors.firstName && <p className="signup-error">{errors.firstName}</p>}
             </div>
             <div>
               <input
-                className='signup-field'
+                className={errors.lastName ? "error signup-field" : "signup-field"}
                 placeholder='Last Name'
                 type='text'
                 name='last_name'
                 onChange={updateLastName}
                 value={lastName}
               ></input>
-              {errors.lastName && <span className="signup-error">{errors.lastName}</span>}
+              {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
             </div>
             <div>
               <input
-                className='signup-field'
+                className={errors.username ? "error signup-field" : "signup-field"}
                 placeholder='Username'
                 type='text'
                 name='username'
                 onChange={updateUsername}
                 value={username}
               ></input>
-              {errors.username && <span className="signup-error">{errors.username}</span>}
+              {errors.username && <p className="signup-error">{errors.username}</p>}
             </div>
             <div>
               <input
-                className='signup-field'
+                className={errors.email ? "error signup-field" : "signup-field"}
                 placeholder='Email'
                 type='text'
                 name='email'
                 onChange={updateEmail}
                 value={email}
               ></input>
-              {errors.email && <span className="signup-error">{errors.email}</span>}
+              {errors.email && <p className="signup-error">{errors.email}</p>}
             </div>
             <div>
               <input
-                className='signup-field'
+                className={errors.password ? "error signup-field" : "signup-field"}
                 type='password'
                 name='password'
                 placeholder='Password'
@@ -181,10 +181,10 @@ const SignUpForm = () => {
                 value={password}
               ></input>
             </div>
-            {errors.password && <span className="signup-error">{errors.password}</span>}
+            {errors.password && <p className="signup-error">{errors.password}</p>}
             <div>
               <input
-                className='signup-field'
+                className={errors.cpassword ? "error signup-field" : "signup-field"}
                 placeholder='Confirm Password'
                 type='password'
                 name='repeat_password'
@@ -192,7 +192,7 @@ const SignUpForm = () => {
                 value={repeatPassword}
                 // required={true}
               ></input>
-              {errors.cpassword && <span className="signup-error">{errors.cpassword}</span>}
+              {errors.cpassword && <p className="signup-error">{errors.cpassword}</p>}
             </div>
             <button type='submit' id='login-button'>Sign Up!</button>
           </div>

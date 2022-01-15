@@ -9,7 +9,13 @@
 }
 
 #signup-form {
-    width: 75%
+    width: 75%;
+}
+
+#signup-form h3 {
+    font-size: 21px;
+    margin-bottom: 28px;
+    font-weight: normal;
 }
 
 .signup-field {
@@ -25,17 +31,22 @@
 }
 
 #signup-login {
-    position: fixed;
+    position: absolute;
     right: 70px;
     top: 40px;
     border: none;
     border-radius: 5px;
     padding: 4px 11px;
-    font-weight: 700;
     font-size: 15px;
+    font-weight: bolder;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 96, 191, 0.1)
+    background-color: rgba(0, 96, 191, 0.1);
+    width: 70px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #ymtl-container{
@@ -46,9 +57,6 @@
 }
 
 #quote-div {
-    /* display: relative;
-    left: 30px;
-    margin: 30px; */
     color: whitesmoke;
     font-weight: 500;
 }
@@ -101,4 +109,17 @@
     margin-left: 25%;
     padding-bottom: 100px;
     box-sizing: border-box;
+}
+
+.signup-error {
+    color: rgb(210, 0, 0);
+    font-size: 15px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding-left: 15px;
+}
+
+.error.signup-field {
+    background-color: rgb(255, 0, 0, 0.1);
+    border: red 1px solid;
 }
