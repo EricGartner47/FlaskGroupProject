@@ -54,6 +54,11 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
             return
         }
 
+        if (taskName.length === 0) {
+            setErrors(["Task name is required"]);
+            return
+        }
+
         const payload = {
             name: taskName,
             user_id: user.id

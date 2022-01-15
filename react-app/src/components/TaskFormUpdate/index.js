@@ -41,6 +41,16 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
             list = null;
         }
 
+        if (taskName.length > 200) {
+            setErrors(["Task name should be fewer than 200 characters"])
+            return
+        }
+
+        if (taskName.length === 0) {
+            setErrors(["Task name is required"])
+            return
+        }
+
         payload = {
             id: task.id,
             user_id: user.id,
