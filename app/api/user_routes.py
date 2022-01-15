@@ -71,6 +71,7 @@ def create_list(id):
     form = ListForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("validated")
         list = List()
         form.populate_obj(list)
         db.session.add(list)
