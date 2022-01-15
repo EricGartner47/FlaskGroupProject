@@ -1,4 +1,4 @@
-nav {
+#homepage-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,18 +8,18 @@ nav {
     width: 85vw;
 }
 
-nav > ul {
+#homepage-nav > ul {
     list-style-type: none;
     color:rgb(220, 220, 220);
     display: flex;
     align-items: center;
 }
 
-nav li {
+#homepage-nav li {
     margin: 10px;
 }
 
-nav a:link, a:visited {
+#homepage-nav a:link, a:visited {
     text-decoration: none;
     color:rgb(220, 220, 220);
 }
