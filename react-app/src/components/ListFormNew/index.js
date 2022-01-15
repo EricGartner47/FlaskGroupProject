@@ -16,34 +16,43 @@ function ListFormNew({ hideForm }) {
 
     const onSubmit = async e => {
         e.preventDefault();
-        setErrors([]);
-
-        const payload = {
-            name,
-            user_id: user.id
+        if (errors.length > 0) return;
+        else {
+            const payload = {
+                name,
+                user_id: user.id
+            }
+    
+            const newList = await dispatch(createList(payload))
+                .then(async res => {
+                    if (res.errors) setErrors(res.errors);
+                })
+    
+            if (newList) hideForm();
         }
-
-        const newList = await dispatch(createList(payload))
-            .then(async res => {
-                if (res.errors) setErrors(res.errors);
-            })
-
-        if (newList) hideForm();
     }
 
     return (
         <>
             <div className="list-form">
                 <form onSubmit={onSubmit} id="new-list-form">
-                    {errors.length > 0 && <ul className="error-list-new-list" hidden={errors.length === 0}>
-                        {errors.map((error, i) => <li key={i}>{error}</li>)}
-                    </ul>}
+                    {errors.length > 0 && errors.map((error, i) => (
+                        <div key={i} className="error-list-new-list">
+                            {error}
+                        </div>
+                        ))
+                    }
                     <label>Enter List Name:</label>
                     <input
                         type="text"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        // required
+                        onChange={(e) => {
+                            setName(e.target.value)
+                            if (e.target.value.length === 0) setErrors(["Please enter a name for the list."])
+                            else if (e.target.value.length > 200) setErrors(["The list's name must be 200 characters or fewer."])
+                            else setErrors([])
+                        }}
+                        required
                         placeholder="Enter name"
                     />
                     <button type="submit">Create List</button>

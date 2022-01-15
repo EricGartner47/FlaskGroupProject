@@ -17,8 +17,6 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
 
-    console.log("hello", dueDate)
-
     useEffect(() => {
         setTaskName(task.name);
         setNotes(task.notes);
@@ -27,7 +25,7 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
         setList(task.list_id);
     }, [task])
 
-    const removeTaskButton = async () => {
+    const removeTaskButton = async e => {
         await dispatch(deleteTask(task))
         dispatch(loadTasks(user))
         setSelectedTask()
@@ -41,58 +39,52 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
             list = null;
         }
 
-        if (taskName.length > 200) {
-            setErrors(["Task name should be fewer than 200 characters"])
+        if (errors.length > 0) {
             return
+        } else {
+            payload = {
+                id: task.id,
+                user_id: user.id,
+                name: taskName,
+                notes,
+                due_date: dueDate,
+                completed,
+                list_id: list
+            }
+            await dispatch(updateTask(payload)).catch(async (res) => {
+                const data = await res.json()
+                if (data && data.errors) setErrors(data.errors)
+            })
+            dispatch(loadTasks(user));
         }
-
-        if (taskName.length === 0) {
-            setErrors(["Task name is required"])
-            return
-        }
-
-        payload = {
-            id: task.id,
-            user_id: user.id,
-            name: taskName,
-            notes,
-            due_date: dueDate,
-            completed,
-            list_id: list
-        }
-        await dispatch(updateTask(payload)).catch(async (res) => {
-            const data = await res.json()
-            if (data && data.errors) setErrors(data.errors)
-        })
-        dispatch(loadTasks(user));
     }
 
     if (user) {
         return (
             <div id="task-update-panel">
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+                {errors.map((error, idx) => <div key={idx}>{error}</div>)}
                 <div id="task-update-form">
-
                     <form onSubmit={handleSubmit}>
-
                         <div id="task-name-container">
-                            <label for="task-name" id="label-task-name">Name Your Task</label>
+                            <label htmlFor="task-name" id="label-task-name">Name Your Task</label>
                             <input
                                 id="input-task-name"
                                 name="task-name"
                                 type='text'
                                 placeholder='Add a Task...'
                                 value={taskName}
-                                onChange={e => setTaskName(e.target.value)}
+                                onChange={e => {
+                                    setTaskName(e.target.value)
+                                    if (e.target.value.length === 0) setErrors(["Task name is required"])
+                                    else if (e.target.value.length > 200) setErrors(["Task name must be 200 characters or fewer"])
+                                    else setErrors([])
+                                }}
                             />
                         </div>
 
-                        <div class="fields">
-
-                            <div class="field-container">
-                                <label for="task-due-date">due</label>
+                        <div className="fields">
+                            <div className="field-container">
+                                <label htmlFor="task-due-date">due</label>
                                 <input
                                     id="task-due-date"
                                     name="task-due-date"
@@ -102,8 +94,8 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                                 />
                             </div>
 
-                            <div class="field-container">
-                                <label for="list-select">list</label>
+                            <div className="field-container">
+                                <label htmlFor="list-select">list</label>
                                 <select
                                     id="list-select"
                                     name="list-select"
@@ -117,8 +109,8 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                                 </select>
                             </div>
 
-                            <div class="field-container">
-                                <label for="task-completed">complete</label>
+                            <div className="field-container">
+                                <label htmlFor="task-completed">complete</label>
                                 <input
                                     id="task-completed"
                                     name="task-completed"
@@ -131,7 +123,7 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                         </div>
 
                         <div id="notes-container">
-                            <label for="task-notes" id="label-notes">Notes</label>
+                            <label htmlFor="task-notes" id="label-notes">Notes</label>
                             <br/>
                             <textarea
                                 id="task-notes"
@@ -143,11 +135,9 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                                 placeholder="Add a note..."
                             />
                         </div>
-                        
-                        <button type='submit' class="button-update-task">Update Task</button>
-                        <button class="button-update-task" onClick={removeTaskButton}>Delete Task</button>
-
+                        <button type='submit' className="button-update-task">Update Task</button>
                     </form>
+                    <button className="button-update-task" onClick={removeTaskButton}>Delete Task</button>
                 </div>
 
             </div>

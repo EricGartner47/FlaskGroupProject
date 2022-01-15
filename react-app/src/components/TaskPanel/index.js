@@ -33,7 +33,6 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
             setButtonSwitch(false)
         }
 
-
         document.addEventListener("click", closeActions)
         let input = document.getElementById('new-task-input');
         input.addEventListener('click', function (e) {
@@ -52,35 +51,28 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
         if (taskName.length > 200) {
             setErrors(["Task name should be fewer than 200 characters"]);
             return
-        }
-
-        if (taskName.length === 0) {
+        } else if (taskName.length === 0) {
             setErrors(["Task name is required"]);
             return
+        } else {
+            const payload = {
+                name: taskName,
+                user_id: user.id
+            }
+            await dispatch(createTask(payload, user)).catch(async(res)=> {
+                const data = await res.json()
+                if (data && data.errors) setErrors(data.errors)
+            })
+            dispatch(loadTasks(user));
         }
-
-        const payload = {
-            name: taskName,
-            user_id: user.id
-        }
-        await dispatch(createTask(payload, user)).catch(async(res)=> {
-            const data = await res.json()
-            if (data && data.errors) setErrors(data.errors)
-        })
-
-        dispatch(loadTasks(user));
     }
 
     if (user) {
         return (
             <div id="task-list-panel">
-
                 <h1>{user.first_name}'s Tasks</h1>
-
                 <div id="task-bar">
-                        <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>
+                    {errors.map((error, idx) => <div key={idx}>{error}</div>)}
                     <form id="new-task-input" onSubmit={handleSubmit}>
                         <input
                             name='name'
@@ -94,9 +86,6 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                         {buttonSwitch && showButton}
                     </form>
                 </div>
-
-
-
                 <div id="task-cards-container">
                     {filteredTasks.map(task => {
                         return (
