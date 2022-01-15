@@ -21,8 +21,11 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const [taskName, setTaskName] = useState('')
     const [errors, setErrors] = useState([])
+    const [complete, setComplete] = useState(false)
     const [buttonSwitch, setButtonSwitch] = useState(false)
     const filteredTasks = filterTasks(tasks, query)
+    const completeTasks = filteredTasks.filter(task => task.completed === complete)
+
     const dispatch = useDispatch()
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -32,6 +35,10 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
         else if (e.target.value.length === 0) setErrors(["Task name is required"])
         else setErrors([])
     }
+
+    useEffect(() => {
+        
+    }, [complete])
 
     useEffect(() => {
         if (!buttonSwitch) return;
@@ -75,24 +82,32 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
     if (user) {
         return (
             <div id="task-list-panel">
-                <h1>{user.first_name}'s Tasks</h1>
-                <div id="task-bar">
-                    {errors.map((error, idx) => <div key={idx}>{error}</div>)}
-                    <form id="new-task-input" onSubmit={handleSubmit}>
-                        <input
-                            name='name'
-                            type='text'
-                            placeholder='Add a task...'
-                            value={taskName}
-                            autoComplete="off"
-                            onChange={updateTask}
-                            onClick={() => setButtonSwitch(true)}
-                        />
-                        {buttonSwitch && showButton}
-                    </form>
+                <div id="task-list-tabs">
+                    <div className={complete ? "task-list-tab" : "selected task-list-tab"} onClick={() => setComplete(false)}>Incomplete</div>
+                    <div className={complete ? "selected task-list-tab" : "task-list-tab"} onClick={() => setComplete(true)}>Completed</div>
                 </div>
+                {!complete && (
+                    <div id="task-bar">
+                        {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+                        <form id="new-task-input" onSubmit={handleSubmit}>
+                            <input
+                                name='name'
+                                type='text'
+                                placeholder='Add a task...'
+                                value={taskName}
+                                autoComplete="off"
+                                onChange={updateTask}
+                                onClick={() => setButtonSwitch(true)}
+                            />
+                            {buttonSwitch && showButton}
+                        </form>
+                    </div>
+                )
+                }
                 <div id="task-cards-container">
-                    {filteredTasks.map(task => {
+                    {completeTasks.map(task => {
+                        let today = new Date()
+                        let overdue = Date.parse(task.due_date) < Date.parse(today) && !task.completed
                         let split = task.due_date.split("-")
                         let month = split[1]
                         let day = split[2]
@@ -100,13 +115,12 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                             <div className="task-card" key={task.id} >
                                 <li 
                                     onClick={() => { 
-                                        console.log(`selected task is ${task.name}`)
                                         setSelectedTask(task) }}
                                 >
                                     <div>
                                         {task.name}
                                     </div>
-                                    <div>
+                                    <div className={overdue ? "overdue task-due-date" : "task-due-date"}>
                                         {`${months[month-1]} ${day}`}
                                     </div>
                                 </li>

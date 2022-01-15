@@ -114,13 +114,18 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
 
                             <div className="field-container">
                                 <label htmlFor="task-completed">complete</label>
-                                <input
+                                {completed ? (<input
                                     id="task-completed"
                                     name="task-completed"
                                     type='checkbox'
-                                    value={completed}
+                                    checked
                                     onChange={e => setCompleted(!completed)}
-                                />
+                                />) : (<input
+                                    id="task-completed"
+                                    name="task-completed"
+                                    type='checkbox'
+                                    onChange={e => setCompleted(!completed)}
+                                />)}
                             </div>
 
                         </div>

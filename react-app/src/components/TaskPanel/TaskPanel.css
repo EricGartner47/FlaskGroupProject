@@ -1,7 +1,5 @@
 #task-list-panel {
-    /*background-color: rgb(188, 245, 255);*/
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    /*width: 529px;*/
     left: 739px;
     box-shadow: -2px 0 0 #d9d9d9;
     background-color: #fff;
@@ -9,6 +7,7 @@
     border-top-right-radius: 6px;
     height: 100%;
     color: black;
+    padding-top: 20px;
 }
 
 h1 {
@@ -20,7 +19,6 @@ h1 {
 
 #task-bar {
     border-top: 1px dotted rgb(179, 179, 179);
-    border-bottom: 1px dotted rgb(179, 179, 179);
     width: 100%;
 }
 
@@ -32,7 +30,7 @@ h1 {
 
 #task-bar input {
     border: 1px solid rgb(179, 179, 179);
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     height: 30px;
     padding-left: 7px;
 }
@@ -42,7 +40,7 @@ h1 {
 }
 
 #task-bar button {
-    margin-top: 5px;
+    margin-top: 10px;
     align-self: flex-end;
     background-color: #2e8ceb;
     width: 90px;
@@ -52,7 +50,7 @@ h1 {
 }
 
 .task-card {
-    border-bottom: 1px dotted #d0d3d4;
+    border-top: 1px dotted #d0d3d4;
     width: 100%;
     padding: 2px 0;
     cursor: pointer;
@@ -77,3 +75,38 @@ h1 {
 .task-card:hover {
     background-color: rgba(255, 253, 181, 0.5);
 }
+
+.task-due-date {
+    font-size: 12px;
+}
+
+.overdue {
+    color: red;
+}
+
+#task-list-tabs {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3vw;
+}
+
+.task-list-tab {
+    border-top: 1px rgb(125, 125, 125) solid;
+    border-right: 1px rgb(125, 125, 125) solid;
+    border-left: 1px rgb(125, 125, 125) solid;
+    border-radius: 2px;
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: blue;
+}
+
+.task-list-tab:hover {
+    cursor: pointer;
+}
+
+.selected.task-list-tab {
+    font-weight: 700;
+    color: black;
+}
+
