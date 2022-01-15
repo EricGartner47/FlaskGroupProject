@@ -17,7 +17,10 @@ function ListFormUpdate({hideForm, list}) {
     const onSubmit = async e => {
         e.preventDefault();
         setErrors([]);
-
+        if (name.length > 200) {
+            setErrors(["Name should be fewer than 200 characters"]);
+            return
+        }
         const payload = {
             id: list.id,
             name,
@@ -25,9 +28,9 @@ function ListFormUpdate({hideForm, list}) {
         }
 
         const updatedList = await dispatch(updateList(payload))
-            .catch(async res => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+            .then(async res => {
+                console.log(res);
+                if (res.errors) setErrors(res.errors)
             })
 
         if (updatedList) hideForm();

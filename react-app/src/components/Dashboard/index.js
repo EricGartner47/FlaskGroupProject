@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { loadTasks } from '../../store/tasks';
 import { loadLists } from '../../store/lists';
 import UserBar from '../UserBar';

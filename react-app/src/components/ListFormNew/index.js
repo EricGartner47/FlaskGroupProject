@@ -24,9 +24,8 @@ function ListFormNew({ hideForm }) {
         }
 
         const newList = await dispatch(createList(payload))
-            .catch(async res => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+            .then(async res => {
+                if (res.errors) setErrors(res.errors);
             })
 
         if (newList) hideForm();
@@ -44,7 +43,7 @@ function ListFormNew({ hideForm }) {
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        required
+                        // required
                         placeholder="Enter name"
                     />
                     <button type="submit">Create List</button>
