@@ -24,13 +24,17 @@ function ListFormRemove ({hideForm, list}) {
     }
 
     return (
-        <div className="notebook-delete-form">
+        <div className="list-form">
             <form onSubmit={onSubmit}>
+                <h4 id="new-list-heading">Remove list</h4>
                 <ul hidden={errors.length === 0}>
                     {errors.map((error, i) => <li key={i}>{error}</li>)}
                 </ul>
-                <p>Are you sure you want to delete "{list.name}"?</p>
-                <button type="submit">Delete List</button>
+                <label id="remove-list-label">Are you sure you wish to remove the list "{list.name}"?</label>
+                <div id="list-form-button-container">
+                    <button type="submit" id="delete-list-button">Yes, remove list</button>
+                    <button type="button" id="cancel-button" onClick={hideForm}>Cancel</button>
+                </div>
             </form>
         </div>
     )

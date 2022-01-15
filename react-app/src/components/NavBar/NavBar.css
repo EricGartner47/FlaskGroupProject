@@ -12,6 +12,7 @@ nav > ul {
     list-style-type: none;
     color:rgb(220, 220, 220);
     display: flex;
+    align-items: center;
 }
 
 nav li {
