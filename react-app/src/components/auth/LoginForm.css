@@ -69,6 +69,7 @@ article {
     border-radius: 5px;
     font-size: 20px;
     font-weight: bold;
+    margin-top: 19px;
 }
 
 #login-signup {
@@ -82,7 +83,7 @@ article {
     font-size: 15px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 96, 191, 0.1)
+    background-color: rgba(0, 96, 191, 0.1);
 }
 
 h3 {
