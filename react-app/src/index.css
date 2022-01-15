@@ -55,16 +55,3 @@ input, textarea {
     outline:  none;
 }
 
-button {
-    background-color: #2e8ceb;
-    color: white;
-    border-radius: 3px;
-    border: 1px solid #999;
-}
-
-button:hover {
-    border-bottom: 0.15rem solid #0060bf ;
-}
-button:active {
-    background-color: #0060bf;
-}

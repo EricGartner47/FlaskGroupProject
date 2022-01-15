@@ -74,3 +74,17 @@ h1 {
 .task-card:hover {
     background: #fffac0;
 }
+
+#add-task-button {
+    background-color: #2e8ceb;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid #999;
+}
+
+#add-task-button:hover {
+    border-bottom: 0.15rem solid #0060bf ;
+}
+#add-task-button:active {
+    background-color: #0060bf;
+}
