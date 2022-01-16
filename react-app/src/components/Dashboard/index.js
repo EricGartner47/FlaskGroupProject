@@ -35,7 +35,7 @@ const Dashboard = () => {
     }, [dispatch, user]);
 
     let infoWindow = <ListSummary lists={userLists} list={list}/>;
-    if (selectedTask) infoWindow = <TaskFormUpdate task={selectedTask} setSelectedTask={setSelectedTask}/>
+    if (selectedTask) infoWindow = <TaskFormUpdate task={selectedTask} setSelectedTask={setSelectedTask} currentList={list}/>
 
     if (user) {
         return (
