@@ -5,7 +5,7 @@ import { loadListTasks } from '../../store/tasks';
 import { loadTasks } from '../../store/tasks';
 import './ListSummary.css'
 
-const ListSummary = ({ lists, list }) => {
+const ListSummary = ({ lists, list, setList }) => {
     const user = useSelector(state => state.session.user);
     const tasks = useSelector(state => state.tasks)
     const userTasks = Object.values(tasks)
@@ -31,6 +31,15 @@ const ListSummary = ({ lists, list }) => {
         return Date.parse(due) === Date.parse(today) + 86400000
     })
 
+    /* 
+        Show list summary of selected list
+        or
+        Show All Tasks when selected list is removed
+    */
+    useEffect(() => {
+        if (list) setList(list);
+        else setList();
+    }, [list])
 
     const dispatch = useDispatch();
     useEffect(() => {
