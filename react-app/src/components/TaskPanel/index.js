@@ -17,7 +17,7 @@ const filterTasks = (tasks, query) => {
     })
 }
 
-const TaskPanel = ({ tasks, query, setSelectedTask }) => {
+const TaskPanel = ({ tasks, query, list, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const [taskName, setTaskName] = useState('')
     const [errors, setErrors] = useState([])
@@ -62,6 +62,20 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
         else if (taskName.length === 0) {
             setErrors(["Task name is required."])
             return
+        }
+        else if (list) {
+            const payload = {
+                name: taskName,
+                user_id: user.id,
+                list_id: list.id
+            }
+            await dispatch(createTask(payload, user)).catch(async(res)=> {
+                const data = await res.json()
+                if (data && data.errors) setErrors(data.errors)
+            })
+            dispatch(loadTasks(user));
+            setTaskName('')
+            setButtonSwitch(false)
         }
         else {
             const payload = {
