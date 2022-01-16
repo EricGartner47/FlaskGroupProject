@@ -126,7 +126,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                             {showUpdateForm === (list.id + "delete") &&
                                 (
                                     <Modal onClose={() => setShowUpdateForm(false)}>
-                                        <ListFormRemove hideForm={() => setShowUpdateForm(false)} list={list} />
+                                        <ListFormRemove setList={setList} hideForm={() => setShowUpdateForm(false)} list={list} />
                                     </Modal>
                                 )
                             }

@@ -46,7 +46,6 @@ const Dashboard = () => {
                     setList={setList} />
                 <div id="dashboard-content">
                     <ListBar 
-                        // lists={userLists} 
                         setList={setList}
                         setSelectedTask={setSelectedTask}
                     />
