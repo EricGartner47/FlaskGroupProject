@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { deleteTask, loadTasks, loadListTasks, updateTask } from '../../store/tasks';
 import './TaskFormUpdate.css'
 
-const TaskFormUpdate = ({ task, setSelectedTask }) => {
+const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
     const userLists = Object.values(lists)
@@ -60,7 +60,9 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
-            dispatch(loadTasks(user));
+            if (currentList) {
+                dispatch(loadListTasks(user, currentList))
+            } else dispatch(loadTasks(user))
         }
     }
 
