@@ -91,7 +91,7 @@
 .list-actions-dropdown {
     position: absolute;
     right: 0px;
-    top: 30px;
+    top: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -107,7 +107,6 @@
 .list-dropdown {
     display: flex;
     align-items: center;
-    height: 50px;
     width: 26px;
     color: rgb(60, 60, 60);
     font-size: 14px;
