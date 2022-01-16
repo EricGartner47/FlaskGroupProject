@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { loadTasks, createTask } from '../../store/tasks';
+import { loadTasks, loadListTasks, createTask } from '../../store/tasks';
 import './TaskPanel.css'
 
 const filterTasks = (tasks, query) => {
@@ -17,14 +17,14 @@ const filterTasks = (tasks, query) => {
     })
 }
 
-const TaskPanel = ({ tasks, query, list, setSelectedTask }) => {
+const TaskPanel = ({ tasks, query, list, setSelectedTask}) => {
     const user = useSelector(state => state.session.user);
     const [taskName, setTaskName] = useState('')
     const [errors, setErrors] = useState([])
     const [complete, setComplete] = useState(false)
     const [buttonSwitch, setButtonSwitch] = useState(false)
-    const filteredTasks = filterTasks(tasks, query)
-    const completeTasks = filteredTasks.filter(task => task.completed === complete)
+    let filteredTasks = filterTasks(tasks, query)
+    let completeTasks = filteredTasks.filter(task => task.completed === complete)
 
     const dispatch = useDispatch()
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -73,7 +73,7 @@ const TaskPanel = ({ tasks, query, list, setSelectedTask }) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
-            dispatch(loadTasks(user));
+            dispatch(loadListTasks(user, list));
             setTaskName('')
             setButtonSwitch(false)
         }
