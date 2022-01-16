@@ -52,6 +52,7 @@ const Dashboard = () => {
                     <TaskPanel 
                         tasks={userTasks} 
                         query={searchQuery} 
+                        list={list}
                         setSelectedTask={setSelectedTask}
                     />
                     {infoWindow}
