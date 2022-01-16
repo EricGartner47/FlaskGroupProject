@@ -23,12 +23,12 @@ function ListFormNew({ hideForm }) {
                 user_id: user.id
             }
     
-            const newList = await dispatch(createList(payload))
+            await dispatch(createList(payload))
                 .then(async res => {
                     if (res.errors) setErrors(res.errors);
                 })
     
-            if (newList) hideForm();
+            hideForm();
         }
     }
 

@@ -6,13 +6,12 @@
 }
 
 #list-summary h2 {
-    /*font-weight: 500;*/
-    /*font-size: 1.125rem;*/
-    margin: 30px 17px;
+    font-size: 18px;
+    margin: 30px 17px 20px;
 }
 
 #summary-container {
-    margin: 30px 17px;
+    margin: 20px 17px;
     display: flex;
     flex-direction: row;   
     justify-content: flex-start;
@@ -25,7 +24,7 @@
     margin-right: 5px;
     line-height: 100%;
     border-radius: 5px;
-    height: 35px;
+    height: 53px;
     background: #dbe8f6;
 }
 
@@ -36,14 +35,18 @@
     padding-top: 1px;
 }
 
-#completed-summary {
-    color: rgba(0,0,0,0,4);
+.task-quality {
+    font-size: 12px;
+}
+
+.completed-summary {
+    color: rgba(0,0,0,0.4);
 }
 
 #task-summary {
     color: #0060bf;
 }
 
-#incomplete-summary {
+#overdue-summary {
     color: #d74a00;
 }

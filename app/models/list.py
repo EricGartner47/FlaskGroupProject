@@ -19,5 +19,16 @@ class List(db.Model):
             'name': self.name,
             'user_id': self.user_id,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'tasks': {task.id: task.to_dict() for task in self.tasks}
         }
+    
+    def to_dictionary(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'user_id': self.user_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }
+    

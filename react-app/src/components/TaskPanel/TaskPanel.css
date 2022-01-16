@@ -63,13 +63,17 @@
 
 .task-card li {
     list-style: none;
-    border-left: 3px solid #999;
+    border-left: 3px solid #ccc;
     margin: 2px 17px;
     padding: 0 7px;
     font-weight: 500;
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.task-card:last-child {
+    border-bottom: 1px dotted #d0d3d4;
 }
 
 .task-card:hover {
@@ -108,4 +112,10 @@
 .selected.task-list-tab {
     font-weight: 700;
     color: black;
+}
+
+#new-task-error {
+    color: rgb(210, 0, 0);
+    padding-left: 18px;
+    margin-top: 8px;
 }

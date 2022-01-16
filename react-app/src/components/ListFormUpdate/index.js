@@ -24,12 +24,12 @@ function ListFormUpdate({hideForm, list}) {
                 user_id: user.id
             }
     
-            const updatedList = await dispatch(updateList(payload))
+            await dispatch(updateList(payload))
                 .then(async res => {
                     if (res.errors) setErrors(res.errors)
                 })
     
-            if (updatedList) hideForm();
+            hideForm();
         }
     }
     return(

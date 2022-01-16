@@ -4,7 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { deleteList } from '../../store/lists';
 import './ListFormRemove.css'
 
-function ListFormRemove ({hideForm, list}) {
+function ListFormRemove ({hideForm, list, setList}) {
     const user = useSelector(state => state.session.user);
     const history = useHistory()
     const dispatch = useDispatch()
@@ -18,9 +18,8 @@ function ListFormRemove ({hideForm, list}) {
         e.preventDefault();
         setErrors([]);
         await dispatch(deleteList(list))
-        
-        hideForm()
-        history.push("/");
+        setList();
+        hideForm();
     }
 
     return (

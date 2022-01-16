@@ -19,6 +19,20 @@ class Task(db.Model):
     user = db.relationship("User", back_populates="tasks")
 
     def to_dict(self):
+        if self.list:
+            return {
+                'id': self.id,
+                'name': self.name,
+                'notes': self.notes,
+                'due_date': self.due_date,
+                'completed': self.completed,
+                'completed_date': self.completed_date,
+                'list_id': self.list_id,
+                'user_id': self.user_id,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at,
+                'list': self.list.to_dictionary()
+            }
         return {
             'id': self.id,
             'name': self.name,
@@ -29,5 +43,6 @@ class Task(db.Model):
             'list_id': self.list_id,
             'user_id': self.user_id,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
         }
+    

@@ -41,10 +41,10 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
 
         if (errors.length > 0) {
             return
-        } else if(taskName.length === 0) {
+        } else if (taskName.length === 0) {
             setErrors(["Task name is required"])
             return
-        }else {
+        } else {
             payload = {
                 id: task.id,
                 user_id: user.id,
@@ -65,7 +65,8 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
     if (user) {
         return (
             <div id="task-update-panel">
-                {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+                <i className="fas fa-trash" onClick={removeTaskButton}></i>
+                {errors.map((error, idx) => <div className="task-update-error" key={idx}>{error}</div>)}
                 <div id="task-update-form">
                     <form onSubmit={handleSubmit}>
                         <div id="task-name-container">
@@ -105,7 +106,7 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                                     value={list || "select"}
                                     onChange={e => { setList(e.target.value) }}
                                 >
-                                    <option value={"select"}>Select a list</option>
+                                    <option value={"select"}>Inbox</option>
                                     {userLists.map(list => {
                                         return <option key={list.id} value={list.id}>{list.name}</option>
                                     })}
@@ -132,7 +133,7 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
 
                         <div id="notes-container">
                             <label htmlFor="task-notes" id="label-notes">Notes</label>
-                            <br/>
+                            <br />
                             <textarea
                                 id="task-notes"
                                 name="task-notes"
@@ -143,11 +144,10 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                                 placeholder="Add a note..."
                             />
                         </div>
-                        <button type='submit' className="button-update-task">Update Task</button>
+                        <button type='submit' className="button-update-task">Save</button>
+                        <button type="button" id="task-update-cancel-button" onClick={() => setSelectedTask()}>Cancel</button>
                     </form>
-                    <button className="button-update-task" onClick={removeTaskButton}>Delete Task</button>
                 </div>
-
             </div>
         )
     }
