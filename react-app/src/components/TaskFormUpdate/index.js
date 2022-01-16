@@ -27,7 +27,9 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
 
     const removeTaskButton = async e => {
         await dispatch(deleteTask(task))
-        dispatch(loadTasks(user))
+        if (list) {
+            dispatch(loadListTasks(user, list))
+        } else dispatch(loadTasks(user))
         setSelectedTask()
     }
 
