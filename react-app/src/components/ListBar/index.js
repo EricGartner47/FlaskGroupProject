@@ -21,6 +21,8 @@ const ListBar = ({ setList, setSelectedTask }) => {
         return setShowButtons(id)
     }
 
+    console.log(lists)
+
     useEffect(() => {
         dispatch(loadLists(user))
     }, [dispatch, user])
@@ -39,9 +41,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
             <div onClick={() => {
                 setList();
                 setSelectedTask();
-            }
-            }
-            className="ymtl-logo-listbar">
+            }}  className="ymtl-logo-listbar">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Notepad_icon.svg/2048px-Notepad_icon.svg.png" alt="" id="notepad"></img>
                 <span>you made<br/>the list</span>
             </div>
@@ -57,7 +57,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                 </li>
                 <li
                     onClick={() => {
-                        setList("today")
+                        setList("Today")
                         setSelectedTask()
                     }
                     }>
@@ -65,7 +65,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                 </li>
                 <li
                     onClick={() => {
-                        setList("tomorrow")
+                        setList("Tomorrow")
                         setSelectedTask()
                     }
                     }>
@@ -73,7 +73,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                 </li>
                 <li
                     onClick={() => {
-                        setList("week")
+                        setList("This Week")
                         setSelectedTask()
                     }
                     }>
@@ -91,6 +91,8 @@ const ListBar = ({ setList, setSelectedTask }) => {
                     )}
                 </li>
                 {lists.map(list => {
+                    let incomplete = Object.values(list.tasks).filter(task => task.completed !== true)
+                    let count = incomplete.length
                     return (
                         <li className="user-list" key={list.id} onClick={() => {
                             setList(list)
@@ -101,6 +103,9 @@ const ListBar = ({ setList, setSelectedTask }) => {
                                 {list.name}
                             </div>
                             <div className="list-dropdown" onClick={() => openActions(list.id)}>
+                                <div className="incomplete-count">
+                                    {count}
+                                </div>
                                 <i className="fas fa-caret-down"></i>
                                 {showButtons === list.id &&
                                     <div className="list-actions-dropdown">

@@ -1,5 +1,5 @@
 #listbar {
-    background-color: #c7e3ff;
+    background-color: #d7e7f5;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@
 }
 
 #all-lists li:hover {
-    background-color: rgba(0, 102, 255, 0.3);
+    background-color: #b9d6ee;
     cursor: pointer;
 }
 
@@ -49,6 +49,7 @@
     font-size: 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
     line-height: 1.2em;
     margin-top: 15px;
 }
@@ -88,7 +89,7 @@
 }
 
 .list-actions-dropdown {
-    position: relative;
+    position: absolute;
     right: 0px;
     top: 30px;
     display: flex;
@@ -112,11 +113,28 @@
     font-size: 14px;
     padding-left: 5px;
     justify-content: flex-end;
-    padding-right: 10px;
+    position: relative;
 } 
 
 .list-dropdown .fas {
     position: absolute;
+    display: none;
+    right: 3px;
+}
+
+.incomplete-count {
+    min-width: 15px;
+    height: 15px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(200, 220, 241);
+    border-radius: 2px;
+    color: #3c4248;
+}
+
+.user-list:hover .incomplete-count {
     display: none;
 }
 

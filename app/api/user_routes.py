@@ -90,11 +90,11 @@ def get_tasks_in_lists(id, list_id):
     results = Task.query.filter(Task.user_id == id).all()
     if list_id.isnumeric():
         results = Task.query.filter(Task.list_id == list_id).all()
-    elif list_id == "today":
+    elif list_id == "Today":
         results = Task.query.filter(Task.due_date == week[0])
-    elif list_id == "tomorrow":
+    elif list_id == "Tomorrow":
         results = Task.query.filter(Task.due_date == week[1])
-    elif list_id == "week":
+    elif list_id == "This Week":
         results = Task.query.filter(Task.due_date.in_(week))
     return {'tasks': [task.to_dict() for task in results]}
 

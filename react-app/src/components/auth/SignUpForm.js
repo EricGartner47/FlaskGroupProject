@@ -190,7 +190,7 @@ const SignUpForm = () => {
                 name='repeat_password'
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
-                // required={true}
+                required={true}
               ></input>
               {errors.cpassword && <p className="signup-error">{errors.cpassword}</p>}
             </div>

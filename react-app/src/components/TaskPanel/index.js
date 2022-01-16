@@ -37,10 +37,6 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
     }
 
     useEffect(() => {
-        
-    }, [complete])
-
-    useEffect(() => {
         if (!buttonSwitch) return;
         const closeActions = () => {
             setButtonSwitch(false)
@@ -76,6 +72,8 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                 if (data && data.errors) setErrors(data.errors)
             })
             dispatch(loadTasks(user));
+            setTaskName('')
+            setButtonSwitch(false)
         }
     }
 
@@ -106,11 +104,16 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                 }
                 <div id="task-cards-container">
                     {completeTasks.map(task => {
-                        let today = new Date()
-                        let overdue = Date.parse(task.due_date) < Date.parse(today) && !task.completed
-                        let split = task.due_date.split("-")
-                        let month = split[1]
-                        let day = split[2]
+                        let today, overdue, split, month, day
+                        if (task.due_date) {
+                            let base = new Date()
+                            today = new Date(base.getFullYear(), base.getMonth(), base.getDate() - 1)
+                            today.setHours(0,0,0,0)
+                            overdue = Date.parse(task.due_date) < Date.parse(today) && !task.completed
+                            split = task.due_date.split("-")
+                            month = split[1]
+                            day = split[2]
+                        }
                         return (
                             <div className="task-card" key={task.id} >
                                 <li 
@@ -121,7 +124,7 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                                         {task.name}
                                     </div>
                                     <div className={overdue ? "overdue task-due-date" : "task-due-date"}>
-                                        {`${months[month-1]} ${day}`}
+                                        {`${month ? months[month-1] : ""} ${day ? day : ""}`}
                                     </div>
                                 </li>
                             </div>
