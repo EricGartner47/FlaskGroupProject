@@ -1,9 +1,4 @@
 #task-update-panel {
-	/*display: flex;*/
-	/*align-items: left;*/
-	/*flex-direction: column;*/
-	/*height: 100%;*/
-	/*width: 90%;*/
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	width: 529px;
 	left: 739px;
@@ -25,10 +20,10 @@
 }
 
 #input-task-name {
-	line-height: 1.375rem;
-	padding: 7px;
-	font-size: 1.125rem;
-	border-left: 5px solid #999;
+	line-height: 18px;
+	padding: 0 7px;
+	font-size: 18px;
+	border-left: 3px solid #ccc;
 	width: 80%;
 }
 
@@ -51,35 +46,42 @@
 
 #task-name-container, #label-task-name {
 	position: relative;
-	/*margin: 2px 60px 0 28px;*/
 	padding: 17px 0 2px 17px;
 	border-radius: 3px;
 }
 
-
+#list-select {
+	border: none;
+	font-size: 13px;
+	position: relative;
+	left: -3px;
+}
 
 .fields {
 	margin-right: 64px;
-	display: table;
+	/* display: table; */
 	margin-bottom: 11px;
 }
 
 .field-container {
 	white-space: nowrap;
-	display: table-row;
+	display: flex;
+	align-items: center;
 	outline: none;
 	overflow: hidden;
+	margin-top: 18px;
+	margin-left: 42px;
 }
 
 .field-container label {
 	color:  #999;
 	width: 1%;
-	min-width: 62px;
+	min-width: 100px;
 	height: 17px;
 	border: 1px solid transparent;
-	padding: 1px 5px 0 42px;
 	display: table-cell;
 	vertical-align: top;
+	font-size: 13px;
 }
 
 .field-container input {
@@ -92,6 +94,7 @@
 #notes-container {
 	display: content-box;
 	width: 100%;
+	margin-top: 25px;
 }
 
 #label-notes {
@@ -108,15 +111,13 @@
 #task-notes {
 	border-bottom-color: #e5e5e5;
 	border-bottom-color: 1px dotted;
-	padding: 10px 17px 10px 26px;
-	/*padding: 17px 0 2px 17px;*/
+	padding: 10px;
 	position: relative;
 	overflow: visible;
 	margin: 0;
 	border-right-color: #d0d3d6;
 	border-bottom-color: #fff;
 	border-top-color: #fff;
-	/*position: absolute;*/
 	left: 5px;
 	top: 11px;
 	border: thin solid #999;
@@ -126,18 +127,25 @@
 }
 
 .button-update-task {
-	margin: 17px 0 2px 17px;
-	border: 1px solid #999;
-	border-radius: 3px;
-	background-color: #2e8ceb;
+    height: 32px;
+    width: 70px;
+    box-sizing: border-box;
+    border-radius: 4px;
     color: white;
+    font-weight: 700;
+    margin-top: 20px;
+	margin-left: 20px;
 }
 
 .button-update-task:hover {
-    border-bottom: 0.15rem solid #0060bf ;
+    box-shadow: inset 0 -2px 0 rgb(0 0 0 / 30%);
 }
 .button-update-task:active {
     background-color: #0060bf;
+}
+
+#task-due-date {
+	width: 139px;
 }
 
 #task-due-date:hover {
@@ -146,4 +154,19 @@
 
 #task-completed {
 	cursor: pointer;
+	margin-top: 3px;
+}
+
+.fa-trash {
+	position: absolute;
+	right: 110px;
+	top: 65px;
+	z-index: 1;
+	color: rgb(100, 100, 100);
+	font-size: 14px;
+}
+
+.fa-trash:hover {
+	cursor: pointer;
+	color: rgb(50, 50, 50);
 }
