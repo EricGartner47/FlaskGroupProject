@@ -39,7 +39,8 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
     useEffect(() => {
         if (!buttonSwitch) return;
         const closeActions = () => {
-            setButtonSwitch(false)
+            setButtonSwitch(false);
+            setErrors([]);
         }
 
         document.addEventListener("click", closeActions)
@@ -86,7 +87,7 @@ const TaskPanel = ({ tasks, query, setSelectedTask }) => {
                 </div>
                 {!complete && (
                     <div id="task-bar">
-                        {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+                        {errors.map((error, idx) => <div id="new-task-error" key={idx}>{error}</div>)}
                         <form id="new-task-input" onSubmit={handleSubmit}>
                             <input
                                 name='name'

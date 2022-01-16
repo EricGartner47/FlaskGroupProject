@@ -66,7 +66,7 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
         return (
             <div id="task-update-panel">
                 <i className="fas fa-trash" onClick={removeTaskButton}></i>
-                {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+                {errors.map((error, idx) => <div className="task-update-error" key={idx}>{error}</div>)}
                 <div id="task-update-form">
                     <form onSubmit={handleSubmit}>
                         <div id="task-name-container">
@@ -145,6 +145,7 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                             />
                         </div>
                         <button type='submit' className="button-update-task">Save</button>
+                        <button type="button" id="task-update-cancel-button" onClick={() => setSelectedTask()}>Cancel</button>
                     </form>
                 </div>
             </div>

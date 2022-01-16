@@ -109,3 +109,9 @@
     font-weight: 700;
     color: black;
 }
+
+#new-task-error {
+    color: rgb(210, 0, 0);
+    padding-left: 18px;
+    margin-top: 8px;
+}
