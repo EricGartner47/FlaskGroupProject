@@ -22,20 +22,41 @@ const Homepage = () => {
                 <CarouselContainer />
             </div>
             <footer id='homepage-footer'>
-                <ul> Created by:
-                    <li > Joe Yang
-                        <a className="gitHub-link" href="https://github.com/josephjyang">Github</a>
-                        <a className="linkedIn-link"href="https://www.linkedin.com/in/josephjyang/">Linked In</a>
-                    </li>
-                    <li> Ricky Thang
-                        <a className="gitHub-link" href="https://github.com/rickythewriter">Github</a>
-                        <a className="linkedIn-link" href="https://www.linkedin.com/in/ricky-thang-88307a100">Linked In</a>
-                    </li>
-                    <li> Eric Gartner
-                        <a className="gitHub-link" href="https://github.com/EricGartner47">Github</a>
-                        <a className="linkedIn-link"href="https://www.linkedin.com/in/eric-gartner-731907a0/">Linked In</a>
-                    </li>
-                </ul>
+                <div id='footer-nav-div'>
+                    <ul>
+                        <li className='nav-footer-header'>
+                            Joe Yang:
+                        </li>
+                        <li>
+                            <a className="gitHub-link" href="https://github.com/josephjyang">Github</a>
+                        </li>
+                        <li>
+                            <a className="linkedIn-link"href="https://www.linkedin.com/in/josephjyang/">Linked In</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li className='nav-footer-header'>
+                            Ricky Thang:
+                        </li>
+                        <li>
+                            <a className="gitHub-link" href="https://github.com/rickythewriter">Github</a>
+                        </li>
+                        <li>
+                            <a className="linkedIn-link" href="https://www.linkedin.com/in/ricky-thang-88307a100">Linked In</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li className='nav-footer-header'>
+                            Eric Gartner:
+                        </li>
+                        <li>
+                            <a className="gitHub-link" href="https://github.com/EricGartner47">Github</a>
+                        </li>
+                        <li>
+                            <a className="linkedIn-link"href="https://www.linkedin.com/in/eric-gartner-731907a0/">Linked In</a>
+                        </li>
+                    </ul>
+                </div>
             </footer>
         </>
     );
