@@ -1,6 +1,7 @@
 
 import React from 'react';
 import LogoutButton from '../auth/LogoutButton';
+import ProfileButton from './ProfileButton';
 import Search from '../Search';
 import './UserBar.css'
 
@@ -13,9 +14,7 @@ const UserBar = ({ searchQuery, setSearchQuery }) => {
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}/>
             </div>
-            <div id="userbar-logout">
-                <LogoutButton />
-            </div>
+            <ProfileButton />
         </nav>
     );
 }
