@@ -72,6 +72,10 @@
     width: 100%;
 }
 
+.task-card:last-child {
+    border-bottom: 1px dotted #d0d3d4;
+}
+
 .task-card:hover {
     background-color: rgba(255, 253, 181, 0.5);
 }
