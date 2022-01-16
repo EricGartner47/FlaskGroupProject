@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { deleteTask, loadTasks, updateTask } from '../../store/tasks';
+import { deleteTask, loadTasks, loadListTasks, updateTask } from '../../store/tasks';
 import './TaskFormUpdate.css'
 
 const TaskFormUpdate = ({ task, setSelectedTask }) => {
@@ -58,7 +58,9 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
-            dispatch(loadTasks(user));
+            if (list) {
+                dispatch(loadListTasks(user, list))
+            } else dispatch(loadTasks(user))
         }
     }
 
