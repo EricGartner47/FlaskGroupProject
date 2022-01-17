@@ -14,3 +14,7 @@
 .carousel-item p {
     font-size: 20px;
 }
+
+#slideshow-container {
+    padding: 10px;
+}
