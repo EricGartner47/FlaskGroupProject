@@ -18,8 +18,6 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
-    console.log(completed);
-
     useEffect(() => {
         setTaskName(task.name);
         setNotes(task.notes);
