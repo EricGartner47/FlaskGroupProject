@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { deleteTask, loadTasks, updateTask } from '../../store/tasks';
+import { deleteTask, loadTasks, loadListTasks, updateTask } from '../../store/tasks';
+import { loadLists } from '../../store/lists'
 import './TaskFormUpdate.css'
 
-const TaskFormUpdate = ({ task, setSelectedTask }) => {
+const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
     const userLists = Object.values(lists)
@@ -27,7 +28,9 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
 
     const removeTaskButton = async e => {
         await dispatch(deleteTask(task))
-        dispatch(loadTasks(user))
+        if (list) {
+            dispatch(loadListTasks(user, list))
+        } else dispatch(loadTasks(user))
         setSelectedTask()
     }
 
@@ -58,7 +61,12 @@ const TaskFormUpdate = ({ task, setSelectedTask }) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
-            dispatch(loadTasks(user));
+            dispatch(loadLists(user))
+            if (currentList) {
+                dispatch(loadListTasks(user, currentList))
+            } else {
+                dispatch(loadTasks(user))
+            }
         }
     }
 

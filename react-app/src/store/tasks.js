@@ -95,11 +95,11 @@ export const tasksReducer = (state = initialState, action) => {
             allTasks.forEach(task => {
                 let dueDate = new Date(task.due_date)
                 if (task.due_date) {
-                    if (dueDate.getMonth() < 9 && dueDate.getDate() < 10) {
+                    if (dueDate.getMonth() < 9 && dueDate.getDate() < 9) {
                         task.due_date = `${dueDate.getFullYear()}-0${dueDate.getMonth() + 1}-0${dueDate.getDate() + 1}`
                     } else if (dueDate.getMonth() < 9) {
                         task.due_date = `${dueDate.getFullYear()}-0${dueDate.getMonth() + 1}-${dueDate.getDate() + 1}`
-                    } else if (dueDate.getDate() < 10) {
+                    } else if (dueDate.getDate() < 9) {
                         task.due_date = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}-0${dueDate.getDate() + 1}`
                     } else {
                         task.due_date = `${dueDate.getFullYear()}-${dueDate.getMonth() + 1}-${dueDate.getDate() + 1}`
