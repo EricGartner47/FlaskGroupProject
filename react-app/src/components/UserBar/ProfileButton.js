@@ -26,7 +26,7 @@ function ProfileButton() {
     return (
         <>
             <div onClick={openMenu} id="profile-icon" >
-                <i class="fas fa-cog"></i><i className="fas fa-angle-down"></i>
+                <i className="fas fa-cog"></i><i className="fas fa-angle-down"></i>
             </div>
             {showMenu && (
             <ul className="profile-dropdown">

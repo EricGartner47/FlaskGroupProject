@@ -100,7 +100,6 @@ def update_task(id):
 	task = Task.query.get(id)
 	form = TaskForm()
 	form['csrf_token'].data = request.cookies['csrf_token']
-	print("here")
 	if form.validate_on_submit():
 		task.name = form.name.data
 		task.notes = form.notes.data
@@ -121,7 +120,6 @@ def update_task(id):
 
 		db.session.commit()
 		return task.to_dict()
-	print(form.errors)
 	return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

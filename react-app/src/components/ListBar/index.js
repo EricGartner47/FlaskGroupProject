@@ -21,8 +21,6 @@ const ListBar = ({ setList, setSelectedTask }) => {
         return setShowButtons(id)
     }
 
-    console.log(lists)
-
     useEffect(() => {
         dispatch(loadLists(user))
     }, [dispatch, user])

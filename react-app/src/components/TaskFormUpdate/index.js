@@ -13,10 +13,12 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
     const [dueDate, setDueDate] = useState(task.due_date || "hello");
-    const [completed, setCompleted] = useState(task.completed);
+    const [completed, setCompleted] = useState(task.completed || false);
     let [list, setList] = useState(task.list_id);
-    const [errors, setErrors] = useState([])
-    const dispatch = useDispatch()
+    const [errors, setErrors] = useState([]);
+    const dispatch = useDispatch();
+
+    console.log(completed);
 
     useEffect(() => {
         setTaskName(task.name);
@@ -123,18 +125,13 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
 
                             <div className="field-container">
                                 <label htmlFor="task-completed">complete</label>
-                                {completed ? (<input
+                                <input
                                     id="task-completed"
                                     name="task-completed"
                                     type='checkbox'
-                                    checked
+                                    checked={completed}
                                     onChange={e => setCompleted(!completed)}
-                                />) : (<input
-                                    id="task-completed"
-                                    name="task-completed"
-                                    type='checkbox'
-                                    onChange={e => setCompleted(!completed)}
-                                />)}
+                                />
                             </div>
 
                         </div>

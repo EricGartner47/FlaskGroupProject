@@ -61,7 +61,7 @@ const LoginForm = () => {
           <h3>Been here before? Welcome Back!</h3>
           {errors.length > 0 && (
             <div id="login-error">
-              <i class="fas fa-exclamation-circle" />
+              <i className="fas fa-exclamation-circle" />
               {errors.map((error, ind) => (
               <div key={ind} className="login-error-text">{error}</div>))}
             </div>

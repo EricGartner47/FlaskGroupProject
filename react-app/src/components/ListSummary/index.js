@@ -27,7 +27,6 @@ const ListSummary = ({ lists, list, setList }) => {
         today.setHours(0, 0, 0, 0)
         let due = new Date(task.due_date)
         due.setHours(0, 0, 0, 0)
-        console.log()
         return Date.parse(due) === Date.parse(today) + 86400000
     })
 
@@ -39,7 +38,7 @@ const ListSummary = ({ lists, list, setList }) => {
     useEffect(() => {
         if (list) setList(list);
         else setList();
-    }, [list])
+    }, [list, setList])
 
     const dispatch = useDispatch();
     useEffect(() => {

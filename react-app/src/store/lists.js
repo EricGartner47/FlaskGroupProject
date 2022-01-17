@@ -1,6 +1,7 @@
 const LOAD_LISTS = 'list/LOAD_LISTS'
 const NEW_LIST = 'list/NEW_LIST'
 const REMOVE_LIST = 'list/REMOVE_LIST'
+const CLEAR_LISTS = 'list/CLEAR_LISTS'
 
 const getList = (user, lists) => {
     return {
@@ -21,6 +22,12 @@ const removeList = list => {
     return {
         type: REMOVE_LIST,
         list
+    }
+}
+
+ export const clearLists = () => {
+    return {
+        type: CLEAR_LISTS
     }
 }
 
@@ -65,7 +72,6 @@ export const deleteList = payload => async dispatch=> {
     })
     if(res.ok) {
         const data = await res.json();
-        console.log("this is data", data)
         dispatch(removeList(payload))
         return data
     }
@@ -88,8 +94,9 @@ export const listReducer = (state = initialState, action) => {
             return newState;
         case REMOVE_LIST:
             delete newState[action.list.id]
-            console.log(newState)
             return newState;
+        case CLEAR_LISTS:
+            return {};
         default:
             return state;
     }

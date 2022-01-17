@@ -65,16 +65,10 @@ def update_list(id):
 	list = List.query.get(id)
 	form = ListForm()
 	form['csrf_token'].data = request.cookies['csrf_token']
-	print(form.data)
-	if len(form.name.data) < 201 and form.validate_on_submit:
-		print("validated")
+	if form.validate_on_submit:
 		list.name = form.name.data
 		db.session.commit()
 		return list.to_dict()
-	if len(form.name.data) > 200:
-		return_errors = {'name': ['List must be 200 characters or fewer.']}
-		print("returning errors", return_errors)
-		return {'errors': validation_errors_to_error_messages(return_errors)}, 401
 	return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 	# Receives a user input from a form
 	# Updates list name in database

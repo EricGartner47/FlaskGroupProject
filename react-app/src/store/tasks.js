@@ -1,6 +1,7 @@
 const LOAD_TASKS = "tasks/LOAD_TASKS";
-const ADD_TASK = "task/ADD_TASK"
-const REMOVE_TASK = 'task/REMOVE_TASK'
+const ADD_TASK = "task/ADD_TASK";
+const REMOVE_TASK = 'task/REMOVE_TASK';
+const CLEAR_TASKS = 'task/CLEAR_TASKS'
 
 const getTasks = (user, tasks) => {
     return {
@@ -23,6 +24,12 @@ const removeTask = (task) => {
         task
     };
 };
+
+export const clearTasks = () => {
+    return {
+        type: CLEAR_TASKS
+    }
+}
 
 
 export const loadTasks = user => async dispatch => {
@@ -113,7 +120,9 @@ export const tasksReducer = (state = initialState, action) => {
             return newState;
         case REMOVE_TASK:
             delete newState[action.task.id]
-            return newState
+            return newState;
+        case CLEAR_TASKS:
+            return {};
         default:
             return state;
     }
