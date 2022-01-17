@@ -24,41 +24,41 @@ const Homepage = () => {
             <footer id='homepage-footer'>
                 <div className='footer-container'>
                     <div className='footer-nav-div'>
-                        <ul>
+                        <ul className="nav-footer-list">
                             <li className='nav-footer-header'>
-                                Joe Yang
+                                Joseph Yang
                             </li>
                             <li>
-                                <a className="gitHub-link" href="https://github.com/josephjyang">Github</a>
+                                <a className="gitHub-link footer-link" href="https://github.com/josephjyang">Github</a>
                             </li>
                             <li>
-                                <a className="linkedIn-link"href="https://www.linkedin.com/in/josephjyang/">Linked In</a>
+                                <a className="linkedIn-link footer-link"href="https://www.linkedin.com/in/josephjyang/">LinkedIn</a>
                             </li>
                         </ul>
                     </div>
                     <div className='footer-nav-div'>
-                        <ul>
+                        <ul className="nav-footer-list">
                             <li className='nav-footer-header'>
                                 Ricky Thang
                             </li>
                             <li>
-                                <a className="gitHub-link" href="https://github.com/rickythewriter">Github</a>
+                                <a className="gitHub-link footer-link" href="https://github.com/rickythewriter">Github</a>
                             </li>
                             <li>
-                                <a className="linkedIn-link" href="https://www.linkedin.com/in/ricky-thang-88307a100">Linked In</a>
+                                <a className="linkedIn-link footer-link" href="https://www.linkedin.com/in/ricky-thang-88307a100">LinkedIn</a>
                             </li>
                         </ul>
                     </div>
                     <div className='footer-nav-div'>
-                        <ul>
+                        <ul className="nav-footer-list">
                             <li className='nav-footer-header'>
                                 Eric Gartner
                             </li>
                             <li>
-                                <a className="gitHub-link" href="https://github.com/EricGartner47">Github</a>
+                                <a className="gitHub-link footer-link" href="https://github.com/EricGartner47">Github</a>
                             </li>
                             <li>
-                                <a className="linkedIn-link"href="https://www.linkedin.com/in/eric-gartner-731907a0/">Linked In</a>
+                                <a className="linkedIn-link footer-link"href="https://www.linkedin.com/in/eric-gartner-731907a0/">LinkedIn</a>
                             </li>
                         </ul>
                     </div>

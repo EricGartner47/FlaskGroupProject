@@ -58,12 +58,14 @@ const LoginForm = () => {
           Sign up for free
         </NavLink>
         <form onSubmit={onLogin} id='login-form'>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind} className="login-error">{error}</div>
-            ))}
-          </div>
           <h3>Been here before? Welcome Back!</h3>
+          {errors.length > 0 && (
+            <div id="login-error">
+              <i class="fas fa-exclamation-circle" />
+              {errors.map((error, ind) => (
+              <div key={ind} className="login-error-text">{error}</div>))}
+            </div>
+          )}
           <div id="login-fields">
             <div>
               <input

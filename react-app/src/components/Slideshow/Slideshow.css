@@ -10,12 +10,23 @@
     width: 10px;
 }
 
-.carousel-caption h3{
+.carousel-item > .carousel-caption {
+    position: static;
+    margin: 20px 0 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-caption h3 {
     font-size: 28px;
 }
 
 .carousel-caption p {
-    font-size: 20px;
+    font-size: 18px;
+    width: 325px;
+    font-weight: normal;
+    color: #ffffffd9;
 }
 
 .carousel-item p {

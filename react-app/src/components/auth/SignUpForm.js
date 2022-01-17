@@ -114,7 +114,7 @@ const SignUpForm = () => {
             </div>
             <div id='image3'>
             </div>
-            <h2 id='quote-div'>Join millions of people getting more organized and productive</h2>
+            <h2 id='quote-div'>Join millions of people getting more organized and productive!</h2>
           </div>
         </article>
       </div>

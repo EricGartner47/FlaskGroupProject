@@ -3,9 +3,10 @@
     justify-content: space-between;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    width: 85vw;
+    width: 100%;
+    border-bottom: 1px #0056ac solid;
 }
 
 #homepage-nav > ul {
@@ -13,6 +14,7 @@
     color:rgb(220, 220, 220);
     display: flex;
     align-items: center;
+    margin-right: 30px;
 }
 
 #homepage-nav li {
@@ -27,8 +29,7 @@
 #signup {
     border: 2px rgb(210, 210, 210) solid;
     border-radius: 5px;
-    padding: 4px 11px;
-    font-weight: 700;
+    padding: 5px 11px;
     font-size: 15px;
 }
 
@@ -46,4 +47,6 @@ nav a:hover {
     display: flex;
     justify-content: flex-start;
     padding-top: 20px;
+    margin-left: 30px;
+    margin-bottom: 15px;
 }

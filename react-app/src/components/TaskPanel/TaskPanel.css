@@ -5,9 +5,15 @@
     background-color: #fff;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    height: 100%;
     color: black;
     padding-top: 20px;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#task-cards-container {
+    width: 100%;
 }
 
 #task-list-panel h1 {
@@ -30,7 +36,6 @@
 
 #task-bar input {
     border: 1px solid rgb(179, 179, 179);
-    /* margin-bottom: 5px; */
     height: 30px;
     padding-left: 7px;
 }
@@ -63,13 +68,20 @@
 
 .task-card li {
     list-style: none;
-    border-left: 3px solid #ccc;
+    border-left: 3px solid #cccccc;
     margin: 2px 17px;
     padding: 0 7px;
     font-weight: 500;
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.task-name {
+    max-width: 28vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .task-card:last-child {

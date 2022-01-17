@@ -12,10 +12,12 @@
     padding: 0;
     color: black;
     width: 100%;
+    padding: 0 10px 0;
+    margin-top: 10px;
 }
 
 #all-lists li {
-    padding: 2px 10px;
+    padding: 2px 5px;
     margin: 0px;
     font-size: 13px;
     height: 25px;
@@ -68,7 +70,6 @@
 
 #lists-header {
     border-top: 1px #bfd9f1 solid;
-    padding-top: 1000px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -80,7 +81,12 @@
 
 #all-lists li:nth-child(6) {
     padding-top: 15px;
-    margin-bottom: 8px;
+    height: 40px;
+}
+
+.fa-plus-square {
+    font-size: 15px;
+    margin-right: 1px;
 }
 
 #all-lists li:nth-child(6):hover,

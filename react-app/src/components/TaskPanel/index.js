@@ -17,7 +17,7 @@ const filterTasks = (tasks, query) => {
     })
 }
 
-const TaskPanel = ({ tasks, query, list, setSelectedTask}) => {
+const TaskPanel = ({ tasks, query, list, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const [taskName, setTaskName] = useState('')
     const [errors, setErrors] = useState([])
@@ -69,12 +69,13 @@ const TaskPanel = ({ tasks, query, list, setSelectedTask}) => {
                 user_id: user.id,
                 list_id: list.id
             }
-            await dispatch(createTask(payload, user)).catch(async(res)=> {
+            const newTask = await dispatch(createTask(payload, user)).catch(async(res)=> {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
             dispatch(loadListTasks(user, list));
             setTaskName('')
+            setSelectedTask(newTask);
             setButtonSwitch(false)
         }
         else {
@@ -82,13 +83,14 @@ const TaskPanel = ({ tasks, query, list, setSelectedTask}) => {
                 name: taskName,
                 user_id: user.id
             }
-            await dispatch(createTask(payload, user)).catch(async(res)=> {
+            const newTask = await dispatch(createTask(payload, user)).catch(async(res)=> {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
             dispatch(loadTasks(user));
-            setTaskName('')
-            setButtonSwitch(false)
+            setTaskName('');
+            setSelectedTask(newTask);
+            setButtonSwitch(false);
         }
     }
 
@@ -135,7 +137,7 @@ const TaskPanel = ({ tasks, query, list, setSelectedTask}) => {
                                     onClick={() => { 
                                         setSelectedTask(task) }}
                                 >
-                                    <div>
+                                    <div className="task-name">
                                         {task.name}
                                     </div>
                                     <div className={overdue ? "overdue task-due-date" : "task-due-date"}>

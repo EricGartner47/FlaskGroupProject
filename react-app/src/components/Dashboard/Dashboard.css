@@ -2,12 +2,12 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-rows: 40px 1fr
+    grid-template-rows: 40px 1fr;
 }
 
 #dashboard-content{
     width: 100vw;
-    background-color: white;
+    background-color: #d7e7f5;
     display: grid;
-    grid-template-columns: 180px 1fr 1fr
+    grid-template-columns: 180px 1fr 1fr;
 }

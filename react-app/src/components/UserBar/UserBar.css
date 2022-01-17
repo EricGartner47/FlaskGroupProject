@@ -27,14 +27,20 @@
 #profile-icon {
     font-weight: 700;
     position: relative;
-    font-size: 16px;
+    font-size: 17px;
     color: rgb(200, 200, 200);
     display: flex;
-    width: 50px;
+    width: 52px;
     justify-content: space-between;
     box-sizing: border-box;
     padding: 7px;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.fa-cog {
+    font-size: 22px;
 }
 
 #profile-icon:hover {

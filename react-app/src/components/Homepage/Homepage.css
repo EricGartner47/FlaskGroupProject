@@ -1,27 +1,26 @@
 
 #homepage-header {
-    font-size: 44px;
-    font-weight: 700;
+    font-size: 40px;
+    font-weight: 500;
     color: #fff;
-    margin: 18px 0 31px 0;
+    margin: 55px 0 31px 0;
 }
 
 #homepage-signup-button {
-    font-family: "MuseoSansRounded", "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 23px;
     color: #fff;
     background-color: #d24b03;
     border-color: transparent;
     display: inline-block;
-    margin-bottom: 0;
-    font-weight: 700;
+    margin: 4px 0 50px 0;
+    font-weight: 500;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
     border: 1px solid transparent;
     text-decoration: none;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 11px 32px 12px;
     line-height: 1.2;
 }
@@ -75,6 +74,11 @@ a:hover{
     cursor: pointer;
 }
 
+.footer-link:hover {
+    background-color: #eeeeee;
+    color: #8b8b94;
+}
+
 li {
     float: none;
     position: relative;
@@ -104,6 +108,10 @@ ul {
     font-weight: 700;
     color: #8b8b94;
     margin: 2px 0 8px 15px;
+}
+
+.nav-footer-list{
+    width: 151px;
 }
 
 * {

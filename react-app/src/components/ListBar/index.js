@@ -86,7 +86,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                     <i className="far fa-plus-square" onClick={() => setShowNewForm(true)}></i>
                     {showNewForm && (
                         <Modal onClose={() => setShowNewForm(false)}>
-                            <ListFormNew hideForm={() => setShowNewForm(false)} />
+                            <ListFormNew hideForm={() => setShowNewForm(false)} setList={setList} />
                         </Modal>
                     )}
                 </li>

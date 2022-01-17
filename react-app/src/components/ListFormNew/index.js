@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { createList } from '../../store/lists';
 import './ListFormNew.css'
 
-function ListFormNew({ hideForm }) {
+function ListFormNew({ hideForm, setList }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const [name, setName] = useState('');
@@ -23,11 +23,13 @@ function ListFormNew({ hideForm }) {
                 user_id: user.id
             }
     
-            await dispatch(createList(payload))
+            const newList = await dispatch(createList(payload))
                 .then(async res => {
                     if (res.errors) setErrors(res.errors);
+                    else return res;
                 })
-    
+            
+            if (newList) setList(newList);
             hideForm();
         }
     }
