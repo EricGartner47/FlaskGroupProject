@@ -28,22 +28,23 @@ We used a Flask server to handle the backend communication. We used PostgreSQL b
 ## Key Features
 ### User Authorization
 User authorization is handled using Flask password hashing. When users log in, the password they provide is rehashed and checked against the original password.
-![Splash Page](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/userlog.png)
+![Splash Page]()
 
 ### Create a Task
 An authorized user can create a task under a list that can then be seen by any logged in user. Only the authorized user may then edit or delete the created task.
-![Create Task](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/add%20question.png)
+![Create Task]()
 
 ### Search Tasks
 A user can search tasks by keyword in the search bar. The search will generate tasks found by keyword.
+![Search Task]
 
 ### List Summary
 A user can view lists by topic . A user can click on a list that will generate the tasks within that list. A list summary will generate an indication of tasks within that list, tasks due, and tasks completed.
-![Topic Navigation](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/topics.png)
+![List Summary]()
 
 ### Create a List
 An authorized user may create a list. Only the authorized user can then edit or delete a list.
-![Create an Answer](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/answers.png)
+![Create a List]()
 
 ## Conclusion and Next Steps
-We are happy with the functionality and the styling. However, we would have like to implement the two bonus features of subtasks and an autocomplete. 
+We are happy with the functionality and the styling. However, we would have like to implement the two bonus features of subtasks and an autocomplete.
