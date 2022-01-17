@@ -10,12 +10,12 @@ const LogoutButton = () => {
   const history = useHistory()
   const onLogout = async (e) => {
     await dispatch(logout());
-    await dispatch(clearTasks());
-    await dispatch(clearLists());
+    dispatch(clearTasks());
+    dispatch(clearLists());
     history.push("/login")
   };
 
-  return <div id="logout-btn" onClick={onLogout}>Sign out</div>;
+  return <li id="log-out-button" onClick={onLogout}>Sign out</li>;
 };
 
 export default LogoutButton;

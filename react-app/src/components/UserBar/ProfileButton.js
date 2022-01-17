@@ -37,9 +37,7 @@ function ProfileButton() {
                         <span id="email">{user.email}</span>
                     </div>
                 </li>
-                <li id="log-out-button">
-                    <LogoutButton />
-                </li>
+                <LogoutButton />
             </ul>
             )}
         </>
