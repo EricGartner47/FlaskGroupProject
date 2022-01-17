@@ -41,7 +41,7 @@ A user can search tasks by keyword in the search bar. The search will generate t
 
 ### List Summary
 A user can view lists by topic . A user can click on a list that will generate the tasks within that list. A list summary will generate an indication of tasks within that list, tasks due, and tasks completed.
-![List Summary]()
+![List Summary](https://github.com/EricGartner47/FlaskGroupProject/blob/main/react-app/src/components/auth/images/list%20summary.png)
 
 ### Lists
 An authorized user may create a list. Only the authorized user can then edit or delete a list.
