@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { deleteTask, loadTasks, loadListTasks, updateTask } from '../../store/tasks';
+import { loadLists } from '../../store/lists'
 import './TaskFormUpdate.css'
 
 const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
@@ -60,9 +61,12 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
+            dispatch(loadLists(user))
             if (currentList) {
                 dispatch(loadListTasks(user, currentList))
-            } else dispatch(loadTasks(user))
+            } else {
+                dispatch(loadTasks(user))
+            }
         }
     }
 
