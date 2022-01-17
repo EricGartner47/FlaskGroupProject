@@ -1,134 +1,49 @@
-# Flask React Project
+# You Made the List (YMtL) - Remember the Milk clone
+[YMtL](https://you-made-the-list.herokuapp.com/)
 
-This is the starter for the Flask React project.
+[Wiki](https://github.com/EricGartner47/FlaskGroupProject/wiki)
 
-## Getting started
+## At A Glance
+YMtL is a full stack web application that allows logged in users to:
+ - Create a task
+ - Edit a created task only by the posting user
+ - Delete a created task only by the posting user
+ - View tasks by due date
+ - Create a list of tasks
+ - Edit a list of tasks only by the posting user
+ - Delete a list of tasks only by the posting user
+ - View a list of tasks by topic
+ - View a summary list of task by total tasks, due tasks, and completed tasks
+ - Search tasks by keyword
 
-1. Clone this repository (only this branch)
+## Application Architecture
+YMtL is built with Flask backend and React frontend. PostgreSQL is also used as a database.
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+## Frontend Technologies Used
+YMtL uses React to generate the HTML elements, and then we use CSS to handling the styling of those elements.
 
-2. Install dependencies
+## Backend Technologies Used
+We used a Flask server to handle the backend communication. We used PostgreSQL because it is easy for us to use and manipulate with sequelize. Again, we used sequelize because of the ease of use as well as our familiarity with the language.
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+## Key Features
+### User Authorization
+User authorization is handled using Flask password hashing. When users log in, the password they provide is rehashed and checked against the original password.
+![Splash Page](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/userlog.png)
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+### Create a Task
+An authorized user can create a task under a list that can then be seen by any logged in user. Only the authorized user may then edit or delete the created task.
+![Create Task](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/add%20question.png)
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+### Search Tasks
+A user can search tasks by keyword in the search bar. The search will generate tasks found by keyword.
 
-   ```bash
-   pipenv shell
-   ```
+### List Summary
+A user can view lists by topic . A user can click on a list that will generate the tasks within that list. A list summary will generate an indication of tasks within that list, tasks due, and tasks completed.
+![Topic Navigation](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/topics.png)
 
-   ```bash
-   flask db upgrade
-   ```
+### Create a List
+An authorized user may create a list. Only the authorized user can then edit or delete a list.
+![Create an Answer](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/answers.png)
 
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
-
-## Deploy to Heroku
-
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
-
-   ```bash
-   heroku login
-   ```
-
-6. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+## Conclusion and Next Steps
+We are happy with the functionality and the styling. However, we would have like to implement the two bonus features of subtasks and an autocomplete. 
