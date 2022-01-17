@@ -28,6 +28,7 @@ We used a Flask server to handle the backend communication. We used PostgreSQL b
 ## Key Features
 ### User Authorization
 User authorization is handled using Flask password hashing. When users log in, the password they provide is rehashed and checked against the original password.
+![Log In Page]()
 ![Splash Page]()
 
 ### Create a Task
