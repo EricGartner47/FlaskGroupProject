@@ -89,3 +89,47 @@ article {
 h3 {
     font-weight:500;
 }
+
+blockquote {
+    border: none;
+    color: #fff;
+    opacity: .9;
+    font-size: 28px;
+    font-weight: 500;
+    margin-top: 232px;
+    line-height: 1.2;
+    padding: 0 0 0 3px;
+    max-width: 400px;
+    margin: 0 0 22px;
+}
+
+#log-in-footer {
+    font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: #fff;
+    opacity: .75;
+    padding-left: 4px;
+}
+
+#log-in-avatar {
+    background-image: url('https://www.rememberthemilk.com/img/avatar_bob_60.png?1587967172');
+    background-repeat: no-repeat;
+    background-size: 60px auto;
+    float: left;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    margin-right: 11px;
+}
+
+#log-in-avatar-text{
+    font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    opacity: .6;
+    padding: 15px 0 0 0;
+    max-width: 360px;
+    line-height: 1.3333333;
+}

@@ -14,8 +14,8 @@ import TaskFormUpdate from '../TaskFormUpdate';
 
 const Dashboard = () => {
     const user = useSelector(state => state.session.user);
-    const lists = useSelector(state => state.lists)
-    const tasks = useSelector(state => state.tasks)
+    const lists = useSelector(state => state.lists);
+    const tasks = useSelector(state => state.tasks);
     const { list, setList } = usePage()
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
@@ -47,7 +47,7 @@ const Dashboard = () => {
                     setSearchQuery={setSearchQuery}
                     setList={setList} />
                 <div id="dashboard-content">
-                    <ListBar 
+                    <ListBar
                         setList={setList}
                         setSelectedTask={setSelectedTask}
                     />

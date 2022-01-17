@@ -41,10 +41,15 @@ const LoginForm = () => {
               <span>you made<br></br>the list</span>
             </Link>
           </div>
-          <p>Insert inspirational quote here</p>
+          <blockquote>
+            <p>"The essence of being human is that one does not seek perfection."</p>
+            <footer id='login-footer'>
+              - George Orwell
+            </footer>
+          </blockquote>
           <div id="log-in-author">
-            <img src="/" alt="todo"></img>
-            <p>Quotes curated by Bill A. Chimp, renowned productivity expert</p>
+            <div id="log-in-avatar"></div>
+            <div id="log-in-avatar-text">Quotes curated by Bill A. Chimp, renowned productivity expert</div>
           </div>
         </article>
       </div>
