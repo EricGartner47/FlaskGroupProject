@@ -22,7 +22,7 @@ const Homepage = () => {
                 <CarouselContainer />
             </div>
             <footer id='homepage-footer'>
-                <div id='footer-nav-div'>
+                <div className='footer-nav-div'>
                     <ul>
                         <li className='nav-footer-header'>
                             Joe Yang:
@@ -34,6 +34,8 @@ const Homepage = () => {
                             <a className="linkedIn-link"href="https://www.linkedin.com/in/josephjyang/">Linked In</a>
                         </li>
                     </ul>
+                </div>
+                <div className='footer-nav-div'>
                     <ul>
                         <li className='nav-footer-header'>
                             Ricky Thang:
@@ -45,6 +47,8 @@ const Homepage = () => {
                             <a className="linkedIn-link" href="https://www.linkedin.com/in/ricky-thang-88307a100">Linked In</a>
                         </li>
                     </ul>
+                </div>
+                <div className='footer-nav-div'>
                     <ul>
                         <li className='nav-footer-header'>
                             Eric Gartner:

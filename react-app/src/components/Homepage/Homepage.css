@@ -45,7 +45,7 @@
     display: block;
 }
 
-#footer-nav-div {
+.footer-nav-div {
     display: inline-block;
     box-sizing: border-box;
     font-size: 15px;
@@ -54,12 +54,12 @@
     max-width: 180px;
 }
 
-#footer-nav-div li {
+.footer-nav-div li {
     margin-top: 0;
     text-align: -webkit-match-parent;
 }
 
-#footer-nav-div a {
+.footer-nav-div a {
     line-height: 24px;
     color: #8b8b94;
     padding-top: 0;
@@ -96,4 +96,8 @@ ul {
     font-weight: 700;
     color: #8b8b94;
     margin: 2px 0 8px 15px;
+}
+
+* {
+    box-sizing: border-box;
 }
