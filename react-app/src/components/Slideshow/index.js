@@ -27,14 +27,14 @@ const CarouselContainer = () => {
                 </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item interval={5000}>
+                    <Carousel.Caption>
+                        <h3>Get Lists out of your head.</h3>
+                        <p>Stop thinking about your List, and let the app remember for you.</p>
+                    </Carousel.Caption>
                 <img
                     src='https://www.rememberthemilk.com/img/hp_steve_1.png?1587967172'
                     alt="Third slide"
                 />
-                <Carousel.Caption>
-                    <h3>Get Lists out of your head.</h3>
-                    <p>Stop thinking about your List, and let the app remember for you.</p>
-                </Carousel.Caption>
                 </Carousel.Item>
         </Carousel>
     )
