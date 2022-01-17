@@ -36,7 +36,7 @@ An authorized user can create a task under a list that can then be seen by any l
 
 ### Search Tasks
 A user can search tasks by keyword in the search bar. The search will generate tasks found by keyword.
-![Search Task]
+![Search Task]()
 
 ### List Summary
 A user can view lists by topic . A user can click on a list that will generate the tasks within that list. A list summary will generate an indication of tasks within that list, tasks due, and tasks completed.
