@@ -17,13 +17,13 @@ YMtL is a full stack web application that allows logged in users to:
  - Search tasks by keyword
 
 ## Application Architecture
-YMtL is built with Flask backend and React frontend. PostgreSQL is also used as a database.
+YMtL is built with Flask backend and React frontend. Postgres is also used as a database.
 
 ## Frontend Technologies Used
 YMtL uses React to generate the HTML elements, and then we use CSS to handling the styling of those elements.
 
 ## Backend Technologies Used
-We used a Flask server to handle the backend communication. We used PostgreSQL because it is easy for us to use and manipulate with sequelize. Again, we used sequelize because of the ease of use as well as our familiarity with the language.
+We used a Flask server to handle the backend communication. We used PostgreSQL for our database and manipulated the aforementioned with SQLAlchemy.
 
 ## Key Features
 ### User Authorization
@@ -49,3 +49,4 @@ An authorized user may create a list. Only the authorized user can then edit or 
 
 ## Conclusion and Next Steps
 We are happy with the functionality and the styling. However, we would have like to implement the two bonus features of subtasks and an autocomplete.
+
