@@ -27,10 +27,7 @@
 }
 
 #slideshow-container {
-    padding-bottom: 106px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
+    width: 100%;
 }
 
 #homepage-footer {

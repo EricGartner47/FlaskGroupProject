@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-
+import './Slideshow.css'
 
 const CarouselContainer = () => {
     return (
