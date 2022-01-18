@@ -66,15 +66,12 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
             })
             dispatch(loadLists(user))
             if (list && list.id === payload.list_id) {
-                console.log("1")
                 dispatch(loadListTasks(user, list))
             } else if (list && listId) {
-                console.log("2")
                 setList(lists[updatedTask.list_id])
                 dispatch(loadListTasks(user, lists[updatedTask.list_id]))
             }
             else {
-                console.log("3")
                 dispatch(loadTasks(user))
             }
             setSuccess(updatedTask.name);
