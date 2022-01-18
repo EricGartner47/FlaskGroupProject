@@ -5,10 +5,13 @@ def seed_lists():
     groceries = List(
         name="Groceries", user_id=1)
     presents = List(
-        name="Christmas Presents", user_id=1)
+        name="Birthday Presents", user_id=1)
+    chores = List(
+        name="Chores", user_id=1)
 
     db.session.add(groceries)
     db.session.add(presents)
+    db.session.add(chores)
 
     db.session.commit()
 
