@@ -120,7 +120,7 @@ const TaskPanel = ({ tasks, query, list, setSelectedTask }) => {
                 )
                 }
                 <div id="task-cards-container">
-                    {completeTasks.map(task => {
+                    {completeTasks.length > 0 ? completeTasks.map(task => {
                         let today, overdue, split, month, day
                         if (task.due_date) {
                             let base = new Date()
@@ -146,7 +146,7 @@ const TaskPanel = ({ tasks, query, list, setSelectedTask }) => {
                                 </li>
                             </div>
                         )
-                    })}
+                    }) : !complete ? <div className="empty-msg">You have no incomplete tasks in this list. Woohoo!</div> : <div className="empty-msg">Start working on those tasks!</div>}
                 </div>
 
             </div>

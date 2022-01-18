@@ -24,7 +24,6 @@
 }
 
 #task-bar {
-    border-top: 1px dotted rgb(179, 179, 179);
     width: 100%;
 }
 
@@ -101,6 +100,7 @@
 }
 
 #task-list-tabs {
+    border-bottom: 1px dotted rgb(179, 179, 179);
     display: flex;
     justify-content: flex-end;
     padding-right: 3vw;
@@ -130,4 +130,12 @@
     color: rgb(210, 0, 0);
     padding-left: 18px;
     margin-top: 8px;
+}
+
+.empty-msg {
+    color: gray;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    font-style: italic;
 }

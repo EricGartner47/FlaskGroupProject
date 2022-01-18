@@ -10,7 +10,7 @@ import './TaskFormUpdate.css'
 const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
-    const { setList } = usePage()
+    const { list, setList } = usePage()
     const userLists = Object.values(lists)
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
@@ -18,6 +18,7 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
     const [completed, setCompleted] = useState(task.completed || false);
     let [listId, setListId] = useState(task.list_id);
     const [errors, setErrors] = useState([]);
+    const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
     useEffect(() => {
         setTaskName(task.name);
@@ -61,26 +62,38 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
             const updatedTask = await dispatch(updateTask(payload)).catch(async (res) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
+                return
             })
             dispatch(loadLists(user))
-            if (currentList && currentList.id === payload.list_id) {
-                console.log(lists[updatedTask.list_id])
-                dispatch(loadListTasks(user, currentList))
-            } else if (currentList && listId) {
-                console.log(lists[updatedTask.list_id])
+            if (list && list.id === payload.list_id) {
+                console.log("1")
+                dispatch(loadListTasks(user, list))
+            } else if (list && listId) {
+                console.log("2")
                 setList(lists[updatedTask.list_id])
                 dispatch(loadListTasks(user, lists[updatedTask.list_id]))
             }
             else {
-                setList(updatedTask.list_id)
+                console.log("3")
                 dispatch(loadTasks(user))
             }
+            setSuccess(updatedTask.name);
+            const timeout = setTimeout(function () {
+                setSuccess(false);
+            }, 2000);
+
+            return () => clearTimeout(timeout);
         }
     }
-
+    
     if (user) {
         return (
             <div id="task-update-panel">
+                {success &&
+                    <div id="success-container">
+                        <div className="success-message">You have successfully updated "{success}".</div>
+                    </div>
+                }
                 <i className="fas fa-trash" onClick={removeTaskButton}></i>
                 {errors.map((error, idx) => <div className="task-update-error" key={idx}>{error}</div>)}
                 <div id="task-update-form">

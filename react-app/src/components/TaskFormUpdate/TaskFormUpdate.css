@@ -9,6 +9,32 @@
 	color: black;
 }
 
+.success-message {
+	font-size: 12px;
+	border: 1px black solid;
+	z-index: 4;
+    background-color: #f9edbe;
+    padding: 6px 10px;
+    border: 1px solid #f0c36d;
+    border-radius: 2px;
+    position: relative;
+    -webkit-box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+    display: inline-block;
+    z-index: 4;
+    font-weight: 700;
+	margin-top: 15px;
+}
+
+#success-container {
+	position: fixed;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+}
+
 #label-task-name {
 	display: none;
 }
