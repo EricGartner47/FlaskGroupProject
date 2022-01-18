@@ -8,7 +8,7 @@ import './ListBar.css'
 import ListFormUpdate from '../ListFormUpdate';
 import ListFormRemove from '../ListFormRemove';
 
-const ListBar = ({ setList, setSelectedTask }) => {
+const ListBar = ({ list, setList, setSelectedTask }) => {
     const user = useSelector(state => state.session.user);
     const userLists = useSelector(state => state.lists);
     const lists = Object.values(userLists)
@@ -45,7 +45,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
             </div>
             <ul id="all-lists">
                 <li className="list-header">Inbox</li>
-                <li
+                <li className={!list ? "active-list" : ""}
                     onClick={() => {
                         setList()
                         setSelectedTask()
@@ -53,7 +53,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                     }>
                     All Tasks
                 </li>
-                <li
+                <li className={list === "Today" ? "active-list" : ""}
                     onClick={() => {
                         setList("Today")
                         setSelectedTask()
@@ -61,7 +61,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                     }>
                     Today
                 </li>
-                <li
+                <li className={list === "Tomorrow" ? "active-list" : ""}
                     onClick={() => {
                         setList("Tomorrow")
                         setSelectedTask()
@@ -69,7 +69,7 @@ const ListBar = ({ setList, setSelectedTask }) => {
                     }>
                     Tomorrow
                 </li>
-                <li
+                <li className={list === "This Week" ? "active-list" : ""}
                     onClick={() => {
                         setList("This Week")
                         setSelectedTask()
@@ -88,43 +88,43 @@ const ListBar = ({ setList, setSelectedTask }) => {
                         </Modal>
                     )}
                 </li>
-                {lists.map(list => {
-                    let incomplete = Object.values(list.tasks).filter(task => task.completed !== true)
+                {lists.map(userList => {
+                    let incomplete = Object.values(userList.tasks).filter(task => task.completed !== true)
                     let count = incomplete.length
                     return (
-                        <li className="user-list" key={list.id} onClick={() => {
-                            setList(list)
+                        <li className={list?.id === userList.id ? "user-list active-list" : "user-list"} key={userList.id} onClick={() => {
+                            setList(userList)
                             setSelectedTask()
                         }
                         }>
                             <div className="list-name">
-                                {list.name}
+                                {userList.name}
                             </div>
-                            <div className="list-dropdown" onClick={() => openActions(list.id)}>
+                            <div className="list-dropdown" onClick={() => openActions(userList.id)}>
                                 <div className="incomplete-count">
                                     {count}
                                 </div>
                                 <i className="fas fa-caret-down"></i>
-                                {showButtons === list.id &&
+                                {showButtons === userList.id &&
                                     <div className="list-actions-dropdown">
                                         <button className="list-link" onClick={
-                                            () => setShowUpdateForm(list.id + "edit")
+                                            () => setShowUpdateForm(userList.id + "edit")
                                         }>Rename List</button>
                                         <button className="list-link" onClick={
-                                            () => setShowUpdateForm(list.id + "delete")
+                                            () => setShowUpdateForm(userList.id + "delete")
                                         }>Delete List</button>
                                     </div>
                                 }
                             </div>
-                            {showUpdateForm === (list.id + "edit") && (
+                            {showUpdateForm === (userList.id + "edit") && (
                                 <Modal onClose={() => setShowUpdateForm(false)}>
-                                    <ListFormUpdate hideForm={() => setShowUpdateForm(false)} list={list} />
+                                    <ListFormUpdate hideForm={() => setShowUpdateForm(false)} list={userList} />
                                 </Modal>
                             )}
-                            {showUpdateForm === (list.id + "delete") &&
+                            {showUpdateForm === (userList.id + "delete") &&
                                 (
                                     <Modal onClose={() => setShowUpdateForm(false)}>
-                                        <ListFormRemove setList={setList} hideForm={() => setShowUpdateForm(false)} list={list} />
+                                        <ListFormRemove setList={setList} hideForm={() => setShowUpdateForm(false)} list={userList} />
                                     </Modal>
                                 )
                             }

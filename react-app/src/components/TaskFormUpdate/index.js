@@ -4,32 +4,33 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { deleteTask, loadTasks, loadListTasks, updateTask } from '../../store/tasks';
 import { loadLists } from '../../store/lists'
+import { usePage } from '../../context/AppContext';
 import './TaskFormUpdate.css'
 
 const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
     const user = useSelector(state => state.session.user);
     const lists = useSelector(state => state.lists);
+    const { setList } = usePage()
     const userLists = Object.values(lists)
     const [taskName, setTaskName] = useState(task.name);
     const [notes, setNotes] = useState(task.notes || "");
     const [dueDate, setDueDate] = useState(task.due_date || "hello");
     const [completed, setCompleted] = useState(task.completed || false);
-    let [list, setList] = useState(task.list_id);
+    let [listId, setListId] = useState(task.list_id);
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
-
     useEffect(() => {
         setTaskName(task.name);
         setNotes(task.notes);
         setDueDate(task.due_date || "");
         setCompleted(task.completed);
-        setList(task.list_id);
+        setListId(task.list_id);
     }, [task])
 
     const removeTaskButton = async e => {
         await dispatch(deleteTask(task))
-        if (list) {
-            dispatch(loadListTasks(user, list))
+        if (listId) {
+            dispatch(loadListTasks(user, listId))
         } else dispatch(loadTasks(user))
         setSelectedTask()
     }
@@ -38,8 +39,8 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
         e.preventDefault();
         let payload;
 
-        if (list === "select") {
-            list = null;
+        if (listId === "select") {
+            listId = null;
         }
 
         if (errors.length > 0) {
@@ -55,16 +56,23 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
                 notes,
                 due_date: dueDate,
                 completed,
-                list_id: list
+                list_id: listId
             }
-            await dispatch(updateTask(payload)).catch(async (res) => {
+            const updatedTask = await dispatch(updateTask(payload)).catch(async (res) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
             dispatch(loadLists(user))
-            if (currentList) {
+            if (currentList && currentList.id === payload.list_id) {
+                console.log(lists[updatedTask.list_id])
                 dispatch(loadListTasks(user, currentList))
-            } else {
+            } else if (currentList && listId) {
+                console.log(lists[updatedTask.list_id])
+                setList(lists[updatedTask.list_id])
+                dispatch(loadListTasks(user, lists[updatedTask.list_id]))
+            }
+            else {
+                setList(updatedTask.list_id)
                 dispatch(loadTasks(user))
             }
         }
@@ -111,8 +119,8 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
                                 <select
                                     id="list-select"
                                     name="list-select"
-                                    value={list || "select"}
-                                    onChange={e => { setList(e.target.value) }}
+                                    value={listId || "select"}
+                                    onChange={e => { setListId(e.target.value) }}
                                 >
                                     <option value={"select"}>Inbox</option>
                                     {userLists.map(list => {
@@ -140,7 +148,7 @@ const TaskFormUpdate = ({ task, setSelectedTask, currentList }) => {
                             <textarea
                                 id="task-notes"
                                 name="task-notes"
-                                value={notes}
+                                value={notes || ""}
                                 onChange={e => setNotes(e.target.value)}
                                 rows={3}
                                 cols={5}

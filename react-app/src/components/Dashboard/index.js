@@ -50,6 +50,7 @@ const Dashboard = () => {
                     <ListBar
                         setList={setList}
                         setSelectedTask={setSelectedTask}
+                        list={list}
                     />
                     <TaskPanel 
                         tasks={userTasks} 

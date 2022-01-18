@@ -164,3 +164,8 @@
     background-color: rgba(0, 102, 255, 0.3);
     cursor: pointer;
 }
+
+.active-list {
+    font-weight: 700;
+    color: #0060bf;
+}
