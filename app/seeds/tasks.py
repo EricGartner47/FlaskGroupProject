@@ -21,7 +21,7 @@ def seed_tasks():
     lawn = Task(
         name="Mow the lawn", notes="I don't have to do this until the spring.", due_date="Mar 21 2022", list_id=3, user_id=1)
     trash = Task(
-        name="Task out the trash", notes="The garbage gets collected on Wednesday.", due_date="Jan 19 2022", list_id=3, user_id=1)
+        name="Take out the trash", notes="The garbage gets collected on Wednesday.", due_date="Jan 19 2022", list_id=3, user_id=1)
     vacuum = Task(
         name="Vacuum the house", notes="Friends are coming over on Saturday, so I need to vacuum before then.", due_date="Jan 22 2022", list_id=3, user_id=1)
     laundry = Task(
