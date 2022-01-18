@@ -1,14 +1,16 @@
 #div-root {
     background-color: #fff;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
 #login-form {
-    padding: 200px 10px 0;
-    width: 75%;
+    width: 100%;
+    clear: both;
+    padding: 250px 10px 0;
+    display: block;
 }
 
 #login-fields {
@@ -21,29 +23,29 @@
 #left-div {
     background-color: #0060bf;
     box-sizing: border-box;
+    padding-left: 30px;
 }
 
 #right-div {
-    display: flex;
-    justify-content: center;
+    display: block;
     background-color: white;
+    width: 420px;
+    margin-left: 48px;
+    min-height: 100vh;
 }
 
 article {
-    display: flex;
-    flex-direction: column;
-    height: 615px;
     width: 70%;
-    margin-left: 10vw;
-    justify-content: space-between;
+    margin-left: 25%;
     box-sizing: border-box;
 }
 
 #log-in-author {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
+    margin: 89px 0 0 3px;
 }
 
 .login-field {
@@ -53,7 +55,13 @@ article {
     line-height: 1.3333;
     border-radius: 3px;
     box-sizing: border-box;
-    border: 1px rgb(172, 172, 172) solid;
+    margin-bottom: 10px;
+    border: 1px rgb(204, 204, 204) solid;
+    color: rgb(85, 85, 85);
+}
+
+.login-field::placeholder {
+    color: rgb(204, 204, 204);
 }
 
 .login-field:focus {
@@ -68,7 +76,7 @@ article {
     color: #fff;
     background-color:#009dff;
     margin-bottom: 0px;
-    line-height: 1.75;
+    height: 48px;
     border: none;
     border-radius: 5px;
     font-size: 20px;
@@ -80,36 +88,61 @@ article {
 }
 
 #login-signup {
-    position: absolute;
-    right: 70px;
-    top: 40px;
+    /* float: right;
+    margin: 43px -2px 0 0; */
     border: none;
     border-radius: 5px;
     padding: 7px 11px;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 15px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.5);
     background-color: rgba(0, 96, 191, 0.1);
 }
 
+#login-btn-grp {
+    float: right;
+    margin: 43px -2px 0 0;
+    display: flex;
+}
+
+#login-btn-grp #demo-login {
+    border: none;
+    border-radius: 5px;
+    padding: 7px 11px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    margin-right: 15px;
+}
+
+#login-btn-grp #demo-login:active {
+    box-shadow: inset 0 3px 5px rgb(0 0 0 / 13%);
+}
+
+#login-btn-grp #demo-login:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
 #login-form h3 {
     font-weight:500;
     font-size: 21px;
+    margin-top: 20px;
     margin-bottom: 28px;
 }
 
-blockquote {
+#login-blockquote {
     border: none;
     color: #fff;
     opacity: .9;
     font-size: 28px;
     font-weight: 500;
-    margin-top: 232px;
+    margin: 232px 0 22px 0;
     line-height: 1.2;
     padding: 0 0 0 3px;
     max-width: 400px;
-    margin: 0 0 22px;
 }
 
 #login-footer {

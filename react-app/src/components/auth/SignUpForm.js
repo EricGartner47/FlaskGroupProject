@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import DemoLoginButton from '../DemoLoginButton';
 import './SignUpForm.css'
 
 const SignUpForm = () => {
@@ -119,9 +120,12 @@ const SignUpForm = () => {
         </article>
       </div>
       <div id='right-div'>
-          <NavLink to='/login' exact={true} activeClassName='active' id='signup-login'>
+        <div id="login-btn-grp">
+          <DemoLoginButton />
+          <NavLink to='/login' exact={true} activeClassName='active' id='login-signup'>
             Log in
           </NavLink>
+        </div>
         <form onSubmit={onSignUp} id='signup-form'>
           <div>
           </div>

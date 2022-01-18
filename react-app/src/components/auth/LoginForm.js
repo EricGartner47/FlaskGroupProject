@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link, NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
+import DemoLoginButton from '../DemoLoginButton';
 import './LoginForm.css'
 
 const LoginForm = () => {
@@ -41,7 +42,7 @@ const LoginForm = () => {
               <span>you made<br></br>the list</span>
             </Link>
           </div>
-          <blockquote>
+          <blockquote id="login-blockquote">
             <p>"The essence of being human is that one does not seek perfection."</p>
             <footer id='login-footer'>
               - George Orwell
@@ -54,9 +55,12 @@ const LoginForm = () => {
         </article>
       </div>
       <div id='right-div'>
-        <NavLink id="login-signup" to='/sign-up' exact={true} activeClassName='active'>
-          Sign up for free
-        </NavLink>
+        <div id="login-btn-grp">
+          <DemoLoginButton />
+          <NavLink id="login-signup" to='/sign-up' exact={true} activeClassName='active'>
+            Sign up for free
+          </NavLink>
+        </div>
         <form onSubmit={onLogin} id='login-form'>
           <h3>Been here before? Welcome Back!</h3>
           {errors.length > 0 && (
