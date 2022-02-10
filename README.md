@@ -3,6 +3,8 @@
 
 [Wiki](https://github.com/EricGartner47/FlaskGroupProject/wiki)
 
+![App Demo](https://github.com/EricGartner47/FlaskGroupProject/blob/main/react-app/src/components/auth/images/ymtl.gif)
+
 ## At A Glance
 YMtL is a full stack web application that allows logged in users to:
  - Create a task
