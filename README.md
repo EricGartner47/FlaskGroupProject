@@ -21,9 +21,17 @@ YMtL is built with Flask backend and React frontend. Postgres is also used as a 
 
 ## Frontend Technologies Used
 YMtL uses React to generate the HTML elements, and then we use CSS to handling the styling of those elements.
+- Javascript
+- React
+- Redux
+- CSS
 
 ## Backend Technologies Used
 We used a Flask server to handle the backend communication. We used PostgreSQL for our database and manipulated the aforementioned with SQLAlchemy.
+- Python
+- Flask
+- SQLAlchemy
+- PostgreSQL
 
 ## Key Features
 ### User Authorization
